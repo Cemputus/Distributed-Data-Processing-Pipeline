@@ -3,7 +3,7 @@
 **Project:** Distributed Data Processing Pipeline  
 **Course:** DSC3219 — Cloud and Distributed Computing (BSDS 32)  
 **Milestone:** One — Requirements Specification & Planning  
-**Version:** 1.1  
+**Version:** 1.2  
 **Date:** April 2026  
 
 ---
@@ -16,21 +16,23 @@
 
 ### 1.1 Purpose
 
-This Software Requirements Specification (SRS) defines the functional and non-functional requirements for a **Distributed Data Processing Pipeline**. The system shall ingest large datasets into distributed storage, process them in parallel on a cloud-hosted compute layer, and load curated aggregates into an analytical data warehouse. This document is intended for course assessors, the development team, and stakeholders who need a single authoritative statement of what the system must do and how success will be validated.
+This Software Requirements Specification (SRS) defines the functional and non-functional requirements for a **Distributed Data Processing Pipeline**. The system shall ingest batch datasets into **distributed storage**, process them in parallel using **Apache Spark** and **Apache Hadoop** components **where necessary** (e.g., HDFS, YARN, or MapReduce jobs), orchestrate workloads with **Apache Airflow**, run in **Docker** containers, and load curated aggregates into an **open-source analytical store**. The stack shall **not** depend on paid commercial software or paid cloud-only services. This document is intended for course assessors, the development team, and stakeholders who need a single authoritative statement of what the system must do and how success will be validated.
 
 ### 1.2 Scope
 
 **Goals**
 
-- Demonstrate applied knowledge of **distributed storage**, **parallel processing** (MapReduce-style execution model, e.g., via Apache Spark), **cloud deployment**, **load balancing** (where applicable to the chosen architecture), **virtualisation / managed cluster** usage, and **secure access** to data and services.
+- Demonstrate applied knowledge of **distributed storage**, **parallel processing** (MapReduce-style execution via **Apache Spark** and, where justified, **Hadoop** MapReduce/HDFS/YARN), **containerisation (Docker)**, **orchestration (Apache Airflow)**, **load balancing** (where applicable, e.g., reverse proxy or scheduler workers), and **secure access** to data and services.
 - Deliver a documented, demonstrable pipeline: **Input → Processing → Result store**, aligned with the examination brief [1].
 
 **In scope**
 
-- Ingestion and organisation of batch datasets in a **distributed object store** (e.g., Amazon S3; alternatives such as HDFS on cloud VMs are acceptable if equivalently justified).
-- Parallel transformation and aggregation using **Apache Spark** (or Hadoop MapReduce) on **cloud-managed** compute (e.g., Amazon EMR, AWS Glue, Dataproc, HDInsight, Databricks — subject to final design in Milestone 2).
-- Loading of processed outputs into a **cloud data warehouse** (e.g., Amazon Redshift, Google BigQuery, Snowflake, or Azure Synapse Analytics).
-- Identity and access controls, network exposure minimisation, and auditability sufficient for an academic production-like deployment.
+- **Containerisation:** Core services run as **Docker** containers (e.g., **Docker Compose** on a developer or lab host) with reproducible images and documented `docker compose` (or equivalent) workflows.
+- **Orchestration:** Batch pipelines are scheduled and monitored with **Apache Airflow** (DAGs for ingest, Spark/Hadoop steps, and load to the analytical store).
+- **Input stage:** Batch datasets land in **distributed storage** using **open-source** options only — e.g., **HDFS** (Hadoop) and/or an **S3-compatible** object store such as **MinIO** (no AWS/GCP/Azure *paid* managed services required).
+- **Processing stage:** **Apache Spark** for primary analytics; **Hadoop ecosystem** components (**HDFS**, **YARN**, **MapReduce** jobs) used **where necessary** to satisfy the brief and to demonstrate distributed execution (design shall justify what runs on Spark vs. Hadoop).
+- **Result store:** Curated data loaded into a **free, open-source analytical database** suitable for SQL validation (e.g., **PostgreSQL**, **Apache Hive**, or **Trino** with Hive — exact choice fixed in Milestone 2), deployed in Docker; **not** commercial warehouses that require payment (e.g., Snowflake, paid tiers of proprietary SaaS).
+- Identity and access controls, Docker network segmentation where practical, and auditability sufficient for an academic deployment.
 - Documentation artefacts required by the brief: architecture, scalability, fault tolerance, and security configuration (detailed in later milestones; requirements for their *existence* and *content* are stated here).
 
 **Out of scope (for this course project unless explicitly added later)**
@@ -45,9 +47,11 @@ This Software Requirements Specification (SRS) defines the functional and non-fu
 |------|------------|
 | **SRS** | Software Requirements Specification |
 | **HDFS** | Hadoop Distributed File System |
-| **S3** | Amazon Simple Storage Service |
-| **IAM** | Identity and Access Management |
-| **VPC** | Virtual Private Cloud |
+| **S3** | S3 API — in this project typically **MinIO** or HDFS connectors, not proprietary paid object storage |
+| **IAM** | Identity and access patterns (cloud IAM concepts applied to OSS: MinIO policies, Airflow RBAC, DB roles) |
+| **VPC** | Docker bridge/overlay networks and host firewall rules (logical isolation analogous to private networks) |
+| **Airflow** | Apache Airflow — workflow orchestration |
+| **YARN** | Yet Another Resource Negotiator (Hadoop resource manager) |
 | **ETL / ELT** | Extract, Transform, Load / Extract, Load, Transform |
 | **Spark** | Apache Spark distributed processing engine |
 | **DW** | Data warehouse |
@@ -66,9 +70,15 @@ This Software Requirements Specification (SRS) defines the functional and non-fu
 
 [5] Project artefact, *UCU Analytics Anonymized Synthetic_Data — schema and descriptions*, `Synthetic_Data/Data_info/` (e.g., `data_description.md`, `data_shema.md`), 2026.  
 
+[6] Apache Software Foundation, *Apache Airflow Documentation*, https://airflow.apache.org/docs/  
+
+[7] Apache Software Foundation, *Apache Hadoop Documentation*, https://hadoop.apache.org/docs/  
+
+[8] Docker Inc., *Docker Documentation — Compose*, https://docs.docker.com/compose/  
+
 ### 1.5 Overview of Document
 
-Section 2 summarises the product context and constraints, including the **reference batch dataset** (`Synthetic_Data`). Section 3 lists functional requirements. Section 4 lists non-functional requirements. Section 5 defines validation criteria and acceptance tests at requirements level.
+Section 2 summarises the product context and constraints, including **Docker**, **Apache Airflow**, **Spark/Hadoop**, **no paid software** for the core stack, and the **reference batch dataset** (`Synthetic_Data`). Section 3 lists functional requirements. Section 4 lists non-functional requirements. Section 5 defines validation criteria and acceptance tests at requirements level.
 
 ---
 
@@ -76,22 +86,24 @@ Section 2 summarises the product context and constraints, including the **refere
 
 ### 2.1 Product Perspective
 
-The system is a **greenfield** data pipeline comprising three logical tiers consistent with the examination brief:
+The system is a **greenfield** data pipeline comprising three logical tiers consistent with the examination brief, implemented as a **Docker-based** stack:
 
-1. **Input stage:** Authoritative landing zone for raw and staged datasets on **distributed storage** (S3 or HDFS-class storage).
-2. **Processing stage:** Parallel analytics engine (Spark- or Hadoop-based) running on **cloud compute** with cluster-style execution.
-3. **Result store:** Relational or columnar **warehouse** for aggregated tables supporting analytical queries.
+1. **Input stage:** Landing zone on **distributed storage** — **HDFS** and/or **S3-compatible** storage (e.g., **MinIO**) — deployable in containers.
+2. **Processing stage:** **Apache Spark** for distributed analytics; **Hadoop** (**HDFS**, **YARN**, **MapReduce** as needed) to satisfy distributed/cluster requirements without paid platforms.
+3. **Result store:** **Open-source** analytical tables (e.g., PostgreSQL, Hive-metastore-backed tables) supporting SQL validation queries.
 
-The solution may expose a minimal **front-end or operator interface** (e.g., Jupyter notebook, lightweight web app, or cloud console workflows) for job submission and monitoring; the examination requires an **architecture diagram** showing interactions among front-end (if any), **load balancers** (if used), **servers / services**, and **storage** [1].
+**Orchestration** is provided by **Apache Airflow**, which schedules DAGs that coordinate ingestion, Spark and Hadoop jobs, and loads to the result store [6].
+
+The solution may expose **Airflow’s UI**, **Spark UIs**, and/or a minimal **notebook** for monitoring; the examination requires an **architecture diagram** showing interactions among front-end (if any), **load balancers** (if any), **servers / services**, and **storage** [1].
 
 ### 2.2 Product Functions (Summary)
 
-- Secure upload or transfer of datasets into the landing zone.
-- Configurable pipeline definitions (e.g., Spark job, Glue/EMR job, or equivalent) for cleansing, transformation, and aggregation.
-- Orchestrated execution of processing jobs on scalable compute.
-- Load of curated outputs into warehouse tables.
-- Authentication/authorisation for human operators and **least-privilege** access for services (IAM roles, bucket policies, etc.).
-- Observability sufficient to demonstrate failures and recovery (logs, basic metrics).
+- Secure upload or transfer of datasets into the landing zone (scripts, Airflow tasks, or volume mounts into containers).
+- **Apache Airflow DAGs** defining pipeline steps: ingest → Spark and/or Hadoop processing → load to analytical store.
+- Configurable jobs: **Spark** applications (PySpark/Scala); **Hadoop MapReduce** or **distcp**-style steps **where necessary** [7].
+- Load of curated outputs into **open-source** warehouse or lakehouse tables.
+- Authentication/authorisation for operators (**Airflow** users/RBAC, MinIO/HDFS service accounts, database roles) and **least-privilege** between containers.
+- Observability: Airflow task logs, Spark UI, container logs — sufficient for demonstration and failure analysis.
 
 ### 2.3 User Classes and Characteristics
 
@@ -99,27 +111,31 @@ The solution may expose a minimal **front-end or operator interface** (e.g., Jup
 |------------|-------------|----------------------|
 | **Pipeline operator** | Student / developer running the course project | Uploads data, triggers jobs, inspects logs, runs validation queries |
 | **Assessor / examiner** | Evaluates milestones | Reviews SRS, design, demo, security evidence |
-| **System services** | Automated principals (IAM roles, service accounts) | Read/write storage, run jobs, load warehouse |
+| **System services** | Service accounts / technical users (MinIO, HDFS, DB), Airflow connections | Read/write storage, run Spark/Hadoop, load warehouse |
 
 ### 2.4 Operating Environment
 
-- **Cloud provider:** One major public cloud (AWS, GCP, or Azure) with SDK/API-driven provisioning *or* infrastructure-as-code templates; exact provider is fixed in Milestone 2.
-- **Client environment:** Developer workstation with VPN or secure browser access to cloud console; scripts written in Python, Scala, or SQL as appropriate.
-- **Network:** Processing and data services shall run in **private subnets** or provider-equivalent isolated networks where feasible; public exposure limited to required endpoints only (documented under security NFRs).
+- **Runtime:** **Docker Engine** (Linux containers) on a physical or virtual **host machine** (developer laptop, lab PC, or VM) — no requirement to use paid public-cloud managed services [8].
+- **Orchestration runtime:** **Apache Airflow** (containerised) with executor choice documented in Milestone 2 (e.g., `LocalExecutor` or `CeleryExecutor` with Redis — OSS components only).
+- **Client environment:** Scripts in **Python** (Airflow DAGs, PySpark), **SQL**, or **Bash**; browser access to Airflow UI and optional Spark UIs on `localhost` or confined host ports.
+- **Network:** Docker **bridge/custom networks** to isolate database and storage from public internet; only required ports published (documented under security NFRs).
 
 ### 2.5 Design and Implementation Constraints
 
-- The examination mandates use of **cloud SDKs/APIs** for implementation [1]; ad-hoc manual steps may exist for demonstration but **must not** be the only reproducible path.
-- Processing must reflect **parallel / distributed** execution suitable for large data (Spark/Hadoop cluster or managed Spark service).
+- The examination expects programmatic automation [1]; implementation shall use **Airflow**, **Spark/Hadoop APIs**, and **Docker** tooling so the pipeline is **reproducible** (`docker compose up`, documented env vars). Ad-hoc manual steps may supplement the demo but **must not** be the only path.
+- **Apache Spark** shall be used for core distributed analytics; **Apache Hadoop** (e.g., **HDFS** for storage, **YARN** for resource management, or **MapReduce** jobs) shall be incorporated **where necessary** to align with the course’s distributed-computing outcomes [7].
+- **Containerisation:** All major components (Airflow, Spark workers, HDFS/MinIO, analytical DB, etc.) shall run under **Docker** with version-pinned images or Dockerfiles committed to the repository [8].
+- **Orchestration:** **Apache Airflow** is mandatory for workflow scheduling and dependency management between pipeline stages [6].
+- **No paid software (core stack):** The project shall **not** require **paid licences**, **paid SaaS**, or **paid cloud managed services** (e.g., EMR, Glue, Redshift, BigQuery, Snowflake, Databricks paid tier). **Free and open-source** alternatives shall be used; optional use of **free tiers** of public clouds is out of scope unless they add zero cost and are justified — default is **fully local Docker**.
 - Cost and complexity shall remain appropriate to a **two-week** academic project (document trade-offs in design).
 - Final report formatting must follow course instructions (Trebuchet MS, 12 pt, 1.5 spacing, justified, IEEE references) [1].
 
 ### 2.6 Assumptions and Dependencies
 
-- **Assumption A1:** **Batch** CSV files under **`Synthetic_Data/`** are the **reference inputs**; volume is sufficient to partition/partition-read in Spark (additional synthetic row duplication or extra partitions may be used if disclosed) to demonstrate parallel benefit.
-- **Assumption A2:** At least one **warehouse** and one **distributed store** are available in the chosen cloud with student-accessible credentials.
-- **Dependency D1:** Availability of cloud accounts, quotas, and educator-approved services.
-- **Dependency D2:** Third-party documentation and SDK versions current at implementation time (pinned in Milestone 3).
+- **Assumption A1:** **Batch** CSV files under **`Synthetic_Data/`** are the **reference inputs**; volume is sufficient for **partitioned reads** in Spark (additional partitions may be used if disclosed) to demonstrate parallel benefit.
+- **Assumption A2:** The host machine can run **Docker** with enough RAM/CPU for a minimal multi-container stack (exact sizing in Milestone 2).
+- **Dependency D1:** **Docker**, **Docker Compose**, and open-source images/builds for Airflow, Spark, Hadoop components, and the analytical store.
+- **Dependency D2:** Pinned versions of Airflow, Spark, Hadoop (if used), and Python dependencies (recorded in `requirements.txt` / `pyproject.toml` / Compose files).
 
 ### 2.7 Reference dataset: `Synthetic_Data`
 
@@ -157,55 +173,63 @@ The processing stage shall support **at least one** multi-table workflow over th
 
 Each requirement is **unique**, **testable**, and **prioritised** (Must / Should / Could).
 
-### 3.1 Data Ingestion and Storage (Input Stage)
+### 3.1 Containerisation, Orchestration, and Stack Policy
 
 | ID | Priority | Statement |
 |----|----------|-----------|
-| **FR-01** | Must | The system shall store **raw input datasets** in a **distributed storage layer** (e.g., S3 bucket(s) or HDFS namespace) with a documented folder or prefix convention (e.g., `raw/`, `staging/`, `processed/`). |
+| **FR-21** | Must | The system shall be **deployed with Docker** — services run as containers with a reproducible **`docker compose`** (or equivalent) definition and/or Dockerfiles version-controlled in the repository [8]. |
+| **FR-22** | Must | Batch workflows shall be **orchestrated by Apache Airflow** using **DAGs** that model dependencies between ingest, processing, and load steps [6]. |
+| **FR-23** | Must | The **core pipeline shall not require paid software** — no paid licences, mandatory paid SaaS, or paid proprietary cloud-managed analytics/storage services; only **free and open-source** components (and the host OS/Docker Engine) are in scope. |
+
+### 3.2 Data Ingestion and Storage (Input Stage)
+
+| ID | Priority | Statement |
+|----|----------|-----------|
+| **FR-01** | Must | The system shall store **raw input datasets** in a **distributed storage layer** — **HDFS** and/or **S3-compatible object storage (e.g., MinIO)** — running in **Docker**, with a documented path/prefix convention (e.g., `raw/`, `staging/`, `processed/`). |
 | **FR-02** | Must | The system shall support **adding new batch files** (e.g., CSV, Parquet, JSON) without redeploying the entire application stack (configuration or script update is acceptable). |
 | **FR-03** | Should | The system shall record **basic ingestion metadata** (object key, size, timestamp, checksum optional) for traceability. |
-| **FR-04** | Must | Access to raw and staged data shall be **enforced via IAM or equivalent** (no world-readable private data by default). |
+| **FR-04** | Must | Access to raw and staged data shall be **enforced** via **MinIO bucket policies / credentials**, **HDFS permissions**, and **Docker network isolation** (no anonymous public read/write to private data). |
 
-### 3.2 Distributed Processing (Processing Stage)
+### 3.3 Distributed Processing (Processing Stage)
 
 | ID | Priority | Statement |
 |----|----------|-----------|
-| **FR-05** | Must | The system shall execute **at least one** non-trivial analytics workflow (filtering, joins, aggregations) using **Apache Spark** or **Hadoop MapReduce** on **cloud-hosted** compute (cluster or managed service). |
+| **FR-05** | Must | The system shall execute **at least one** non-trivial analytics workflow (filtering, joins, aggregations) using **Apache Spark** as the primary engine, and shall use **Hadoop components** (**HDFS**, **YARN**, and/or **MapReduce** jobs) **where necessary**, all runnable **inside the Docker-based stack** (not on paid proprietary managed clusters). |
 | **FR-06** | Must | Processing shall be **parallelisable** across multiple workers (evidence: Spark partitions / YARN containers / service worker count documented in design and demo). |
 | **FR-07** | Should | The system shall support **re-running** the same job idempotently on the same input version (or clearly versioned inputs) without corrupting downstream tables (overwrite or merge strategy documented). |
 | **FR-08** | Could | The system may expose **parameterised jobs** (e.g., date range, input path) via configuration file or CLI arguments. |
 
-### 3.3 Results and Analytics (Result Store)
+### 3.4 Results and Analytics (Result Store)
 
 | ID | Priority | Statement |
 |----|----------|-----------|
-| **FR-09** | Must | The system shall **load aggregated or curated outputs** into a **cloud data warehouse** (e.g., Redshift, BigQuery, Snowflake, Synapse) as **queryable tables** or **views**. |
+| **FR-09** | Must | The system shall **load aggregated or curated outputs** into an **open-source analytical store** (e.g., **PostgreSQL**, **Apache Hive**, or **Trino** querying Hive — choice fixed in Milestone 2) exposed as **queryable tables** or **views**, containerised. |
 | **FR-10** | Must | The assessor shall be able to **verify correctness** by running **at least two** representative SQL queries against the warehouse (e.g., row counts, aggregate totals matching expected benchmarks documented in validation). |
 | **FR-11** | Should | Schema for warehouse tables shall be **documented** (column names, types, grain of aggregation). |
 
-### 3.4 Security, Identity, and Access
+### 3.5 Security, Identity, and Access
 
 | ID | Priority | Statement |
 |----|----------|-----------|
-| **FR-12** | Must | The system shall implement **authentication** for human operators appropriate to the chosen interface (e.g., cloud console SSO, application login, or API keys stored outside version control — method documented). |
-| **FR-13** | Must | The system shall implement **authorisation** such that only designated principals can **read/write** sensitive buckets, run jobs, or query sensitive tables (IAM policies, role assumption, or equivalent). |
+| **FR-12** | Must | The system shall implement **authentication** for human operators (e.g., **Airflow** web UI login / RBAC, database users); technical credentials for MinIO/HDFS/DB shall not be embedded in DAG code. |
+| **FR-13** | Must | The system shall implement **authorisation** such that only designated principals can **read/write** storage, **trigger or clear Airflow tasks**, or **query** sensitive tables (policy files, HDFS ACLs, PostgreSQL/Hive grants, MinIO policies — documented). |
 | **FR-14** | Should | Secrets (access keys, passwords) shall **not** be committed to source control; use environment variables, secrets manager, or college-approved method. |
 
-### 3.5 Operations, Monitoring, and Demonstration
+### 3.6 Operations, Monitoring, and Demonstration
 
 | ID | Priority | Statement |
 |----|----------|-----------|
-| **FR-15** | Must | The system shall produce **auditable evidence** of execution (job run IDs, logs, or console screenshots) suitable for Milestone 4 demonstration. |
-| **FR-16** | Should | The system shall expose **basic health information** (last successful run time, failure status) via logs or a simple status page/notebook output. |
+| **FR-15** | Must | The system shall produce **auditable evidence** of execution (**Airflow** run IDs, Spark application IDs, container logs, or screenshots) suitable for Milestone 4 demonstration. |
+| **FR-16** | Should | The system shall expose **basic health information** (last successful DAG run, task failure status) via **Airflow** and container logs. |
 
-### 3.6 Documentation Deliverables (Cross-Milestone, Required by Brief)
+### 3.7 Documentation Deliverables (Cross-Milestone, Required by Brief)
 
 | ID | Priority | Statement |
 |----|----------|-----------|
 | **FR-17** | Must | The final submission shall include a **system architecture diagram** showing interactions among front-end (if any), load balancers (if any), compute, and storage [1]. |
 | **FR-18** | Must | The final submission shall include a **scalability analysis** describing behaviour under increasing data volume or concurrent jobs [1]. |
 | **FR-19** | Must | The final submission shall include **fault tolerance mechanisms** describing steps when a node or service fails [1]. |
-| **FR-20** | Must | The final submission shall include **security configuration** evidence (e.g., IAM policy summaries, network security group rules, least-privilege narrative) [1]. |
+| **FR-20** | Must | The final submission shall include **security configuration** evidence (e.g., MinIO/HDFS policy summaries, **Docker** network and port bindings, Airflow access controls, DB grants, least-privilege narrative) [1]. |
 
 ---
 
@@ -215,14 +239,14 @@ Each requirement is **unique**, **testable**, and **prioritised** (Must / Should
 
 | ID | Priority | Statement |
 |----|----------|-----------|
-| **NFR-01** | Must | The processing layer shall **scale horizontally** (increase workers / auto-scaling group / managed worker count) within the limits of the student cloud account; scalability limits and observed behaviour shall be documented. |
+| **NFR-01** | Must | The processing layer shall demonstrate **horizontal scale-out** within practical limits (e.g., add Spark executors, extra Airflow workers, or additional Docker replicas on the host); **limits of the host machine** and observed behaviour shall be documented. |
 | **NFR-02** | Should | End-to-end batch runtime for the **`Synthetic_Data`** pipeline run shall be measured and reported (no fixed SLA required; trend vs. single-node baseline acceptable). |
 
 ### 4.2 Reliability and Fault Tolerance
 
 | ID | Priority | Statement |
 |----|----------|-----------|
-| **NFR-03** | Must | The design shall address **single-node / single-task failure** using platform features (e.g., Spark stage retries, EMR/Glue retries, multi-AZ where applicable) and shall describe **operator recovery steps** [1]. |
+| **NFR-03** | Must | The design shall address **single-node / single-task failure** using platform features (e.g., **Spark** stage retries, **Airflow** task retries, container restart policies) and shall describe **operator recovery steps** [1]. |
 | **NFR-04** | Should | Critical data shall rely on **durable storage** (object store / warehouse durability guarantees) rather than ephemeral cluster disks alone. |
 
 ### 4.3 Security
@@ -230,7 +254,7 @@ Each requirement is **unique**, **testable**, and **prioritised** (Must / Should
 | ID | Priority | Statement |
 |----|----------|-----------|
 | **NFR-05** | Must | **Least privilege:** default deny; grants limited to required actions on required resources (documented IAM or RBAC policies). |
-| **NFR-06** | Must | **Network controls:** processing and data services placed in private connectivity patterns where the cloud provider supports it; public endpoints justified if used. |
+| **NFR-06** | Must | **Network controls:** processing and data services communicate on **internal Docker networks**; only required ports (e.g., Airflow UI, Spark UI for debug) published to the host and **documented**. |
 | **NFR-07** | Should | **Encryption in transit** for service communication where supported (HTTPS/TLS); **encryption at rest** enabled for object store and warehouse where available without excessive cost. |
 
 ### 4.4 Usability and Maintainability
@@ -246,6 +270,12 @@ Each requirement is **unique**, **testable**, and **prioritised** (Must / Should
 |----|----------|-----------|
 | **NFR-10** | Could | Where practical, use **open formats** (Parquet, CSV with schema) to ease migration between environments. |
 
+### 4.6 Cost and Licensing
+
+| ID | Priority | Statement |
+|----|----------|-----------|
+| **NFR-11** | Must | The deliverable shall **not** list or require **paid third-party services** as mandatory for building, running, or grading the pipeline; optional free-tier cloud resources are allowed only if explicitly non-essential and disclosed. |
+
 ---
 
 ## 5. Validation Criteria and Acceptance
@@ -256,17 +286,17 @@ Validation ties measurable evidence to requirements.
 
 | Criterion | Evidence |
 |-----------|----------|
-| **V-01** | Completeness — all sections 1–5 present; FR and NFR tables complete |
+| **V-01** | Completeness — all sections 1–5 present; FR and NFR tables complete (including **FR-21–FR-23**, **NFR-11**) |
 | **V-02** | Clarity — requirements are unambiguous and testable (no “fast”, “good” without measure) |
-| **V-03** | Alignment — input → processing → warehouse path traced to FR-01, FR-05, FR-09; **`Synthetic_Data`** named as reference dataset (§2.7) |
-| **V-04** | Constraints — cloud SDK/API use and security expectations stated |
+| **V-03** | Alignment — input → processing → analytical store traced to **FR-01**, **FR-05**, **FR-09**; **`Synthetic_Data`** in §2.7; **Docker** + **Airflow** + **Spark/Hadoop** stated |
+| **V-04** | Constraints — **Docker**, **Apache Airflow**, **no paid core software** (**FR-23**, **NFR-11**), automation, and security expectations stated |
 
 ### 5.2 System-Level Acceptance (End of Project)
 
 | Criterion | Evidence |
 |-----------|----------|
 | **V-05** Demo | Live or recorded walkthrough showing data in distributed store, job execution, warehouse queries [1] |
-| **V-06** Security | IAM/RBAC artefacts and narrative for FR-12–FR-14 |
+| **V-06** Security | Access-control artefacts and narrative for FR-12–FR-14 (Airflow, MinIO/HDFS, DB) |
 | **V-07** Scalability | NFR-01 addressed with test or reasoned analysis |
 | **V-08** Fault tolerance | NFR-03 with concrete scenario (e.g., kill worker, retry, or service outage drill) |
 | **V-09** Documentation | FR-17–FR-20 satisfied in final report |
@@ -275,6 +305,7 @@ Validation ties measurable evidence to requirements.
 
 - **Exam brief [1]** → FR-01, FR-05, FR-09, FR-17–FR-20  
 - **Reference dataset [5]** → §2.7, A1, FR-05, FR-10, NFR-02  
+- **Platform [6][7][8]** → FR-21, FR-22, FR-23, NFR-11  
 - **Milestone 3 secure implementation** → FR-12–FR-14, NFR-05–NFR-07  
 - **Presentation milestone** → FR-15–FR-16, V-05  
 
@@ -286,6 +317,7 @@ Validation ties measurable evidence to requirements.
 |---------|------|--------|---------|
 | 1.0 | April 2026 | Project team | Initial SRS for Milestone 1 |
 | 1.1 | April 2026 | Project team | Bound requirements to repository **`Synthetic_Data`** (§2.7), reference [5], A1/NFR-02/V-03 updates |
+| 1.2 | April 2026 | Project team | **Docker**, **Apache Airflow**, **Spark + Hadoop where necessary**, **no paid core software**; FR-21–FR-23, NFR-11; refs [6]–[8]; §2.1–2.6 and FR/NFR updates |
 
 ---
 

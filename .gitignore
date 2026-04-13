@@ -1,2 +1,11 @@
 # Local synthetic dataset (large / generated; keep out of version control)
 Synthetic_Data/
+
+# Secrets and local env
+.env
+
+# Airflow runtime (keep directory, ignore log contents)
+airflow/logs/*
+!airflow/logs/.gitkeep
+airflow/**/__pycache__/
+*.pyc

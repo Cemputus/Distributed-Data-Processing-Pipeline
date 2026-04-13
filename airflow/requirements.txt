@@ -1,0 +1,2 @@
+# Pinned in Milestone 3 — add e.g. pyspark, apache-airflow-providers-apache-spark when jobs are implemented.
+# apache-airflow==2.8.3  # supplied by apache/airflow image
