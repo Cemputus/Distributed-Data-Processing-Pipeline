@@ -1,5 +1,81 @@
 [
   {
+    "job_id": "496c2f0e-194f-4a0e-8b34-f1babc8827a6",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "operator",
+    "status": "completed",
+    "triggered_at": "2026-04-15T21:13:06.910299+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 8,
+      "finance_datasets": 6,
+      "external_datasets": 2,
+      "total_rows_processed": 26926
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": null,
+    "airflow_state": null,
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": "Airflow request failed: HTTPConnectionPool(host='airflow-webserver', port=8080): Max retries exceeded with url: /api/v1/dags/distributed_pipeline_scaffold/dagRuns (Caused by NewConnectionError(\"HTTPConnection(host='airflow-webserver', port=8080): Failed to establish a new connection: [Errno 111] Connection refused\"))",
+    "airflow_trigger_ok": false,
+    "delegate_etl_ok": true,
+    "message": "Airflow API did not queue a run (CSRF/auth or network). Delegate ETL summary still recorded; fix API auth or restart webserver with basic_auth backend.",
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "fact_transactions.csv",
+          "ok": false,
+          "error": "Missing required columns: account_id"
+        }
+      ],
+      "errors": [
+        "fact_transactions.csv: Missing required columns: account_id"
+      ]
+    }
+  },
+  {
+    "job_id": "34be9b28-ab9c-4114-9307-c1fce562b5a4",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "operator",
+    "status": "completed",
+    "triggered_at": "2026-04-15T21:12:58.285683+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 8,
+      "finance_datasets": 6,
+      "external_datasets": 2,
+      "total_rows_processed": 26926
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": null,
+    "airflow_state": null,
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": "Airflow request failed: HTTPConnectionPool(host='airflow-webserver', port=8080): Max retries exceeded with url: /api/v1/dags/distributed_pipeline_scaffold/dagRuns (Caused by NewConnectionError(\"HTTPConnection(host='airflow-webserver', port=8080): Failed to establish a new connection: [Errno 111] Connection refused\"))",
+    "airflow_trigger_ok": false,
+    "delegate_etl_ok": true,
+    "message": "Airflow API did not queue a run (CSRF/auth or network). Delegate ETL summary still recorded; fix API auth or restart webserver with basic_auth backend.",
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "fact_transactions.csv",
+          "ok": false,
+          "error": "Missing required columns: account_id"
+        }
+      ],
+      "errors": [
+        "fact_transactions.csv: Missing required columns: account_id"
+      ]
+    }
+  },
+  {
     "job_id": "4800dc27-a64c-4e77-adbb-df02c2d3854c",
     "job_name": "etl-pipeline.py",
     "triggered_by": "operator",

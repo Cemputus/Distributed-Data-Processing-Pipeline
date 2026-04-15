@@ -227,16 +227,19 @@ class MetricsService:
 
 
 class UploadPipelineService:
+    # Required columns must exist in the CSV header. Extra columns are allowed.
+    # Aligned with canonical data/fintech/*.csv (restored from git: commit 6d1e272, “cen analytics”).
     FINANCE_SCHEMAS = {
+        "dim_customers.csv": ["customer_id", "full_name"],
         "dim_accounts.csv": ["account_id", "customer_id"],
         "dim_merchants.csv": ["merchant_id", "merchant_name"],
-        "dim_cards.csv": ["card_id", "customer_id"],
+        "dim_cards.csv": ["card_id", "account_id", "customer_id"],
         "dim_branches.csv": ["branch_id", "branch_name"],
-        "dim_date.csv": ["date_key", "date"],
+        "dim_date.csv": ["date_key", "full_date"],
         "fact_transactions.csv": ["transaction_id", "account_id", "merchant_id", "amount"],
-        "fact_fraud_alerts.csv": ["alert_id", "transaction_id", "customer_id"],
+        "fact_fraud_alerts.csv": ["alert_id", "transaction_id", "account_id"],
         "fact_loans.csv": ["loan_id", "customer_id", "principal_amount"],
-        "fact_loan_repayments.csv": ["repayment_id", "loan_id", "amount_paid"],
+        "fact_loan_repayments.csv": ["repayment_id", "loan_id", "amount"],
     }
 
     def __init__(
