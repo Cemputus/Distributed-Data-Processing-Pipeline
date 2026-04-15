@@ -1,0 +1,7 @@
+.audit-page td:nth-child(4) {
+  text-transform: capitalize;
+}
+
+.audit-page table {
+  margin-top: 0.65rem;
+}

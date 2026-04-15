@@ -3,7 +3,7 @@
 **Project:** Distributed Data Processing Pipeline  
 **Course:** DSC3219 — Cloud and Distributed Computing (BSDS 32)  
 **Milestone:** One — Requirements Specification & Planning  
-**Version:** 1.2  
+**Version:** 1.3  
 **Date:** April 2026  
 
 ---
@@ -68,7 +68,7 @@ This Software Requirements Specification (SRS) defines the functional and non-fu
 
 [4] Apache Software Foundation, *Apache Spark Documentation*, https://spark.apache.org/docs/latest/  
 
-[5] Project artefact, *UCU Analytics Anonymized Synthetic_Data — schema and descriptions*, `Synthetic_Data/Data_info/` (e.g., `data_description.md`, `data_shema.md`), 2026.  
+[5] Project artefact, *Fintech synthetic dataset package*, `data/fintech/`, 2026.  
 
 [6] Apache Software Foundation, *Apache Airflow Documentation*, https://airflow.apache.org/docs/  
 
@@ -78,7 +78,7 @@ This Software Requirements Specification (SRS) defines the functional and non-fu
 
 ### 1.5 Overview of Document
 
-Section 2 summarises the product context and constraints, including **Docker**, **Apache Airflow**, **Spark/Hadoop**, **no paid software** for the core stack, and the **reference batch dataset** (`Synthetic_Data`). Section 3 lists functional requirements. Section 4 lists non-functional requirements. Section 5 defines validation criteria and acceptance tests at requirements level.
+Section 2 summarises the product context and constraints, including **Docker**, **Apache Airflow**, **Spark/Hadoop**, **no paid software** for the core stack, and the **reference batch dataset** (`data/fintech`). Section 3 lists functional requirements. Section 4 lists non-functional requirements. Section 5 defines validation criteria and acceptance tests at requirements level.
 
 ---
 
@@ -109,7 +109,7 @@ The solution may expose **Airflow’s UI**, **Spark UIs**, and/or a minimal **no
 
 | User class | Description | Typical interactions |
 |------------|-------------|----------------------|
-| **Pipeline operator** | Student / developer running the course project | Uploads data, triggers jobs, inspects logs, runs validation queries |
+| **Pipeline operator** | Developer / data engineer running the project pipeline | Uploads data, triggers jobs, inspects logs, runs validation queries |
 | **Assessor / examiner** | Evaluates milestones | Reviews SRS, design, demo, security evidence |
 | **System services** | Service accounts / technical users (MinIO, HDFS, DB), Airflow connections | Read/write storage, run Spark/Hadoop, load warehouse |
 
@@ -132,40 +132,38 @@ The solution may expose **Airflow’s UI**, **Spark UIs**, and/or a minimal **no
 
 ### 2.6 Assumptions and Dependencies
 
-- **Assumption A1:** **Batch** CSV files under **`Synthetic_Data/`** are the **reference inputs**; volume is sufficient for **partitioned reads** in Spark (additional partitions may be used if disclosed) to demonstrate parallel benefit.
+- **Assumption A1:** **Batch** CSV files under **`data/fintech/`** are the **reference inputs**; volume is sufficient for **partitioned reads** in Spark (additional partitions may be used if disclosed) to demonstrate parallel benefit.
 - **Assumption A2:** The host machine can run **Docker** with enough RAM/CPU for a minimal multi-container stack (exact sizing in Milestone 2).
 - **Dependency D1:** **Docker**, **Docker Compose**, and open-source images/builds for Airflow, Spark, Hadoop components, and the analytical store.
 - **Dependency D2:** Pinned versions of Airflow, Spark, Hadoop (if used), and Python dependencies (recorded in `requirements.txt` / `pyproject.toml` / Compose files).
 
-### 2.7 Reference dataset: `Synthetic_Data`
+### 2.7 Reference dataset: `data/fintech`
 
-The pipeline shall use the **UCU Analytics anonymized synthetic datasets** supplied in the project repository under **`Synthetic_Data/`** [5]. The data models a university ERP/SIS: students, enrolment, finance, grades, attendance, progression, and related dimensions.
+The pipeline shall use the fintech synthetic datasets supplied in the project repository under **`data/fintech/`** [5]. The data models core digital-finance domains: customer accounts, transactions, fraud alerts, loans, repayments, and merchant activity.
 
 **Format and layout**
 
 - **File format:** CSV (comma-separated values), suitable for parallel read in Spark/Hadoop.
-- **Cohort splits:** Several tables exist per **List15** and **List16** student cohorts (e.g., `*_list15.csv`, `*_list16.csv`); `enrollment_all.csv` and related “`_all`” files combine or span cohorts. The implementation shall document which files are **in scope** for the first release (minimum: one fact pipeline with clear grain).
-- **Documentation:** Field meanings, primary/foreign keys, and star-schema guidance are defined in [5] (`data_description.md`, `data_shema.md`, and related notes in `Synthetic_Data/Data_info/`).
+- **Domain tables:** The package contains 10 fintech tables split into dimensions and facts.
+- **Implementation scope:** First release must process at least transactions + fraud + loans into curated analytics tables.
 
 **Representative assets (non-exhaustive)**
 
 | Category | Example files |
 |----------|----------------|
-| Enrolment / student snapshot | `enrollment_all.csv`, `enrollment_list15.csv`, `enrollment_list16.csv` |
-| Dimensions | `course_catalog_ucu.csv`, `dim_date_2022_2026.csv`, `high_schools_dimension.csv`, `faculties_departments.csv`, `student_high_schools_*.csv` |
-| Facts — financial | `student_payments_list15.csv`, `student_payments_list16.csv`, `student_sponsorships_list15.csv`, `student_sponsorships_list16.csv` |
-| Facts — academic | `student_grades_list15.csv`, `student_grades_list16.csv`, `student_transcript_list15.csv`, `student_transcript_list16.csv`, `fact_student_academic_performance_list15.csv`, `fact_student_academic_performance_list16.csv`, `academic_progression_list15.csv`, `academic_progression_list16.csv`, `student_attendance_list15.csv`, `student_attendance_list16.csv` |
-| Generation / provenance | `data_generation.py` (how synthetic rows were produced — cite in design/report as needed) |
+| Dimensions | `dim_customers.csv`, `dim_accounts.csv`, `dim_cards.csv`, `dim_merchants.csv`, `dim_branches.csv`, `dim_date.csv` |
+| Facts — operations | `fact_transactions.csv`, `fact_fraud_alerts.csv` |
+| Facts — credit | `fact_loans.csv`, `fact_loan_repayments.csv` |
 
 **Integration keys (for requirements traceability to processing)**
 
-- Student identifiers: **`REG_NO`**, **`ACC_NO`** (see [5]).
-- Time and term: **`ACADEMIC_YEAR`**, **`SEMESTER`**, **`SEMESTER_INDEX`**.
-- Financial facts: **`PAYMENT_ID`** (payments); sponsor keys per [5].
+- Entity identifiers: **`customer_id`**, **`account_id`**, **`merchant_id`**, **`loan_id`**.
+- Time keys: **`transaction_date`**, **`alert_date`**, **`issue_date`**, **`payment_date`**, and `dim_date.date_key`.
+- Monetary measures: **`amount`**, **`principal_amount`**, **`total_amount_ugx`** in curated outputs.
 
 **Minimum viable analytics (illustrative — final metrics fixed in Milestone 2/3)**
 
-The processing stage shall support **at least one** multi-table workflow over this dataset, for example: semester-level **GPA or performance** joined to **payment totals** or **faculty/program** aggregates — sufficient to demonstrate **joins + aggregations** in Spark (FR-05) and **SQL validation** in the warehouse (FR-10).
+The processing stage shall support **at least one** multi-table workflow over this dataset, for example: transaction + fraud + merchant joins with daily KPI aggregation and customer risk summaries — sufficient to demonstrate **joins + aggregations** in Spark (FR-05) and **SQL validation** in the warehouse (FR-10).
 
 ---
 
@@ -240,7 +238,7 @@ Each requirement is **unique**, **testable**, and **prioritised** (Must / Should
 | ID | Priority | Statement |
 |----|----------|-----------|
 | **NFR-01** | Must | The processing layer shall demonstrate **horizontal scale-out** within practical limits (e.g., add Spark executors, extra Airflow workers, or additional Docker replicas on the host); **limits of the host machine** and observed behaviour shall be documented. |
-| **NFR-02** | Should | End-to-end batch runtime for the **`Synthetic_Data`** pipeline run shall be measured and reported (no fixed SLA required; trend vs. single-node baseline acceptable). |
+| **NFR-02** | Should | End-to-end batch runtime for the **`data/fintech`** pipeline run shall be measured and reported (no fixed SLA required; trend vs. single-node baseline acceptable). |
 
 ### 4.2 Reliability and Fault Tolerance
 
@@ -288,7 +286,7 @@ Validation ties measurable evidence to requirements.
 |-----------|----------|
 | **V-01** | Completeness — all sections 1–5 present; FR and NFR tables complete (including **FR-21–FR-23**, **NFR-11**) |
 | **V-02** | Clarity — requirements are unambiguous and testable (no “fast”, “good” without measure) |
-| **V-03** | Alignment — input → processing → analytical store traced to **FR-01**, **FR-05**, **FR-09**; **`Synthetic_Data`** in §2.7; **Docker** + **Airflow** + **Spark/Hadoop** stated |
+| **V-03** | Alignment — input → processing → analytical store traced to **FR-01**, **FR-05**, **FR-09**; **`data/fintech`** in §2.7; **Docker** + **Airflow** + **Spark/Hadoop** stated |
 | **V-04** | Constraints — **Docker**, **Apache Airflow**, **no paid core software** (**FR-23**, **NFR-11**), automation, and security expectations stated |
 
 ### 5.2 System-Level Acceptance (End of Project)
@@ -316,8 +314,8 @@ Validation ties measurable evidence to requirements.
 | Version | Date | Author | Summary |
 |---------|------|--------|---------|
 | 1.0 | April 2026 | Project team | Initial SRS for Milestone 1 |
-| 1.1 | April 2026 | Project team | Bound requirements to repository **`Synthetic_Data`** (§2.7), reference [5], A1/NFR-02/V-03 updates |
 | 1.2 | April 2026 | Project team | **Docker**, **Apache Airflow**, **Spark + Hadoop where necessary**, **no paid core software**; FR-21–FR-23, NFR-11; refs [6]–[8]; §2.1–2.6 and FR/NFR updates |
+| 1.3 | April 2026 | Project team | Synced SRS to fintech domain, `data/fintech` paths, updated dataset model and validation alignment |
 
 ---
 

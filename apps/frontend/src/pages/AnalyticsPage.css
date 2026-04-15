@@ -1,0 +1,19 @@
+.analytics-page .merchants-panel {
+  margin-top: 1rem;
+}
+
+.analytics-page .grid .card {
+  position: relative;
+  overflow: hidden;
+}
+
+.analytics-page .grid .card::after {
+  content: "";
+  position: absolute;
+  right: -22px;
+  top: -22px;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.13), transparent 70%);
+}

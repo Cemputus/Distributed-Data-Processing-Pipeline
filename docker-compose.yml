@@ -5,23 +5,58 @@
 
 x-airflow-common: &airflow-common
   build:
-    context: ./docker/airflow
+    context: ./infra/docker/airflow
     dockerfile: Dockerfile
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY:-46BKJoQYoMFO4EFB7FpWM6kIuSPOtQzIWgTubcSFNFM=}
+    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY:-replace_with_secure_fernet_key}
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
     _PIP_ADDITIONAL_REQUIREMENTS: ""
   user: "${AIRFLOW_UID:-50000}:0"
   volumes:
-    - ./airflow/dags:/opt/airflow/dags
-    - ./airflow/logs:/opt/airflow/logs
-    - ./airflow/plugins:/opt/airflow/plugins
-    - ./spark/jobs:/opt/spark-jobs:ro
+    - ./infra/airflow/dags:/opt/airflow/dags
+    - ./infra/airflow/logs:/opt/airflow/logs
+    - ./infra/airflow/plugins:/opt/airflow/plugins
+    - ./infra/spark/jobs:/opt/spark-jobs:ro
+    - ./data/fintech:/opt/data/fintech:ro
 
 services:
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data/fintech:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5000/health', timeout=5)\""]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: http://localhost:5000
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://127.0.0.1:5173', (res) => process.exit(res.statusCode >= 200 && res.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1));\""]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
   postgres:
     image: postgres:15-alpine
     environment:
@@ -30,7 +65,7 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./config/postgres/init.sql:/docker-entrypoint-initdb.d/zz-analytics.sql
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/zz-analytics.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U airflow -d airflow"]
       interval: 5s
@@ -49,9 +84,77 @@ services:
     volumes:
       - minio-data:/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/minio/health/live || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  hadoop-namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    environment:
+      - CLUSTER_NAME=fintech-hadoop
+    ports:
+      - "9870:9870"
+      - "9005:9000"
+    volumes:
+      - hadoop-namenode:/hadoop/dfs/name
+    restart: unless-stopped
+    profiles: ["hadoop"]
+
+  hadoop-datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hadoop-namenode:9000
+      - SERVICE_PRECONDITION=hadoop-namenode:9870
+    depends_on:
+      - hadoop-namenode
+    volumes:
+      - hadoop-datanode:/hadoop/dfs/data
+    restart: unless-stopped
+    profiles: ["hadoop"]
+
+  hadoop-resourcemanager:
+    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hadoop-namenode:9000
+      - YARN_CONF_yarn_resourcemanager_hostname=hadoop-resourcemanager
+      - SERVICE_PRECONDITION=hadoop-namenode:9870 hadoop-datanode:9864
+    depends_on:
+      - hadoop-namenode
+      - hadoop-datanode
+    ports:
+      - "8088:8088"
+    restart: unless-stopped
+    profiles: ["hadoop"]
+
+  hadoop-nodemanager:
+    image: bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hadoop-namenode:9000
+      - YARN_CONF_yarn_resourcemanager_hostname=hadoop-resourcemanager
+      - SERVICE_PRECONDITION=hadoop-resourcemanager:8088
+    depends_on:
+      - hadoop-resourcemanager
+    restart: unless-stopped
+    profiles: ["hadoop"]
+
+  hadoop-historyserver:
+    image: bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://hadoop-namenode:9000
+      - YARN_CONF_yarn_resourcemanager_hostname=hadoop-resourcemanager
+      - SERVICE_PRECONDITION=hadoop-resourcemanager:8088 hadoop-namenode:9870
+    depends_on:
+      - hadoop-resourcemanager
+      - hadoop-namenode
+    ports:
+      - "8188:8188"
+    restart: unless-stopped
+    profiles: ["hadoop"]
 
   spark-master:
-    image: docker.io/bitnami/spark:3.5
+    image: docker.io/bitnamilegacy/spark:3.5.1
     environment:
       SPARK_MODE: master
       SPARK_RPC_AUTHENTICATION_ENABLED: "no"
@@ -61,11 +164,16 @@ services:
     ports:
       - "8085:8080"
     volumes:
-      - ./spark/jobs:/opt/spark-jobs:ro
+      - ./infra/spark/jobs:/opt/spark-jobs:ro
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc '</dev/tcp/127.0.0.1/8080'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   spark-worker:
-    image: docker.io/bitnami/spark:3.5
+    image: docker.io/bitnamilegacy/spark:3.5.1
     environment:
       SPARK_MODE: worker
       SPARK_MASTER_URL: spark://spark-master:7077
@@ -76,7 +184,7 @@ services:
       SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED: "no"
       SPARK_SSL_ENABLED: "no"
     volumes:
-      - ./spark/jobs:/opt/spark-jobs:ro
+      - ./infra/spark/jobs:/opt/spark-jobs:ro
     depends_on:
       - spark-master
     restart: unless-stopped
@@ -110,7 +218,7 @@ services:
       postgres:
         condition: service_healthy
       spark-master:
-        condition: service_started
+        condition: service_healthy
     restart: unless-stopped
 
   airflow-scheduler:
@@ -128,3 +236,5 @@ services:
 volumes:
   postgres-data:
   minio-data:
+  hadoop-namenode:
+  hadoop-datanode:

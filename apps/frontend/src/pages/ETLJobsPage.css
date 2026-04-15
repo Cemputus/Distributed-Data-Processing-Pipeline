@@ -1,0 +1,13 @@
+.etl-page .section-head h2 {
+  margin: 0;
+}
+
+.etl-page table {
+  margin-top: 0.65rem;
+}
+
+.etl-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

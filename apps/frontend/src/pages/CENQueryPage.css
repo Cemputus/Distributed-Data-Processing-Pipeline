@@ -1,0 +1,89 @@
+.query-page .sql-editor {
+  margin-top: 0.3rem;
+}
+
+.query-page .section-head {
+  margin-top: 0.7rem;
+}
+
+.query-page table {
+  margin-top: 0.65rem;
+}
+
+.query-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.query-history {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  min-width: 180px;
+  height: 36px;
+  padding: 0 0.5rem;
+  margin-top: 0.05rem;
+}
+
+.query-actions {
+  justify-content: flex-end;
+}
+
+.result-summary {
+  margin-top: 0.55rem;
+}
+
+.result-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.result-panel,
+.viz-panel {
+  border: 1px solid #e8edf5;
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+}
+
+.result-panel h3,
+.viz-panel h3 {
+  margin: 0.15rem 0 0.3rem;
+  font-size: 1rem;
+}
+
+.bar-chart {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-end;
+  min-height: 154px;
+  padding-top: 0.8rem;
+}
+
+.bar-wrap {
+  width: 26px;
+  display: grid;
+  gap: 0.2rem;
+  justify-items: center;
+}
+
+.bar {
+  width: 100%;
+  background: linear-gradient(180deg, #4f46e5, #273dff);
+  border-radius: 6px 6px 0 0;
+}
+
+.bar-wrap span {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+@media (max-width: 1100px) {
+  .result-split {
+    grid-template-columns: 1fr;
+  }
+
+  .query-head {
+    flex-direction: column;
+  }
+}

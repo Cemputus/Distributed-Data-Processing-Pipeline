@@ -1,0 +1,23 @@
+.datasets-page table td:nth-child(3),
+.datasets-page table td:nth-child(5) {
+  text-transform: capitalize;
+}
+
+.datasets-page .subtitle {
+  margin-bottom: 0.75rem;
+}
+
+.datasets-page table td:nth-child(2) {
+  font-weight: 600;
+}
+
+.preview-panel {
+  margin-top: 0.8rem;
+  border: 1px solid #e5eaf3;
+  border-radius: 10px;
+  padding: 0.6rem;
+}
+
+.preview-panel h3 {
+  margin: 0.1rem 0;
+}

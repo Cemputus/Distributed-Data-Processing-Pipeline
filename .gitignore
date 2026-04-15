@@ -1,11 +1,14 @@
 # Local synthetic dataset (large / generated; keep out of version control)
-Synthetic_Data/
+data/fintech/
 
 # Secrets and local env
 .env
 
 # Airflow runtime (keep directory, ignore log contents)
-airflow/logs/*
-!airflow/logs/.gitkeep
-airflow/**/__pycache__/
+infra/airflow/logs/*
+!infra/airflow/logs/.gitkeep
+infra/airflow/**/__pycache__/
 *.pyc
+apps/backend/**/__pycache__/
+apps/frontend/node_modules/
+apps/frontend/dist/

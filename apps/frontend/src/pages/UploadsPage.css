@@ -1,0 +1,16 @@
+.uploads-page .upload-result ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1rem;
+}
+
+.uploads-page .card h2 {
+  margin-bottom: 0.55rem;
+}
+
+.uploads-page table {
+  margin-top: 0.6rem;
+}
+
+.uploads-page .upload-result li {
+  margin: 0.22rem 0;
+}
