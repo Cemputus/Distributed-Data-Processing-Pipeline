@@ -1,0 +1,111 @@
+[
+  {
+    "dataset": "dim_accounts.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T14:42:16.567249+00:00",
+    "status": "success",
+    "row_count": 10000,
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260415T144216Z_dim_accounts.csv"
+      },
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 10000 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_accounts.csv"
+      }
+    ],
+    "insights": {
+      "columns": [
+        "account_id",
+        "customer_id",
+        "account_type",
+        "currency",
+        "opened_at",
+        "status",
+        "current_balance",
+        "available_balance"
+      ],
+      "row_count": 10000,
+      "null_counts": {
+        "account_id": 0,
+        "customer_id": 0,
+        "account_type": 0,
+        "currency": 0,
+        "opened_at": 0,
+        "status": 0,
+        "current_balance": 0,
+        "available_balance": 0
+      },
+      "numeric_summary": {
+        "current_balance": {
+          "min": 281955.0,
+          "max": 5798705.0,
+          "avg": 1911822.7586
+        },
+        "available_balance": {
+          "min": 77970.0,
+          "max": 5798705.0,
+          "avg": 1789307.9756
+        }
+      }
+    }
+  },
+  {
+    "dataset": "retail_traffic.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-15T14:06:27.759643+00:00",
+    "status": "success",
+    "row_count": 10000,
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260415T140627Z_retail_traffic.csv"
+      },
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 10000 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to external zone: retail_traffic.csv"
+      }
+    ],
+    "insights": {
+      "columns": [
+        "customer_id",
+        "full_name",
+        "nationality",
+        "region",
+        "customer_segment",
+        "risk_level",
+        "kyc_level",
+        "status",
+        "created_at"
+      ],
+      "row_count": 10000,
+      "null_counts": {
+        "customer_id": 0,
+        "full_name": 0,
+        "nationality": 0,
+        "region": 0,
+        "customer_segment": 0,
+        "risk_level": 0,
+        "kyc_level": 0,
+        "status": 0,
+        "created_at": 0
+      },
+      "numeric_summary": {}
+    }
+  }
+]

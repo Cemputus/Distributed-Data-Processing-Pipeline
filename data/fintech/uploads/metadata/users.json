@@ -1,0 +1,22 @@
+{
+  "admin": {
+    "password": "admin123",
+    "role": "admin",
+    "enabled": true
+  },
+  "engineer": {
+    "password": "engineer123",
+    "role": "data_engineer",
+    "enabled": true
+  },
+  "analyst": {
+    "password": "analyst123",
+    "role": "analyst",
+    "enabled": true
+  },
+  "operator": {
+    "password": "operator123",
+    "role": "operator",
+    "enabled": true
+  }
+}

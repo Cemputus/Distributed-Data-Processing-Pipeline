@@ -1,8 +1,7 @@
-# Local synthetic dataset (large / generated; keep out of version control)
-data/fintech/
 
 # Secrets and local env
 .env
+cloud-project-493415-1be4ba53f9c5.json
 
 # Airflow runtime (keep directory, ignore log contents)
 infra/airflow/logs/*
