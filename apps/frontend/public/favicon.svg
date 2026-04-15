@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="CenAnalytics">
+  <defs>
+    <linearGradient id="ca-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#4338CA"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#ca-bg)"/>
+  <path fill="#ffffff" fill-opacity="0.95" d="M8 22V12h3v10H8zm5.5-6v6H17v-6h-3.5zm6-4v10H23V12h-3.5z"/>
+</svg>

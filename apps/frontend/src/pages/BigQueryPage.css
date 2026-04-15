@@ -1,3 +1,10 @@
+.bigquery-page--embedded {
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .bigquery-page .bq-actions {
   display: flex;
   flex-wrap: wrap;
@@ -41,12 +48,14 @@
 
 .bigquery-page .bq-catalog-head h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.82rem;
+  font-weight: 500;
 }
 
 .bigquery-page .bq-sql-heading {
   margin: 1rem 0 0.35rem;
-  font-size: 1rem;
+  font-size: 0.82rem;
+  font-weight: 500;
 }
 
 .bigquery-page .bq-dataset-list {

@@ -50,3 +50,14 @@ def upload_landing_file(local_path: Path, object_key: str) -> Optional[Dict[str,
         }
     except Exception as exc:
         return {"error": str(exc)}
+
+
+def remove_landing_object(object_key: str) -> None:
+    """Delete object from landing bucket if MinIO is enabled."""
+    client = _client()
+    if not client:
+        return
+    try:
+        client.remove_object(Settings.MINIO_BUCKET_LANDING, object_key)
+    except Exception:
+        pass

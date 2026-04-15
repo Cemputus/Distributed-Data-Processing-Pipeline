@@ -32,8 +32,11 @@ export function CENQueryPage({ queryResult, onRunQuery }) {
 
   async function runQuery() {
     setIsLoading(true)
-    await onRunQuery(query)
-    setIsLoading(false)
+    try {
+      await onRunQuery(query)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -44,14 +47,28 @@ export function CENQueryPage({ queryResult, onRunQuery }) {
     <section className="card query-page">
       <div className="query-head">
         <div>
-          <h2>CEN Query (Read-Only SQL Workspace)</h2>
-          <p className="subtitle">Run cross-domain joins (finance + external datasets). SELECT/WITH only.</p>
+          <h2>Query</h2>
+          <p className="page-caption">
+            Read-only SQL on <code>analytics_ready</code> tables.
+          </p>
         </div>
         <select className="query-history" defaultValue="">
           <option value="" disabled>Query history</option>
         </select>
       </div>
-      <textarea className="sql-editor" value={query} onChange={(event) => setQuery(event.target.value)} rows={10} spellCheck={false} />
+      <textarea
+        className="sql-editor"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault()
+            if (!isLoading) runQuery()
+          }
+        }}
+        rows={10}
+        spellCheck={false}
+      />
       <div className="section-head query-actions">
         <button className="ghost-btn" onClick={() => setQuery('')}>Clear</button>
         <button className="ghost-btn" onClick={runQuery}>Refresh</button>
@@ -60,8 +77,8 @@ export function CENQueryPage({ queryResult, onRunQuery }) {
       {queryResult && (
         <div className="query-result">
           <div className="result-summary">
-            <p className="muted">Rows returned: {queryResult.row_count}</p>
-            <p className="muted">Available tables: {(queryResult.tables || []).join(', ')}</p>
+            <p className="muted">Rows: {queryResult.row_count}</p>
+            <p className="muted">Tables: {(queryResult.tables || []).join(', ') || '—'}</p>
             {allRows.length > 0 && (
               <div className="section-head-controls query-result-rows-control">
                 <RowsPerPageSelect value={rowLimit} onChange={setRowLimit} id="cen-query-rows" label="Table rows" />
@@ -99,14 +116,12 @@ export function CENQueryPage({ queryResult, onRunQuery }) {
                   </button>
                 )}
               </div>
-              <p className="muted result-filter-hint">
-                Client-side filter on the result set (does not re-run SQL). Matches substrings, case-insensitive.
-              </p>
+              <p className="muted result-filter-hint">Filter is client-side on this result (does not re-run SQL).</p>
             </div>
           )}
           <div className="result-split">
             <section className="result-panel">
-              <h3>Query Results</h3>
+              <h3>Results</h3>
               {columns.length > 0 && (
                 <table>
                   <thead>
@@ -124,7 +139,7 @@ export function CENQueryPage({ queryResult, onRunQuery }) {
               {allRows.length > 0 && (
                 <p className="muted table-meta">
                   Showing {visibleRowCount(filteredRows.length, rowLimit)} of {filteredRows.length} rows
-                  {filteredRows.length !== allRows.length ? ` (${allRows.length} total from query)` : ' in this view'}
+                  {filteredRows.length !== allRows.length ? ` (${allRows.length} from query)` : ''}
                 </p>
               )}
               {allRows.length > 0 && filteredRows.length === 0 && (
@@ -132,9 +147,9 @@ export function CENQueryPage({ queryResult, onRunQuery }) {
               )}
             </section>
             <section className="viz-panel">
-              <h3>Visualization</h3>
+              <h3>Chart</h3>
               {!numericColumn ? (
-                <div className="empty-state">Run a query with at least one numeric column to preview a bar chart.</div>
+                <div className="empty-state">Add a numeric column for the chart.</div>
               ) : (
                 <div className="bar-chart">
                   {chartRows.map((row, idx) => {

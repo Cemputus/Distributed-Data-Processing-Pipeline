@@ -13,6 +13,7 @@ export function UserManagementPage({ users, onCreate, onUpdate }) {
     () => users.filter((item) => item.username.toLowerCase().includes(query.toLowerCase())),
     [users, query],
   )
+  const displayedUsers = useMemo(() => sliceByRowLimit(filteredUsers, rowLimit), [filteredUsers, rowLimit])
 
   async function submitCreate(event) {
     event.preventDefault()
@@ -36,7 +37,7 @@ export function UserManagementPage({ users, onCreate, onUpdate }) {
   return (
     <section className="card users-page">
       <div className="section-head">
-        <h2>User Management</h2>
+        <h2>Users</h2>
         <div className="section-head-controls">
           <input placeholder="Filter users..." value={query} onChange={(event) => setQuery(event.target.value)} />
           <RowsPerPageSelect value={rowLimit} onChange={setRowLimit} id="users-rows" />

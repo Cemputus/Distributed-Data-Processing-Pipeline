@@ -22,3 +22,38 @@
 .uploads-page .upload-result li {
   margin: 0.22rem 0;
 }
+
+.uploads-minio-panel h2 {
+  margin-bottom: 0.45rem;
+}
+
+.uploads-minio-copy {
+  margin: 0 0 0.65rem;
+  line-height: 1.45;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.uploads-minio-actions {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.uploads-minio-console-link {
+  font-weight: 500;
+}
+
+.uploads-process-hint {
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.uploads-pending-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}

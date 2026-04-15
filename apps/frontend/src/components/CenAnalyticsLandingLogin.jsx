@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Activity, Eye, EyeOff, LayoutDashboard, Sparkles } from 'lucide-react'
 
 /**
- * Modern landing + login page for CenAnalytics.
+ * Optional alternate login layout (not used by default App shell).
  * Tailwind CSS + lucide-react. No external images.
  */
 export function CenAnalyticsLandingLogin({
@@ -32,14 +32,13 @@ export function CenAnalyticsLandingLogin({
               <div className="space-y-8">
                 <div>
                   <p className="text-lg font-semibold tracking-tight text-[#4F46E5]">
-                    CenAnalytics
+                    Console
                   </p>
                   <h1 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-[#0F172A] sm:text-4xl">
                     Turn Data Into Clear Decisions
                   </h1>
                   <p className="mt-4 max-w-lg text-base leading-relaxed text-[#64748B]">
-                    CenAnalytics helps teams centralize data, monitor performance, and generate
-                    actionable insights from one intelligent platform.
+                    Sign in to continue.
                   </p>
                 </div>
 
@@ -194,7 +193,7 @@ export function CenAnalyticsLandingLogin({
                 </form>
 
                 <p className="mt-8 text-center text-sm text-[#64748B]">
-                  New to CenAnalytics?{' '}
+                  New account?{' '}
                   <button
                     type="button"
                     onClick={onCreateAccount}
@@ -214,7 +213,7 @@ export function CenAnalyticsLandingLogin({
         </div>
 
         <p className="mt-8 text-center text-xs text-[#94A3B8]">
-          © {new Date().getFullYear()} CenAnalytics. All rights reserved.
+          © {new Date().getFullYear()}
         </p>
       </div>
     </div>

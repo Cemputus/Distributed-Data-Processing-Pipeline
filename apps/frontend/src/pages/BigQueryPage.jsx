@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
+import { normalizeRequestError, readJsonSafe } from '../utils/httpErrors'
 import './BigQueryPage.css'
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
-export function BigQueryPage({ token }) {
+export function BigQueryPage({ token, embedded = false }) {
   const [sql, setSql] = useState(
     'SELECT word FROM `bigquery-public-data.samples.shakespeare` LIMIT 10',
   )
@@ -22,8 +23,9 @@ export function BigQueryPage({ token }) {
   const loadStatus = useCallback(async () => {
     try {
       const r = await fetch(`${API_BASE}/api/bigquery/status`, { headers })
-      const body = await r.json()
+      const body = await readJsonSafe(r)
       if (r.ok) setStatus(body)
+      else setStatus(null)
     } catch {
       setStatus(null)
     }
@@ -67,6 +69,12 @@ export function BigQueryPage({ token }) {
   }
 
   async function runQuery() {
+    const trimmed = (sql || '').trim()
+    if (!trimmed) {
+      setError('Enter a SQL query first.')
+      setResult(null)
+      return
+    }
     setError('')
     setResult(null)
     setLoading(true)
@@ -74,13 +82,16 @@ export function BigQueryPage({ token }) {
       const r = await fetch(`${API_BASE}/api/bigquery/query`, {
         method: 'POST',
         headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sql, max_rows: maxRows }),
+        body: JSON.stringify({ sql: trimmed, max_rows: maxRows }),
       })
-      const body = await r.json()
-      if (!r.ok) throw new Error(body.message || body.error || 'Query failed')
+      const body = await readJsonSafe(r)
+      if (!r.ok) {
+        const msg = body.message || body.error || `Query failed (${r.status})`
+        throw new Error(msg)
+      }
       setResult(body)
     } catch (e) {
-      setError(e.message || e)
+      setError(normalizeRequestError(e, 'Query failed'))
     } finally {
       setLoading(false)
     }
@@ -89,28 +100,28 @@ export function BigQueryPage({ token }) {
   const projectId = status?.project || datasetsPayload?.project_id
   const consoleUrl = status?.console_url || datasetsPayload?.console_url
 
+  const shellClass = embedded ? 'bigquery-page bigquery-page--embedded' : 'card bigquery-page'
+
   return (
-    <section className="card bigquery-page">
-      <h2>BigQuery (GCP warehouse)</h2>
-      <p className="subtitle">
-        Browse datasets and tables (same project as the Google Cloud console). Use <strong>Load SQL</strong> from the
-        catalog for your project&apos;s tables, or fully qualified names like{' '}
-        <code>project.dataset.table</code>. The default query below uses a real public sample table. Service account:{' '}
-        <code>secrets/gcp-sa.json</code>. Grant it <strong>BigQuery Data Viewer</strong>,{' '}
-        <strong>BigQuery Job User</strong>, and <strong>BigQuery Metadata Viewer</strong> (or <strong>BigQuery Admin</strong>{' '}
-        for dev) on project <code>{projectId || 'your-project'}</code> so listings match the console.
+    <section className={shellClass}>
+      <h2>BigQuery</h2>
+      <p className="page-caption">
+        Listings match the GCP project. Use <code>Load SQL</code> or <code>project.dataset.table</code>. Mount your service
+        account JSON under <code>secrets/</code> and set <code>GOOGLE_APPLICATION_CREDENTIALS</code> or{' '}
+        <code>BIGQUERY_CREDENTIALS_PATH</code> (see <code>.env.example</code>). Grant Job User + dataset Data Viewer (or Admin for dev).
       </p>
       {status && (
         <p className="muted bq-status">
-          Project: <strong>{status.project || '—'}</strong> · Default dataset:{' '}
-          <strong>{status.default_dataset || '—'}</strong> · Credentials:{' '}
-          <strong>{status.enabled ? 'mounted' : 'missing'}</strong>
+          Project: {status.project || '—'} · Default dataset: {status.default_dataset || '—'}
+          {status.ingest_dataset ? ` · Ingest: ${status.ingest_dataset}` : ''}
+          {status.dataset_location ? ` · Location: ${status.dataset_location}` : ''} · Credentials:{' '}
+          {status.enabled ? 'ok' : status.feature_enabled === false ? 'BigQuery off' : 'missing'}
           {consoleUrl && (
             <>
               {' '}
               ·{' '}
               <a href={consoleUrl} target="_blank" rel="noreferrer">
-                Open BigQuery console
+                Console
               </a>
             </>
           )}
@@ -120,14 +131,14 @@ export function BigQueryPage({ token }) {
       {status?.enabled && (
         <div className="bq-catalog">
           <div className="bq-catalog-head">
-            <h3>Datasets &amp; tables</h3>
+            <h3>Catalog</h3>
             <button type="button" className="ghost-btn" onClick={loadDatasets}>
               Refresh catalog
             </button>
           </div>
           {catalogError && <p className="error">{catalogError}</p>}
           {datasetsPayload?.datasets?.length === 0 && (
-            <p className="muted">No datasets in this project yet. Create them in the BigQuery console.</p>
+            <p className="muted">No datasets in this project.</p>
           )}
           <ul className="bq-dataset-list">
             {datasetsPayload?.datasets?.map((ds) => (
@@ -185,6 +196,12 @@ export function BigQueryPage({ token }) {
         rows={8}
         value={sql}
         onChange={(e) => setSql(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault()
+            if (!loading && status?.feature_enabled !== false) runQuery()
+          }
+        }}
         spellCheck={false}
       />
       <div className="bq-actions">
@@ -198,12 +215,17 @@ export function BigQueryPage({ token }) {
             onChange={(e) => setMaxRows(Number(e.target.value))}
           />
         </label>
-        <button type="button" onClick={runQuery} disabled={loading || (status && !status.enabled)}>
+        <button
+          type="button"
+          onClick={runQuery}
+          disabled={loading || status?.feature_enabled === false}
+          title="Run (Ctrl+Enter)"
+        >
           {loading ? 'Running…' : 'Run Query'}
         </button>
       </div>
       {error && <p className="error">{error}</p>}
-      {result && result.columns?.length > 0 && (
+      {result && result.columns && result.columns.length > 0 && (
         <div className="bq-result">
           <p className="muted">Rows: {result.row_count}</p>
           <table>
@@ -215,7 +237,7 @@ export function BigQueryPage({ token }) {
               </tr>
             </thead>
             <tbody>
-              {result.rows.map((row, idx) => (
+              {(result.rows || []).map((row, idx) => (
                 <tr key={idx}>
                   {result.columns.map((c) => (
                     <td key={c}>{String(row[c] ?? '')}</td>
@@ -224,6 +246,11 @@ export function BigQueryPage({ token }) {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+      {result && (!result.columns || result.columns.length === 0) && (
+        <div className="bq-result bq-result--empty">
+          <p className="muted">Query finished: {result.row_count ?? 0} rows (empty results have no column preview in BigQuery).</p>
         </div>
       )}
     </section>

@@ -9,6 +9,14 @@ def app_factory() -> Flask:
     app = Flask(__name__)
     CORS(app)
     app.register_blueprint(create_api_blueprint(data_dir=Settings.DATA_DIR))
+    # Ensure landing bucket exists on startup so MinIO console is immediately usable.
+    try:
+        from .integrations import minio_util
+
+        minio_util.ensure_bucket()
+    except Exception:
+        # Upload flow still works without startup provisioning; errors surface in upload stage.
+        pass
 
     @app.errorhandler(Exception)
     def handle_unexpected_error(error: Exception):

@@ -15,7 +15,7 @@ export function AuditLogsPage({ items }) {
   return (
     <section className="card audit-page">
       <div className="section-head">
-        <h2>Audit Logs</h2>
+        <h2>Audit</h2>
         <div className="section-head-controls">
           <input placeholder="Filter logs..." value={query} onChange={(event) => setQuery(event.target.value)} />
           <RowsPerPageSelect value={rowLimit} onChange={setRowLimit} id="audit-logs-rows" />

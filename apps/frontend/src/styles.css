@@ -1,5 +1,5 @@
 :root {
-  font-family: "Roboto", "Segoe UI", system-ui, Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   color: #0f172a;
   background: #f4f7fc;
 }
@@ -43,9 +43,11 @@ body {
   background: linear-gradient(135deg, #0f172a, #1e293b);
 }
 
-.brand h2 {
+.brand h2,
+.app-brand-title {
   margin: 0;
-  font-size: 1.46rem;
+  font-size: 1.05rem;
+  font-weight: 600;
   color: #0f172a;
 }
 
@@ -112,10 +114,17 @@ body {
 
 .eyebrow {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: #64748b;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.02em;
+}
+
+.content-header h1 {
+  margin: 0.1rem 0 0.2rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #0f172a;
 }
 
 .container {
@@ -134,11 +143,14 @@ h1 {
   color: #64748b;
   margin-top: 0;
   margin-bottom: 1rem;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .muted {
   color: #64748b;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 .grid {
@@ -157,7 +169,15 @@ h1 {
 
 .card h2 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 500;
   color: #475569;
 }
 
@@ -257,10 +277,14 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.86rem;
+  font-size: 0.76rem;
   color: #64748b;
-  font-weight: 600;
+  font-weight: 400;
   white-space: nowrap;
+}
+
+.rows-per-page-label {
+  font-weight: 400;
 }
 
 .rows-per-page-control select {
@@ -271,7 +295,16 @@ h1 {
 
 .table-meta {
   margin: 0.45rem 0 0;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
+  font-weight: 400;
+}
+
+.page-caption {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.45;
 }
 
 .section-head button {
@@ -323,7 +356,7 @@ select {
 
 .crumb.active {
   color: #0f172a;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .crumb-sep {

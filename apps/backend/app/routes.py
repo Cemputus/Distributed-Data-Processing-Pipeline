@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import datetime, timezone
 from functools import wraps
+from typing import Optional
 from uuid import uuid4
 
 from flask import Blueprint, jsonify, request
@@ -9,12 +10,13 @@ from .config import Settings
 from .etl_delegate import run_delegate_etl
 from .integrations import airflow_client
 from .integrations import bigquery_client as bq_client
+from .integrations import spark_master_client
 from .services import CENQueryService, MetricsService, UploadPipelineService
 
 
 def create_api_blueprint(data_dir: Path) -> Blueprint:
     api = Blueprint("api", __name__)
-    service = MetricsService(data_dir=data_dir)
+    service = MetricsService(data_dir=data_dir, activated_dir=Settings.ACTIVATED_DIR)
     upload_service = UploadPipelineService(
         data_dir=data_dir,
         landing_dir=Settings.LANDING_DIR,
@@ -24,7 +26,11 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         external_dir=Settings.EXTERNAL_DIR,
         metadata_dir=Settings.METADATA_DIR,
     )
-    query_service = CENQueryService(data_dir=data_dir, external_dir=Settings.EXTERNAL_DIR)
+    query_service = CENQueryService(
+        data_dir=data_dir,
+        external_dir=Settings.EXTERNAL_DIR,
+        activated_dir=Settings.ACTIVATED_DIR,
+    )
     token_store = {}
     users_file = Settings.METADATA_DIR / "users.json"
     etl_jobs_file = Settings.METADATA_DIR / "etl_jobs.json"
@@ -54,6 +60,63 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
     user_store = _load_json(users_file, default_users)
     etl_jobs = _load_json(etl_jobs_file, [])
     audit_logs = _load_json(audit_logs_file, [])
+
+    def _analytics_ready_upload_row(event: dict) -> bool:
+        if event.get("pipeline_status") == "analytics_ready":
+            return True
+        if event.get("status") == "success" and not event.get("pipeline_status"):
+            return True
+        return False
+
+    def _create_etl_job_record(username: str, job_name: str, preprocess: Optional[dict] = None) -> dict:
+        now = datetime.now(timezone.utc).isoformat()
+        dag_id = Settings.AIRFLOW_ETL_DAG_ID or "distributed_pipeline_scaffold"
+        airflow_run, airflow_error = airflow_client.try_trigger_dag(
+            dag_id,
+            conf={"triggered_by": username, "job_name": job_name},
+        )
+
+        delegate_result = run_delegate_etl(metadata_registry=Settings.METADATA_DIR / "dataset_registry.json")
+        delegate_ok = delegate_result.get("status") == "completed"
+        airflow_ok = bool(airflow_run and not airflow_error)
+        if airflow_ok:
+            overall = "queued"
+        elif delegate_ok:
+            overall = "completed"
+        else:
+            overall = delegate_result.get("status", "completed")
+
+        job = {
+            "job_id": str(uuid4()),
+            "job_name": job_name,
+            "triggered_by": username,
+            "status": overall,
+            "triggered_at": now,
+            "stages": ["airflow_trigger", "delegate_summary"],
+            "summary": delegate_result.get("summary", {}),
+            "airflow_dag_id": dag_id,
+            "airflow_dag_run_id": (airflow_run or {}).get("dag_run_id") if airflow_run else None,
+            "airflow_state": (airflow_run or {}).get("state") if airflow_run else None,
+            "airflow_ui_url": f"{Settings.AIRFLOW_UI_PUBLIC.rstrip('/')}/dags/{dag_id}/grid",
+            "airflow_error": airflow_error,
+            "airflow_trigger_ok": airflow_ok,
+            "delegate_etl_ok": delegate_ok,
+            "message": (
+                None
+                if airflow_ok
+                else (
+                    "Airflow API did not queue a run (CSRF/auth or network). "
+                    "Delegate ETL summary still recorded; fix API auth or restart webserver with basic_auth backend."
+                    if delegate_ok
+                    else "Airflow trigger failed and delegate ETL reported a non-completed status."
+                )
+            ),
+        }
+        if preprocess is not None:
+            job["preprocess"] = preprocess
+        etl_jobs.insert(0, job)
+        _save_json(etl_jobs_file, etl_jobs[:500])
+        return job
 
     role_permissions = {
         "admin": {"analytics", "uploads", "datasets", "etl", "audit", "query", "bigquery", "users"},
@@ -140,20 +203,25 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
                     {"method": "GET", "path": "/api/overview", "description": "KPI overview metrics"},
                     {"method": "GET", "path": "/api/top-merchants?limit=5", "description": "Top merchants by transaction volume"},
                     {"method": "GET", "path": "/api/upload-datasets", "description": "Datasets allowed for upload"},
-                    {"method": "POST", "path": "/api/uploads", "description": "Upload dataset and run 3-stage processing"},
-                    {"method": "GET", "path": "/api/uploads/success", "description": "Successful dataset uploads"},
+                    {"method": "POST", "path": "/api/uploads", "description": "Upload CSV to landing + MinIO only (ingest)"},
+                    {"method": "GET", "path": "/api/uploads/pending", "description": "Landings awaiting preprocess + analytics_ready"},
+                    {"method": "POST", "path": "/api/datasets/process", "description": "Run preprocess/publish from landing; optional run_etl"},
+                    {"method": "GET", "path": "/api/uploads/success", "description": "Uploads that reached analytics_ready (dashboard/CEN)"},
                     {"method": "GET", "path": "/api/uploads/failed", "description": "Failed dataset uploads"},
                     {"method": "GET", "path": "/api/datasets", "description": "Uploaded dataset catalog and insights"},
                     {"method": "POST", "path": "/api/auth/login", "description": "Authenticate and receive bearer token"},
                     {"method": "GET", "path": "/api/etl/jobs", "description": "List ETL jobs"},
-                    {"method": "POST", "path": "/api/etl/jobs", "description": "Trigger ETL job"},
+                    {"method": "POST", "path": "/api/etl/jobs", "description": "Trigger ETL (scope: delegate_only | preprocess_single | preprocess_all)"},
                     {"method": "GET", "path": "/api/audit-logs", "description": "Read audit logs"},
                     {"method": "POST", "path": "/api/cen-query/execute", "description": "Run read-only SQL in CEN Query workspace"},
                     {"method": "GET", "path": "/api/datasets/<dataset_name>/preview", "description": "Preview dataset rows"},
+                    {"method": "DELETE", "path": "/api/datasets/<dataset_name>", "description": "Delete dataset catalog rows and files"},
+                    {"method": "GET", "path": "/api/analytics/charts", "description": "Dashboard chart series (CSV + registry)"},
                     {"method": "GET", "path": "/api/users", "description": "List users"},
                     {"method": "POST", "path": "/api/users", "description": "Create user"},
                     {"method": "PATCH", "path": "/api/users/<username>", "description": "Update user role/status"},
-                    {"method": "GET", "path": "/api/integrations/config", "description": "Airflow UI URL, MinIO console, BigQuery project (auth)"},
+                    {"method": "GET", "path": "/api/integrations/config", "description": "Airflow UI URL, MinIO console, BigQuery project, Spark Master UI URL (auth)"},
+                    {"method": "GET", "path": "/api/integrations/spark", "description": "Spark Standalone workers + applications (from Master /json/, auth, etl)"},
                     {"method": "GET", "path": "/api/integrations/health", "description": "Airflow/BigQuery connectivity (auth)"},
                     {"method": "GET", "path": "/api/bigquery/status", "description": "BigQuery credentials status"},
                     {"method": "GET", "path": "/api/bigquery/datasets", "description": "List datasets (same project as console)"},
@@ -182,6 +250,15 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         append_audit(action="analytics.top_merchants", outcome="success", details=f"Top merchants limit={parsed_limit}", username=user["username"])
         return jsonify({"items": service.top_merchants(limit=parsed_limit)})
 
+    @api.get("/api/analytics/charts")
+    @require_permission("analytics")
+    def analytics_charts():
+        user = current_user()
+        registry = upload_service.list_datasets()
+        payload = service.dashboard_charts(registry)
+        append_audit(action="analytics.charts", outcome="success", details="dashboard charts", username=user["username"])
+        return jsonify(payload)
+
     @api.get("/api/upload-datasets")
     @require_permission("uploads")
     def upload_datasets():
@@ -190,7 +267,7 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         return jsonify(
             {
                 "preloaded_dataset": "dim_customers.csv",
-                "message": "Upload any CSV dataset. Finance datasets are auto-routed to the finance pipeline; non-finance datasets are profiled and stored in the external analytics zone.",
+                "message": "Upload any CSV: this step only lands the file and mirrors to MinIO. Use Process (awaiting processing) or ETL Jobs to preprocess, publish, mark analytics_ready, and run Spark/Airflow.",
             }
         )
 
@@ -210,12 +287,20 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         append_audit(action="uploads.submit", outcome="success", details=f"{dataset_name}: uploaded", username=user["username"])
         return jsonify(result), 201
 
+    @api.get("/api/uploads/pending")
+    @require_permission("uploads")
+    def upload_pending():
+        user = current_user()
+        append_audit(action="uploads.pending", outcome="success", details="Pending landings queried", username=user["username"])
+        items = [event for event in upload_service.list_datasets() if event.get("pipeline_status") == "landed"]
+        return jsonify({"items": items})
+
     @api.get("/api/uploads/success")
     @require_permission("uploads")
     def upload_success():
         user = current_user()
-        append_audit(action="uploads.success", outcome="success", details="Successful uploads queried", username=user["username"])
-        items = [event for event in upload_service.list_datasets() if event.get("status") == "success"]
+        append_audit(action="uploads.success", outcome="success", details="Analytics-ready uploads queried", username=user["username"])
+        items = [event for event in upload_service.list_datasets() if _analytics_ready_upload_row(event)]
         return jsonify({"items": items})
 
     @api.get("/api/uploads/failed")
@@ -232,6 +317,65 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         user = current_user()
         append_audit(action="datasets.list", outcome="success", details="Dataset catalog viewed", username=user["username"])
         return jsonify({"items": upload_service.list_datasets()})
+
+    @api.post("/api/datasets/process")
+    @require_permission("uploads")
+    def process_datasets_route():
+        """Preprocess + publish landed files; optional ETL. Must be registered before /api/datasets/<name> or 'process' is captured as a dataset name (405)."""
+        user = current_user()
+        payload = request.get_json(silent=True) or {}
+        mode = (payload.get("mode") or "single").strip().lower()
+        dataset = payload.get("dataset") or payload.get("dataset_name")
+        run_etl = bool(payload.get("run_etl"))
+        job_name = str(payload.get("job_name") or "post_preprocess_etl").strip() or "post_preprocess_etl"
+
+        result = upload_service.process_datasets(mode, dataset)
+        err = result.get("error")
+        if err == "dataset_required":
+            append_audit(action="datasets.process", outcome="failed", details="dataset_required", username=user["username"])
+            return jsonify(result), 400
+        if err == "not_found":
+            append_audit(action="datasets.process", outcome="failed", details="not_found", username=user["username"])
+            return jsonify(result), 404
+        if err in ("nothing_pending", "invalid_mode"):
+            append_audit(action="datasets.process", outcome="failed", details=str(err), username=user["username"])
+            return jsonify(result), 400
+
+        etl_job = None
+        if run_etl:
+            etl_job = _create_etl_job_record(user["username"], job_name, preprocess=result)
+
+        append_audit(
+            action="datasets.process",
+            outcome="success",
+            details=f"mode={mode} run_etl={run_etl}",
+            username=user["username"],
+        )
+        out = {"preprocess": result}
+        if etl_job is not None:
+            out["etl_job"] = etl_job
+        return jsonify(out), 200
+
+    @api.delete("/api/datasets/<dataset_name>")
+    @require_permission("datasets")
+    def delete_dataset(dataset_name: str):
+        user = current_user()
+        result = upload_service.delete_dataset(dataset_name)
+        if not result.get("deleted"):
+            append_audit(
+                action="datasets.delete",
+                outcome="failed",
+                details=result.get("message", "not found"),
+                username=user["username"],
+            )
+            return jsonify(result), 404
+        append_audit(
+            action="datasets.delete",
+            outcome="success",
+            details=f"removed {result.get('removed_entries', 0)} entries for {result.get('dataset')}",
+            username=user["username"],
+        )
+        return jsonify(result), 200
 
     @api.get("/api/datasets/<dataset_name>/preview")
     @require_permission("datasets")
@@ -262,37 +406,31 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
     def trigger_etl_job():
         user = current_user()
         payload = request.get_json(silent=True) or {}
-        job_name = payload.get("job_name", "distributed_pipeline_scaffold")
-        now = datetime.now(timezone.utc).isoformat()
-        dag_id = Settings.AIRFLOW_ETL_DAG_ID or "distributed_pipeline_scaffold"
-        airflow_run = None
-        airflow_error = None
-        try:
-            airflow_run = airflow_client.trigger_dag(dag_id, conf={"triggered_by": user["username"], "job_name": job_name})
-        except Exception as exc:
-            airflow_error = str(exc)
+        job_name = str(payload.get("job_name", "distributed_pipeline_scaffold")).strip() or "distributed_pipeline_scaffold"
+        scope = (payload.get("scope") or "delegate_only").strip().lower()
+        preprocess = None
 
-        delegate_result = run_delegate_etl(metadata_registry=Settings.METADATA_DIR / "dataset_registry.json")
-        job = {
-            "job_id": str(uuid4()),
-            "job_name": job_name,
-            "triggered_by": user["username"],
-            "status": "queued" if airflow_run and not airflow_error else delegate_result.get("status", "completed"),
-            "triggered_at": now,
-            "stages": ["airflow_trigger", "delegate_summary"],
-            "summary": delegate_result.get("summary", {}),
-            "airflow_dag_id": dag_id,
-            "airflow_dag_run_id": (airflow_run or {}).get("dag_run_id"),
-            "airflow_state": (airflow_run or {}).get("state"),
-            "airflow_ui_url": f"{Settings.AIRFLOW_UI_PUBLIC.rstrip('/')}/dags/{dag_id}/grid",
-            "airflow_error": airflow_error,
-        }
-        etl_jobs.insert(0, job)
-        _save_json(etl_jobs_file, etl_jobs[:500])
+        if scope == "preprocess_single":
+            dataset = payload.get("dataset") or payload.get("dataset_name")
+            if not dataset:
+                return jsonify({"error": "dataset_required", "message": "dataset is required for preprocess_single"}), 400
+            preprocess = upload_service.process_datasets("single", dataset)
+            if preprocess.get("error") == "not_found":
+                return jsonify(preprocess), 404
+            if preprocess.get("error") == "dataset_required":
+                return jsonify(preprocess), 400
+        elif scope == "preprocess_all":
+            preprocess = upload_service.process_datasets("all", None)
+            if preprocess.get("error") == "nothing_pending":
+                return jsonify(preprocess), 400
+        elif scope != "delegate_only":
+            return jsonify({"error": "invalid_scope", "message": "Use delegate_only, preprocess_single, or preprocess_all"}), 400
+
+        job = _create_etl_job_record(user["username"], job_name, preprocess=preprocess)
         append_audit(
             action="etl.jobs.trigger",
-            outcome="success" if not airflow_error else "partial",
-            details=f"Airflow DAG {dag_id}: {airflow_error or 'ok'}",
+            outcome="success" if not job.get("airflow_error") else "partial",
+            details=f"scope={scope} dag={job.get('airflow_dag_id')}",
             username=user["username"],
         )
         return jsonify(job), 201
@@ -306,12 +444,21 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
             {
                 "airflow_ui_url": Settings.AIRFLOW_UI_PUBLIC,
                 "minio_console_url": Settings.MINIO_CONSOLE_PUBLIC,
+                "minio_bucket": Settings.MINIO_BUCKET_LANDING,
                 "bigquery_project": Settings.BIGQUERY_PROJECT_ID,
                 "airflow_dag_id": Settings.AIRFLOW_ETL_DAG_ID,
                 "minio_endpoint_configured": bool(Settings.MINIO_ENDPOINT),
                 "airflow_api_configured": bool(Settings.AIRFLOW_BASE_URL),
+                "spark_master_ui_url": Settings.SPARK_MASTER_UI_PUBLIC,
             }
         )
+
+    @api.get("/api/integrations/spark")
+    @require_permission("etl")
+    def integrations_spark():
+        payload = spark_master_client.try_fetch_master_state(Settings.SPARK_MASTER_UI_INTERNAL_URL)
+        payload["spark_ui_url"] = Settings.SPARK_MASTER_UI_PUBLIC
+        return jsonify(payload)
 
     @api.get("/api/integrations/health")
     def integrations_health():
@@ -330,11 +477,16 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
     def bigquery_status():
         user = current_user()
         append_audit(action="bigquery.status", outcome="success", details="status", username=user["username"])
+        creds_ok = bq_client.credentials_available()
         return jsonify(
             {
-                "enabled": bq_client.credentials_available(),
+                "feature_enabled": Settings.BIGQUERY_ENABLED,
+                "enabled": Settings.BIGQUERY_ENABLED and creds_ok,
+                "credentials_configured": creds_ok,
                 "project": bq_client.resolve_project_id() or Settings.BIGQUERY_PROJECT_ID,
                 "default_dataset": Settings.BIGQUERY_DEFAULT_DATASET,
+                "ingest_dataset": Settings.BIGQUERY_INGEST_DATASET,
+                "dataset_location": Settings.BIGQUERY_DATASET_LOCATION,
                 "console_url": (
                     bq_client.console_project_url(bq_client.resolve_project_id())
                     if bq_client.resolve_project_id()

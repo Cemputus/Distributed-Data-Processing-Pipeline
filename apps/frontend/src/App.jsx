@@ -5,10 +5,10 @@ import { AnalyticsPage } from './pages/AnalyticsPage'
 import { UploadsPage } from './pages/UploadsPage'
 import { DatasetsPage } from './pages/DatasetsPage'
 import { ETLJobsPage } from './pages/ETLJobsPage'
-import { CENQueryPage } from './pages/CENQueryPage'
+import { QueryWorkspace } from './pages/QueryWorkspace'
 import { AuditLogsPage } from './pages/AuditLogsPage'
 import { UserManagementPage } from './pages/UserManagementPage'
-import { BigQueryPage } from './pages/BigQueryPage'
+import { normalizeRequestError, readJsonSafe } from './utils/httpErrors'
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
@@ -21,13 +21,12 @@ const sectionsByRole = {
 
 const menuItems = [
   { key: 'analytics', label: 'Dashboard' },
-  { key: 'uploads', label: 'Upload' },
-  { key: 'datasets', label: 'Datasets & Insights' },
-  { key: 'etl', label: 'ETL Jobs' },
-  { key: 'query', label: 'CEN Query' },
-  { key: 'bigquery', label: 'BigQuery' },
-  { key: 'audit', label: 'Audit Logs' },
-  { key: 'users', label: 'User Management' },
+  { key: 'uploads', label: 'Uploads' },
+  { key: 'datasets', label: 'Datasets' },
+  { key: 'etl', label: 'ETL' },
+  { key: 'query', label: 'Query' },
+  { key: 'audit', label: 'Audit' },
+  { key: 'users', label: 'Users' },
 ]
 
 function App() {
@@ -40,6 +39,7 @@ function App() {
     uploadCatalog: { preloaded_dataset: 'dim_customers.csv', message: '' },
     uploadResult: null,
     successUploads: [],
+    pendingLandings: [],
     failedUploads: [],
     datasets: [],
     etlJobs: [],
@@ -47,6 +47,7 @@ function App() {
     auditLogs: [],
     users: [],
     integrations: null,
+    charts: null,
   })
   const [error, setError] = useState('')
 
@@ -60,28 +61,50 @@ function App() {
   }
 
   async function apiGet(path) {
-    const response = await fetch(`${API_BASE}${path}`, { headers: authHeaders() })
-    const body = await response.json()
-    if (!response.ok) {
-      if (response.status === 403) throw new Error('')
-      throw new Error(body.message || body.error || `Request failed: ${path}`)
+    try {
+      const response = await fetch(`${API_BASE}${path}`, { headers: authHeaders() })
+      const body = await readJsonSafe(response)
+      if (!response.ok) {
+        if (response.status === 403) throw new Error('')
+        throw new Error(body.message || body.error || `Request failed: ${path}`)
+      }
+      return body
+    } catch (err) {
+      throw new Error(normalizeRequestError(err, `Request failed: ${path}`))
     }
-    return body
   }
 
   async function apiPost(path, body, isForm = false) {
-    const headers = isForm ? authHeaders() : { ...authHeaders(), 'Content-Type': 'application/json' }
-    const response = await fetch(`${API_BASE}${path}`, {
-      method: 'POST',
-      headers,
-      body: isForm ? body : JSON.stringify(body || {}),
-    })
-    const payload = await response.json()
-    if (!response.ok) {
-      if (response.status === 403) throw new Error('')
-      throw new Error(payload.message || payload.error || `Request failed: ${path}`)
+    try {
+      const headers = isForm ? authHeaders() : { ...authHeaders(), 'Content-Type': 'application/json' }
+      const response = await fetch(`${API_BASE}${path}`, {
+        method: 'POST',
+        headers,
+        body: isForm ? body : JSON.stringify(body || {}),
+      })
+      const payload = await readJsonSafe(response)
+      if (!response.ok) {
+        if (response.status === 403) throw new Error('')
+        throw new Error(payload.message || payload.error || `Request failed: ${path}`)
+      }
+      return payload
+    } catch (err) {
+      throw new Error(normalizeRequestError(err, `Request failed: ${path}`))
     }
-    return payload
+  }
+
+  async function apiDelete(path) {
+    try {
+      const response = await fetch(`${API_BASE}${path}`, { method: 'DELETE', headers: authHeaders() })
+      const body = await readJsonSafe(response)
+      if (!response.ok) {
+        if (response.status === 403) throw new Error('')
+        throw new Error(body.message || body.error || `Request failed: ${path}`)
+      }
+      return body
+    } catch (err) {
+      throw new Error(normalizeRequestError(err, `Request failed: ${path}`))
+    }
   }
 
   async function refreshData() {
@@ -90,14 +113,28 @@ function App() {
     try {
       const patch = {}
       if (allowedSections.includes('analytics')) {
-        const [overview, merchants] = await Promise.all([apiGet('/api/overview'), apiGet('/api/top-merchants?limit=5')])
+        const [overview, merchants] = await Promise.all([
+          apiGet('/api/overview'),
+          apiGet('/api/top-merchants?limit=5'),
+        ])
         patch.overview = overview
         patch.merchants = merchants.items || []
+        try {
+          patch.charts = await apiGet('/api/analytics/charts')
+        } catch {
+          patch.charts = null
+        }
       }
       if (allowedSections.includes('uploads')) {
-        const [catalog, success, failed] = await Promise.all([apiGet('/api/upload-datasets'), apiGet('/api/uploads/success'), apiGet('/api/uploads/failed')])
+        const [catalog, success, pending, failed] = await Promise.all([
+          apiGet('/api/upload-datasets'),
+          apiGet('/api/uploads/success'),
+          apiGet('/api/uploads/pending'),
+          apiGet('/api/uploads/failed'),
+        ])
         patch.uploadCatalog = catalog
         patch.successUploads = success.items || []
+        patch.pendingLandings = pending.items || []
         patch.failedUploads = failed.items || []
       }
       if (allowedSections.includes('datasets')) {
@@ -132,7 +169,7 @@ function App() {
       if (!token) return
       try {
         const meResponse = await fetch(`${API_BASE}/api/auth/me`, { headers: authHeaders() })
-        const body = await meResponse.json()
+        const body = await readJsonSafe(meResponse)
         if (!meResponse.ok) throw new Error()
         setUser(body)
       } catch {
@@ -146,6 +183,10 @@ function App() {
 
   useEffect(() => {
     if (user) {
+      if (activePage === 'bigquery') {
+        setActivePage('query')
+        localStorage.setItem('activePage', 'query')
+      }
       if (!allowedSections.includes(activePage) && allowedSections.length > 0) {
         setActivePage(allowedSections[0])
       }
@@ -161,13 +202,13 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
       })
-      const body = await response.json()
+      const body = await readJsonSafe(response)
       if (!response.ok) throw new Error(body.error || 'Login failed')
       localStorage.setItem('token', body.token)
       setToken(body.token)
       setUser({ username: body.username, role: body.role })
     } catch (err) {
-      setError(err.message)
+      setError(normalizeRequestError(err, 'Login failed'))
     }
   }
 
@@ -183,9 +224,22 @@ function App() {
     }
   }
 
-  async function triggerEtl() {
+  async function processDataset(mode, dataset, runEtl) {
     try {
-      await apiPost('/api/etl/jobs', { job_name: 'etl-pipeline.py' })
+      const body = { mode, run_etl: runEtl, job_name: 'post_preprocess_etl' }
+      if (mode === 'single' && dataset) body.dataset = dataset
+      await apiPost('/api/datasets/process', body)
+      await refreshData()
+    } catch (err) {
+      if (err.message) setError(err.message)
+    }
+  }
+
+  async function triggerEtl(scope, datasetName) {
+    try {
+      const body = { job_name: 'etl-pipeline.py', scope: scope || 'delegate_only' }
+      if (scope === 'preprocess_single' && datasetName) body.dataset = datasetName
+      await apiPost('/api/etl/jobs', body)
       await refreshData()
     } catch (err) {
       if (err.message) setError(err.message)
@@ -208,7 +262,7 @@ function App() {
         headers: { ...authHeaders(), 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      const body = await response.json()
+      const body = await readJsonSafe(response)
       if (!response.ok) {
         if (response.status === 403) return
         throw new Error(body.message || body.error || 'Update failed')
@@ -221,8 +275,18 @@ function App() {
 
   async function runQuery(queryText) {
     try {
+      setError('')
       const payload = await apiPost('/api/cen-query/execute', { query: queryText, row_limit: 250 })
       setState((prev) => ({ ...prev, queryResult: payload }))
+    } catch (err) {
+      if (err.message) setError(normalizeRequestError(err, 'Query failed'))
+    }
+  }
+
+  async function deleteDataset(datasetName) {
+    try {
+      await apiDelete(`/api/datasets/${encodeURIComponent(datasetName)}`)
+      await refreshData()
     } catch (err) {
       if (err.message) setError(err.message)
     }
@@ -277,8 +341,7 @@ function App() {
         <div className="brand">
           <div className="brand-badge">CA</div>
           <div>
-            <h2>CENAnalytics</h2>
-            <p className="muted">Data Architects</p>
+            <h2 className="app-brand-title">Console</h2>
           </div>
         </div>
         <p className="muted user-chip">{user.username} • {roleLabel}</p>
@@ -314,28 +377,44 @@ function App() {
           </div>
         </div>
         <div className="content-header">
-          <p className="eyebrow">CENAnalytics</p>
+          <p className="eyebrow">Workspace</p>
           <h1>{activeLabel}</h1>
-          <p className="subtitle">Enterprise data operations console with delegated ETL, dynamic ingestion, and governed analytics.</p>
+          <p className="subtitle">Data operations</p>
         </div>
         {error && <p className="error">{error}</p>}
 
-        {activePage === 'analytics' && <AnalyticsPage overview={state.overview} merchants={state.merchants} />}
+        {activePage === 'analytics' && (
+          <AnalyticsPage overview={state.overview} merchants={state.merchants} charts={state.charts} />
+        )}
         {activePage === 'uploads' && (
           <UploadsPage
             catalog={state.uploadCatalog}
             uploadResult={state.uploadResult}
             successfulUploads={state.successUploads}
+            pendingLandings={state.pendingLandings}
             failedUploads={state.failedUploads}
+            integrations={state.integrations}
             onUpload={handleUpload}
+            onProcessDataset={processDataset}
           />
         )}
-        {activePage === 'datasets' && <DatasetsPage datasets={state.datasets} />}
+        {activePage === 'datasets' && <DatasetsPage datasets={state.datasets} onDelete={deleteDataset} />}
         {activePage === 'etl' && (
-          <ETLJobsPage jobs={state.etlJobs} onTrigger={triggerEtl} integrations={state.integrations} />
+          <ETLJobsPage
+            jobs={state.etlJobs}
+            onTrigger={triggerEtl}
+            integrations={state.integrations}
+            token={token}
+          />
         )}
-        {activePage === 'query' && <CENQueryPage queryResult={state.queryResult} onRunQuery={runQuery} />}
-        {activePage === 'bigquery' && <BigQueryPage token={token} />}
+        {activePage === 'query' && (
+          <QueryWorkspace
+            queryResult={state.queryResult}
+            onRunQuery={runQuery}
+            token={token}
+            showBigQuery={allowedSections.includes('bigquery')}
+          />
+        )}
         {activePage === 'audit' && <AuditLogsPage items={state.auditLogs} />}
         {activePage === 'users' && <UserManagementPage users={state.users} onCreate={createUser} onUpdate={updateUser} />}
       </section>

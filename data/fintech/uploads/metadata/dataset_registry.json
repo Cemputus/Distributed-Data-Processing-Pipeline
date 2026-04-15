@@ -1,5 +1,364 @@
 [
   {
+    "dataset": "fact_transactions.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T20:14:27.180015+00:00",
+    "landing_file": "20260415T201427Z_fact_transactions.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260415T201427Z_fact_transactions.csv \u00b7 MinIO s3://fintech-landing/20260415T201427Z_fact_transactions.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "dim_date.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T20:14:16.258811+00:00",
+    "landing_file": "20260415T201416Z_dim_date.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260415T201416Z_dim_date.csv \u00b7 MinIO s3://fintech-landing/20260415T201416Z_dim_date.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "dim_accounts.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T20:14:01.498778+00:00",
+    "landing_file": "20260415T201401Z_dim_accounts.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 4 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_accounts.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "account_id",
+        "customer_id",
+        "current_balance"
+      ],
+      "row_count": 4,
+      "null_counts": {
+        "account_id": 0,
+        "customer_id": 0,
+        "current_balance": 0
+      },
+      "numeric_summary": {
+        "current_balance": {
+          "min": 200000.0,
+          "max": 1250000.5,
+          "avg": 675000.125
+        }
+      }
+    },
+    "processed_at": "2026-04-15T20:15:14.110578+00:00",
+    "row_count": 4,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "fact_loan_repayments.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T20:13:47.659594+00:00",
+    "landing_file": "20260415T201347Z_fact_loan_repayments.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260415T201347Z_fact_loan_repayments.csv \u00b7 MinIO s3://fintech-landing/20260415T201347Z_fact_loan_repayments.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "dim_customers.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-15T20:13:30.372626+00:00",
+    "landing_file": "20260415T201330Z_dim_customers.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 3 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to external zone: dim_customers.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "customer_id",
+        "full_name",
+        "region"
+      ],
+      "row_count": 3,
+      "null_counts": {
+        "customer_id": 0,
+        "full_name": 0,
+        "region": 0
+      },
+      "numeric_summary": {}
+    },
+    "processed_at": "2026-04-15T20:15:14.440078+00:00",
+    "row_count": 3,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "fact_loans.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T20:12:32.531347+00:00",
+    "landing_file": "20260415T201232Z_fact_loans.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 2 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: fact_loans.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "loan_id",
+        "customer_id",
+        "principal_amount"
+      ],
+      "row_count": 2,
+      "null_counts": {
+        "loan_id": 0,
+        "customer_id": 0,
+        "principal_amount": 0
+      },
+      "numeric_summary": {
+        "principal_amount": {
+          "min": 2500000.0,
+          "max": 5000000.0,
+          "avg": 3750000.0
+        }
+      }
+    },
+    "processed_at": "2026-04-15T20:15:14.838960+00:00",
+    "row_count": 2,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "dim_cards.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T19:56:17.563082+00:00",
+    "landing_file": "20260415T195617Z_dim_cards.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 6826 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_cards.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "card_id",
+        "account_id",
+        "customer_id",
+        "card_type",
+        "network",
+        "masked_pan",
+        "issued_at",
+        "expiry_month",
+        "expiry_year",
+        "card_status"
+      ],
+      "row_count": 6826,
+      "null_counts": {
+        "card_id": 0,
+        "account_id": 0,
+        "customer_id": 0,
+        "card_type": 0,
+        "network": 0,
+        "masked_pan": 0,
+        "issued_at": 0,
+        "expiry_month": 0,
+        "expiry_year": 0,
+        "card_status": 0
+      },
+      "numeric_summary": {
+        "expiry_month": {
+          "min": 1.0,
+          "max": 12.0,
+          "avg": 6.4984
+        },
+        "expiry_year": {
+          "min": 2028.0,
+          "max": 2031.0,
+          "avg": 2029.4906
+        }
+      }
+    },
+    "processed_at": "2026-04-15T20:07:04.688193+00:00",
+    "row_count": 6826,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "dim_merchants.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T18:22:54.734025+00:00",
+    "status": "success",
+    "row_count": 73,
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260415T182254Z_dim_merchants.csv \u00b7 MinIO s3://fintech-landing/20260415T182254Z_dim_merchants.csv"
+      },
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 73 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_merchants.csv"
+      }
+    ],
+    "insights": {
+      "columns": [
+        "merchant_id",
+        "merchant_name",
+        "merchant_category",
+        "district",
+        "region_tier",
+        "onboarded_at",
+        "merchant_status"
+      ],
+      "row_count": 73,
+      "null_counts": {
+        "merchant_id": 0,
+        "merchant_name": 0,
+        "merchant_category": 0,
+        "district": 0,
+        "region_tier": 0,
+        "onboarded_at": 0,
+        "merchant_status": 0
+      },
+      "numeric_summary": {}
+    },
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "dim_branches.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-15T17:40:21.210252+00:00",
+    "status": "success",
+    "row_count": 18,
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260415T174021Z_dim_branches.csv"
+      },
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 18 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_branches.csv"
+      }
+    ],
+    "insights": {
+      "columns": [
+        "branch_id",
+        "branch_name",
+        "region",
+        "service_type",
+        "opened_at",
+        "branch_status"
+      ],
+      "row_count": 18,
+      "null_counts": {
+        "branch_id": 0,
+        "branch_name": 0,
+        "region": 0,
+        "service_type": 0,
+        "opened_at": 0,
+        "branch_status": 0
+      },
+      "numeric_summary": {}
+    }
+  },
+  {
     "dataset": "dim_accounts.csv",
     "classification": "finance",
     "uploaded_at": "2026-04-15T14:42:16.567249+00:00",

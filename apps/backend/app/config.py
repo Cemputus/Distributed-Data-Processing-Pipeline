@@ -1,6 +1,12 @@
 import os
 from pathlib import Path
 
+# Wire Docker / .env templates that set BIGQUERY_CREDENTIALS_PATH but not GOOGLE_APPLICATION_CREDENTIALS.
+if not (os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") or "").strip():
+    _alt = (os.environ.get("BIGQUERY_CREDENTIALS_PATH") or "").strip()
+    if _alt:
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = _alt
+
 
 class Settings:
     """Runtime configuration for the Flask API."""
@@ -13,6 +19,7 @@ class Settings:
     PUBLISHED_DIR = UPLOAD_ROOT / "published"
     EXTERNAL_DIR = UPLOAD_ROOT / "external"
     METADATA_DIR = UPLOAD_ROOT / "metadata"
+    ACTIVATED_DIR = UPLOAD_ROOT / "activated"
     ANALYTICS_DB_DSN = os.environ.get(
         "ANALYTICS_DB_DSN",
         "postgresql://airflow:airflow@postgres:5432/analytics",
@@ -39,7 +46,25 @@ class Settings:
     AIRFLOW_UI_PUBLIC = os.environ.get("AIRFLOW_UI_PUBLIC", "http://localhost:8080")
     MINIO_CONSOLE_PUBLIC = os.environ.get("MINIO_CONSOLE_PUBLIC", "http://localhost:9001")
 
+    # Spark Standalone Master Web UI (workers + applications). Backend uses Docker service hostname.
+    # Run backend on host: set SPARK_MASTER_UI_INTERNAL_URL=http://localhost:8085
+    SPARK_MASTER_UI_INTERNAL_URL = (os.environ.get("SPARK_MASTER_UI_INTERNAL_URL") or "http://spark-master:8085").strip()
+    SPARK_MASTER_UI_PUBLIC = (os.environ.get("SPARK_MASTER_UI_PUBLIC") or "http://localhost:8085").strip()
+
     # Google BigQuery (cloud warehouse on top of curated datasets)
+    BIGQUERY_ENABLED = os.environ.get("BIGQUERY_ENABLED", "true").lower() in ("1", "true", "yes")
     BIGQUERY_PROJECT_ID = os.environ.get("BIGQUERY_PROJECT_ID", "").strip() or None
+    # Optional: explicit path to service account JSON (alias for GOOGLE_APPLICATION_CREDENTIALS; see .env.example).
+    BIGQUERY_CREDENTIALS_PATH = (os.environ.get("BIGQUERY_CREDENTIALS_PATH") or "").strip() or None
     # Optional hint only; queries must use real dataset.table IDs (see catalog or public samples).
     BIGQUERY_DEFAULT_DATASET = (os.environ.get("BIGQUERY_DEFAULT_DATASET") or "").strip() or None
+    # Optional: where the default / analytics dataset lives (documentation + future load jobs).
+    BIGQUERY_DATASET_LOCATION = (os.environ.get("BIGQUERY_DATASET_LOCATION") or "").strip() or None
+    # Ingestion: CSV uploads are loaded into this dataset as native tables (create dataset once in console).
+    BIGQUERY_INGEST_DATASET = (os.environ.get("BIGQUERY_INGEST_DATASET") or "").strip() or None
+    # When true (and credentials + ingest dataset set), each successful upload triggers a load job.
+    BIGQUERY_AUTO_LOAD_ON_UPLOAD = os.environ.get("BIGQUERY_AUTO_LOAD_ON_UPLOAD", "false").lower() in (
+        "1",
+        "true",
+        "yes",
+    )

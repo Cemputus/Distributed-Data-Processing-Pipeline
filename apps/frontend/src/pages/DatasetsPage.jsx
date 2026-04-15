@@ -3,14 +3,19 @@ import { RowsPerPageSelect } from '../components/RowsPerPageSelect'
 import { sliceByRowLimit, visibleRowCount } from '../utils/tableRows'
 import './DatasetsPage.css'
 
-export function DatasetsPage({ datasets }) {
+export function DatasetsPage({ datasets, onDelete }) {
   const [query, setQuery] = useState('')
   const [rowLimit, setRowLimit] = useState(20)
   const [previewRowLimit, setPreviewRowLimit] = useState(20)
   const [preview, setPreview] = useState(null)
   const [previewError, setPreviewError] = useState('')
   const filtered = useMemo(
-    () => datasets.filter((item) => `${item.dataset} ${item.classification} ${item.status}`.toLowerCase().includes(query.toLowerCase())),
+    () =>
+      datasets.filter((item) =>
+        `${item.dataset} ${item.classification} ${item.status} ${item.pipeline_status || ''}`
+          .toLowerCase()
+          .includes(query.toLowerCase()),
+      ),
     [datasets, query],
   )
   const displayedDatasets = useMemo(() => sliceByRowLimit(filtered, rowLimit), [filtered, rowLimit])
@@ -18,6 +23,12 @@ export function DatasetsPage({ datasets }) {
     () => (preview ? sliceByRowLimit(preview.rows || [], previewRowLimit) : []),
     [preview, previewRowLimit],
   )
+
+  function confirmDelete(datasetName) {
+    if (!onDelete) return
+    if (!window.confirm(`Remove ${datasetName} from the catalog and delete associated files?`)) return
+    onDelete(datasetName)
+  }
 
   async function loadPreview(datasetName) {
     setPreviewError('')
@@ -41,13 +52,15 @@ export function DatasetsPage({ datasets }) {
   return (
     <section className="card datasets-page">
       <div className="section-head">
-        <h2>Dataset Catalog & Insights</h2>
+        <h2>Datasets</h2>
         <div className="section-head-controls">
           <input placeholder="Filter datasets..." value={query} onChange={(event) => setQuery(event.target.value)} />
           <RowsPerPageSelect value={rowLimit} onChange={setRowLimit} id="datasets-catalog-rows" />
         </div>
       </div>
-      <p className="subtitle">Includes finance and non-finance datasets with automatically generated profiling insights.</p>
+      <p className="page-caption">
+        Registry of uploads. Query and KPIs use <code>analytics_ready</code> data; “landed” is ingest only.
+      </p>
       {filtered.length === 0 ? <div className="empty-state">No datasets uploaded yet.</div> : (
         <table>
           <thead>
@@ -56,9 +69,11 @@ export function DatasetsPage({ datasets }) {
               <th>Dataset</th>
               <th>Class</th>
               <th>Rows</th>
+              <th>Pipeline</th>
               <th>Status</th>
               <th>Columns</th>
               <th>Preview</th>
+              {onDelete ? <th>Remove</th> : null}
             </tr>
           </thead>
           <tbody>
@@ -68,9 +83,19 @@ export function DatasetsPage({ datasets }) {
                 <td>{item.dataset}</td>
                 <td><span className={`status-pill ${item.classification || ''}`}>{item.classification || '-'}</span></td>
                 <td>{item.row_count ?? '-'}</td>
+                <td>
+                  <span className="status-pill">{item.pipeline_status || '—'}</span>
+                </td>
                 <td><span className={`status-pill ${item.status || ''}`}>{item.status}</span></td>
                 <td>{Array.isArray(item.insights?.columns) ? item.insights.columns.length : '-'}</td>
-                <td><button className="ghost-btn" onClick={() => loadPreview(item.dataset)}>View</button></td>
+                <td><button type="button" className="ghost-btn" onClick={() => loadPreview(item.dataset)}>View</button></td>
+                {onDelete ? (
+                  <td>
+                    <button type="button" className="ghost-btn datasets-delete-btn" onClick={() => confirmDelete(item.dataset)}>
+                      Delete
+                    </button>
+                  </td>
+                ) : null}
               </tr>
             ))}
           </tbody>
@@ -85,9 +110,9 @@ export function DatasetsPage({ datasets }) {
       {preview && (
         <section className="preview-panel">
           <div className="section-head">
-            <h3>Dataset Preview: {preview.dataset}</h3>
+            <h3>Preview · {preview.dataset}</h3>
             <div className="section-head-controls">
-              <span className="muted">Sample rows: {preview.row_count}</span>
+              <span className="muted">Rows: {preview.row_count}</span>
               <RowsPerPageSelect value={previewRowLimit} onChange={setPreviewRowLimit} id="datasets-preview-rows" label="Preview rows" />
             </div>
           </div>
