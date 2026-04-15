@@ -114,7 +114,20 @@ class UploadPipelineService:
 
         try:
             self._stage_landing(incoming_file, landing_path)
-            stage_events.append(self._stage_event("input_stage", "passed", f"Stored file in landing zone: {landing_path.name}"))
+            extra = ""
+            try:
+                from .integrations import minio_util
+
+                meta = minio_util.upload_landing_file(landing_path, landing_path.name)
+                if meta and "bucket" in meta:
+                    extra = f" · MinIO s3://{meta['bucket']}/{meta['object']}"
+                elif meta and meta.get("error"):
+                    extra = f" (MinIO mirror: {meta['error']})"
+            except Exception as exc:
+                extra = f" (MinIO: {exc})"
+            stage_events.append(
+                self._stage_event("input_stage", "passed", f"Stored file in landing zone: {landing_path.name}{extra}"),
+            )
 
             current_stage = "processing_stage"
             processing_path, row_count, insights = self._stage_processing(dataset_name, landing_path, classification)

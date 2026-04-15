@@ -8,22 +8,24 @@ import { ETLJobsPage } from './pages/ETLJobsPage'
 import { CENQueryPage } from './pages/CENQueryPage'
 import { AuditLogsPage } from './pages/AuditLogsPage'
 import { UserManagementPage } from './pages/UserManagementPage'
+import { BigQueryPage } from './pages/BigQueryPage'
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
 const sectionsByRole = {
-  admin: ['analytics', 'uploads', 'datasets', 'etl', 'query', 'audit', 'users'],
-  data_engineer: ['analytics', 'uploads', 'datasets', 'etl', 'query', 'audit'],
-  analyst: ['analytics', 'datasets', 'query'],
-  operator: ['uploads', 'datasets', 'etl'],
+  admin: ['analytics', 'uploads', 'datasets', 'etl', 'query', 'bigquery', 'audit', 'users'],
+  data_engineer: ['analytics', 'uploads', 'datasets', 'etl', 'query', 'bigquery', 'audit'],
+  analyst: ['analytics', 'datasets', 'query', 'bigquery'],
+  operator: ['analytics', 'uploads', 'datasets', 'etl'],
 }
 
 const menuItems = [
-  { key: 'analytics', label: 'Analytics' },
+  { key: 'analytics', label: 'Dashboard' },
   { key: 'uploads', label: 'Upload' },
   { key: 'datasets', label: 'Datasets & Insights' },
   { key: 'etl', label: 'ETL Jobs' },
   { key: 'query', label: 'CEN Query' },
+  { key: 'bigquery', label: 'BigQuery' },
   { key: 'audit', label: 'Audit Logs' },
   { key: 'users', label: 'User Management' },
 ]
@@ -44,6 +46,7 @@ function App() {
     queryResult: null,
     auditLogs: [],
     users: [],
+    integrations: null,
   })
   const [error, setError] = useState('')
 
@@ -112,6 +115,11 @@ function App() {
       if (allowedSections.includes('users')) {
         const users = await apiGet('/api/users')
         patch.users = users.items || []
+      }
+      try {
+        patch.integrations = await apiGet('/api/integrations/config')
+      } catch {
+        patch.integrations = null
       }
       setState((prev) => ({ ...prev, ...patch }))
     } catch (err) {
@@ -323,8 +331,11 @@ function App() {
           />
         )}
         {activePage === 'datasets' && <DatasetsPage datasets={state.datasets} />}
-        {activePage === 'etl' && <ETLJobsPage jobs={state.etlJobs} onTrigger={triggerEtl} />}
+        {activePage === 'etl' && (
+          <ETLJobsPage jobs={state.etlJobs} onTrigger={triggerEtl} integrations={state.integrations} />
+        )}
         {activePage === 'query' && <CENQueryPage queryResult={state.queryResult} onRunQuery={runQuery} />}
+        {activePage === 'bigquery' && <BigQueryPage token={token} />}
         {activePage === 'audit' && <AuditLogsPage items={state.auditLogs} />}
         {activePage === 'users' && <UserManagementPage users={state.users} onCreate={createUser} onUpdate={updateUser} />}
       </section>

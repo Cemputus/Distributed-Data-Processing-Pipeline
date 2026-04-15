@@ -88,12 +88,15 @@ with DAG(
         python_callable=_validate_input_files,
     )
 
+    # Spark Standalone cluster (spark-master + spark-worker in docker-compose)
+    SPARK_MASTER = "spark://spark-master:7077"
     run_spark_transform = BashOperator(
         task_id="run_spark_transform",
         bash_command=(
-            f'spark-submit --master local[2] --deploy-mode client {SPARK_JOB} '
+            f'spark-submit --master "{SPARK_MASTER}" --deploy-mode client {SPARK_JOB} '
             f'--input-dir "{INPUT_DIR}" --output-dir "{OUTPUT_DIR}"'
         ),
+        env={"JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64"},
         retries=2,
     )
 

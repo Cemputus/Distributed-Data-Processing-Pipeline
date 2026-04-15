@@ -1,8 +1,11 @@
 import { useMemo, useState } from 'react'
+import { RowsPerPageSelect } from '../components/RowsPerPageSelect'
+import { sliceByRowLimit, visibleRowCount } from '../utils/tableRows'
 import './UserManagementPage.css'
 
 export function UserManagementPage({ users, onCreate, onUpdate }) {
   const [query, setQuery] = useState('')
+  const [rowLimit, setRowLimit] = useState(20)
   const [form, setForm] = useState({ username: '', password: '', role: 'analyst' })
   const [error, setError] = useState('')
 
@@ -34,7 +37,10 @@ export function UserManagementPage({ users, onCreate, onUpdate }) {
     <section className="card users-page">
       <div className="section-head">
         <h2>User Management</h2>
-        <input placeholder="Filter users..." value={query} onChange={(event) => setQuery(event.target.value)} />
+        <div className="section-head-controls">
+          <input placeholder="Filter users..." value={query} onChange={(event) => setQuery(event.target.value)} />
+          <RowsPerPageSelect value={rowLimit} onChange={setRowLimit} id="users-rows" />
+        </div>
       </div>
       {error && <p className="error">{error}</p>}
       <form className="user-create-form" onSubmit={submitCreate}>
@@ -52,19 +58,24 @@ export function UserManagementPage({ users, onCreate, onUpdate }) {
       {filteredUsers.length === 0 ? (
         <div className="empty-state">No users found.</div>
       ) : (
-        <table>
-          <thead><tr><th>Username</th><th>Role</th><th>Enabled</th><th>Action</th></tr></thead>
-          <tbody>
-            {filteredUsers.map((item) => (
-              <tr key={item.username}>
-                <td>{item.username}</td>
-                <td>{item.role}</td>
-                <td><span className={`status-pill ${item.enabled ? 'success' : 'failed'}`}>{item.enabled ? 'enabled' : 'disabled'}</span></td>
-                <td><button className="ghost-btn" onClick={() => toggleEnabled(item)}>{item.enabled ? 'Disable' : 'Enable'}</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <>
+          <table>
+            <thead><tr><th>Username</th><th>Role</th><th>Enabled</th><th>Action</th></tr></thead>
+            <tbody>
+              {displayedUsers.map((item) => (
+                <tr key={item.username}>
+                  <td>{item.username}</td>
+                  <td>{item.role}</td>
+                  <td><span className={`status-pill ${item.enabled ? 'success' : 'failed'}`}>{item.enabled ? 'enabled' : 'disabled'}</span></td>
+                  <td><button className="ghost-btn" onClick={() => toggleEnabled(item)}>{item.enabled ? 'Disable' : 'Enable'}</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="muted table-meta">
+            Showing {visibleRowCount(filteredUsers.length, rowLimit)} of {filteredUsers.length} users
+          </p>
+        </>
       )}
     </section>
   )

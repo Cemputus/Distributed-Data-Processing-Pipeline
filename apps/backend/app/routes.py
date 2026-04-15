@@ -7,6 +7,8 @@ from flask import Blueprint, jsonify, request
 
 from .config import Settings
 from .etl_delegate import run_delegate_etl
+from .integrations import airflow_client
+from .integrations import bigquery_client as bq_client
 from .services import CENQueryService, MetricsService, UploadPipelineService
 
 
@@ -54,10 +56,10 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
     audit_logs = _load_json(audit_logs_file, [])
 
     role_permissions = {
-        "admin": {"analytics", "uploads", "datasets", "etl", "audit", "query", "users"},
-        "data_engineer": {"analytics", "uploads", "datasets", "etl", "audit", "query"},
-        "analyst": {"analytics", "datasets", "query"},
-        "operator": {"uploads", "datasets", "etl"},
+        "admin": {"analytics", "uploads", "datasets", "etl", "audit", "query", "bigquery", "users"},
+        "data_engineer": {"analytics", "uploads", "datasets", "etl", "audit", "query", "bigquery"},
+        "analyst": {"analytics", "datasets", "query", "bigquery"},
+        "operator": {"analytics", "uploads", "datasets", "etl"},
     }
 
     def append_audit(action: str, outcome: str, details: str, username: str = "anonymous") -> None:
@@ -151,6 +153,12 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
                     {"method": "GET", "path": "/api/users", "description": "List users"},
                     {"method": "POST", "path": "/api/users", "description": "Create user"},
                     {"method": "PATCH", "path": "/api/users/<username>", "description": "Update user role/status"},
+                    {"method": "GET", "path": "/api/integrations/config", "description": "Airflow UI URL, MinIO console, BigQuery project (auth)"},
+                    {"method": "GET", "path": "/api/integrations/health", "description": "Airflow/BigQuery connectivity (auth)"},
+                    {"method": "GET", "path": "/api/bigquery/status", "description": "BigQuery credentials status"},
+                    {"method": "GET", "path": "/api/bigquery/datasets", "description": "List datasets (same project as console)"},
+                    {"method": "GET", "path": "/api/bigquery/datasets/<dataset_id>/tables", "description": "List tables in dataset"},
+                    {"method": "POST", "path": "/api/bigquery/query", "description": "Read-only BigQuery SQL"},
                 ]
             }
         )
@@ -254,22 +262,130 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
     def trigger_etl_job():
         user = current_user()
         payload = request.get_json(silent=True) or {}
-        job_name = payload.get("job_name", "etl-pipeline.py")
+        job_name = payload.get("job_name", "distributed_pipeline_scaffold")
         now = datetime.now(timezone.utc).isoformat()
+        dag_id = Settings.AIRFLOW_ETL_DAG_ID or "distributed_pipeline_scaffold"
+        airflow_run = None
+        airflow_error = None
+        try:
+            airflow_run = airflow_client.trigger_dag(dag_id, conf={"triggered_by": user["username"], "job_name": job_name})
+        except Exception as exc:
+            airflow_error = str(exc)
+
         delegate_result = run_delegate_etl(metadata_registry=Settings.METADATA_DIR / "dataset_registry.json")
         job = {
             "job_id": str(uuid4()),
             "job_name": job_name,
             "triggered_by": user["username"],
-            "status": delegate_result.get("status", "completed"),
+            "status": "queued" if airflow_run and not airflow_error else delegate_result.get("status", "completed"),
             "triggered_at": now,
-            "stages": ["input_stage", "processing_stage", "result_stage"],
+            "stages": ["airflow_trigger", "delegate_summary"],
             "summary": delegate_result.get("summary", {}),
+            "airflow_dag_id": dag_id,
+            "airflow_dag_run_id": (airflow_run or {}).get("dag_run_id"),
+            "airflow_state": (airflow_run or {}).get("state"),
+            "airflow_ui_url": f"{Settings.AIRFLOW_UI_PUBLIC.rstrip('/')}/dags/{dag_id}/grid",
+            "airflow_error": airflow_error,
         }
         etl_jobs.insert(0, job)
         _save_json(etl_jobs_file, etl_jobs[:500])
-        append_audit(action="etl.jobs.trigger", outcome="success", details=f"Triggered {job_name}", username=user["username"])
+        append_audit(
+            action="etl.jobs.trigger",
+            outcome="success" if not airflow_error else "partial",
+            details=f"Airflow DAG {dag_id}: {airflow_error or 'ok'}",
+            username=user["username"],
+        )
         return jsonify(job), 201
+
+    @api.get("/api/integrations/config")
+    def integrations_config():
+        user = current_user()
+        if not user:
+            return jsonify({"error": "unauthorized"}), 401
+        return jsonify(
+            {
+                "airflow_ui_url": Settings.AIRFLOW_UI_PUBLIC,
+                "minio_console_url": Settings.MINIO_CONSOLE_PUBLIC,
+                "bigquery_project": Settings.BIGQUERY_PROJECT_ID,
+                "airflow_dag_id": Settings.AIRFLOW_ETL_DAG_ID,
+                "minio_endpoint_configured": bool(Settings.MINIO_ENDPOINT),
+                "airflow_api_configured": bool(Settings.AIRFLOW_BASE_URL),
+            }
+        )
+
+    @api.get("/api/integrations/health")
+    def integrations_health():
+        user = current_user()
+        if not user:
+            return jsonify({"error": "unauthorized"}), 401
+        return jsonify(
+            {
+                "airflow_ui_reachable": airflow_client.healthcheck(),
+                "bigquery_credentials": bq_client.credentials_available(),
+            }
+        )
+
+    @api.get("/api/bigquery/status")
+    @require_permission("bigquery")
+    def bigquery_status():
+        user = current_user()
+        append_audit(action="bigquery.status", outcome="success", details="status", username=user["username"])
+        return jsonify(
+            {
+                "enabled": bq_client.credentials_available(),
+                "project": bq_client.resolve_project_id() or Settings.BIGQUERY_PROJECT_ID,
+                "default_dataset": Settings.BIGQUERY_DEFAULT_DATASET,
+                "console_url": (
+                    bq_client.console_project_url(bq_client.resolve_project_id())
+                    if bq_client.resolve_project_id()
+                    else None
+                ),
+            }
+        )
+
+    @api.get("/api/bigquery/datasets")
+    @require_permission("bigquery")
+    def bigquery_list_datasets():
+        user = current_user()
+        try:
+            payload = bq_client.list_datasets()
+            append_audit(action="bigquery.datasets", outcome="success", details="list", username=user["username"])
+            return jsonify(payload)
+        except Exception as exc:
+            append_audit(action="bigquery.datasets", outcome="failed", details=str(exc), username=user["username"])
+            return jsonify({"error": "bigquery_error", "message": str(exc)}), 400
+
+    @api.get("/api/bigquery/datasets/<dataset_id>/tables")
+    @require_permission("bigquery")
+    def bigquery_list_tables(dataset_id: str):
+        user = current_user()
+        try:
+            payload = bq_client.list_tables(dataset_id)
+            append_audit(
+                action="bigquery.tables",
+                outcome="success",
+                details=f"dataset={dataset_id}",
+                username=user["username"],
+            )
+            return jsonify(payload)
+        except Exception as exc:
+            append_audit(action="bigquery.tables", outcome="failed", details=str(exc), username=user["username"])
+            return jsonify({"error": "bigquery_error", "message": str(exc)}), 400
+
+    @api.post("/api/bigquery/query")
+    @require_permission("bigquery")
+    def bigquery_query():
+        user = current_user()
+        payload = request.get_json(silent=True) or {}
+        sql = payload.get("sql", "")
+        max_rows = int(payload.get("max_rows", 100))
+        try:
+            result = bq_client.run_readonly_query(sql, max_rows=max_rows)
+            append_audit(action="bigquery.query", outcome="success", details="query executed", username=user["username"])
+            return jsonify(result)
+        except Exception as exc:
+            append_audit(action="bigquery.query", outcome="failed", details=str(exc), username=user["username"])
+            return jsonify({"error": "bigquery_error", "message": str(exc)}), 400
 
     @api.get("/api/audit-logs")
     @require_permission("audit")

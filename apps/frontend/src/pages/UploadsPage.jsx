@@ -1,11 +1,23 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { RowsPerPageSelect } from '../components/RowsPerPageSelect'
+import { sliceByRowLimit, visibleRowCount } from '../utils/tableRows'
 import './UploadsPage.css'
 
 export function UploadsPage({ catalog, uploadResult, successfulUploads, failedUploads, onUpload }) {
   const [selectedFile, setSelectedFile] = useState(null)
   const [query, setQuery] = useState('')
-  const filteredSuccess = successfulUploads.filter((item) => item.dataset.toLowerCase().includes(query.toLowerCase()))
-  const filteredFailed = failedUploads.filter((item) => item.dataset.toLowerCase().includes(query.toLowerCase()))
+  const [successRowLimit, setSuccessRowLimit] = useState(20)
+  const [failedRowLimit, setFailedRowLimit] = useState(20)
+  const filteredSuccess = useMemo(
+    () => successfulUploads.filter((item) => item.dataset.toLowerCase().includes(query.toLowerCase())),
+    [successfulUploads, query],
+  )
+  const filteredFailed = useMemo(
+    () => failedUploads.filter((item) => item.dataset.toLowerCase().includes(query.toLowerCase())),
+    [failedUploads, query],
+  )
+  const displayedSuccess = useMemo(() => sliceByRowLimit(filteredSuccess, successRowLimit), [filteredSuccess, successRowLimit])
+  const displayedFailed = useMemo(() => sliceByRowLimit(filteredFailed, failedRowLimit), [filteredFailed, failedRowLimit])
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -42,35 +54,53 @@ export function UploadsPage({ catalog, uploadResult, successfulUploads, failedUp
       </section>
 
       <section className="card">
-        <h2>Successful Uploads</h2>
-        <input placeholder="Filter by dataset..." value={query} onChange={(event) => setQuery(event.target.value)} />
+        <div className="section-head">
+          <h2>Successful Uploads</h2>
+          <div className="section-head-controls">
+            <input placeholder="Filter by dataset..." value={query} onChange={(event) => setQuery(event.target.value)} />
+            <RowsPerPageSelect value={successRowLimit} onChange={setSuccessRowLimit} id="uploads-success-rows" />
+          </div>
+        </div>
         {filteredSuccess.length === 0 ? <div className="empty-state">No successful uploads yet.</div> : (
-          <table>
-            <thead><tr><th>Timestamp</th><th>Dataset</th><th>Rows</th><th>Status</th></tr></thead>
-            <tbody>
-              {filteredSuccess.map((item) => (
-                <tr key={`${item.uploaded_at}-${item.dataset}`}>
-                  <td>{item.uploaded_at}</td><td>{item.dataset}</td><td>{item.row_count ?? '-'}</td><td><span className="status-pill success">{item.status}</span></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <>
+            <table>
+              <thead><tr><th>Timestamp</th><th>Dataset</th><th>Rows</th><th>Status</th></tr></thead>
+              <tbody>
+                {displayedSuccess.map((item) => (
+                  <tr key={`${item.uploaded_at}-${item.dataset}`}>
+                    <td>{item.uploaded_at}</td><td>{item.dataset}</td><td>{item.row_count ?? '-'}</td><td><span className="status-pill success">{item.status}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="muted table-meta">
+              Showing {visibleRowCount(filteredSuccess.length, successRowLimit)} of {filteredSuccess.length} uploads
+            </p>
+          </>
         )}
       </section>
 
       <section className="card">
-        <h2>Failed Uploads</h2>
+        <div className="section-head">
+          <h2>Failed Uploads</h2>
+          <RowsPerPageSelect value={failedRowLimit} onChange={setFailedRowLimit} id="uploads-failed-rows" />
+        </div>
         {filteredFailed.length === 0 ? <div className="empty-state">No failed uploads yet.</div> : (
-          <table>
-            <thead><tr><th>Timestamp</th><th>Dataset</th><th>Error</th><th>Status</th></tr></thead>
-            <tbody>
-              {filteredFailed.map((item) => (
-                <tr key={`${item.uploaded_at}-${item.dataset}`}>
-                  <td>{item.uploaded_at}</td><td>{item.dataset}</td><td>{item.error || '-'}</td><td><span className="status-pill failed">{item.status}</span></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <>
+            <table>
+              <thead><tr><th>Timestamp</th><th>Dataset</th><th>Error</th><th>Status</th></tr></thead>
+              <tbody>
+                {displayedFailed.map((item) => (
+                  <tr key={`${item.uploaded_at}-${item.dataset}`}>
+                    <td>{item.uploaded_at}</td><td>{item.dataset}</td><td>{item.error || '-'}</td><td><span className="status-pill failed">{item.status}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="muted table-meta">
+              Showing {visibleRowCount(filteredFailed.length, failedRowLimit)} of {filteredFailed.length} failed uploads
+            </p>
+          </>
         )}
       </section>
     </div>

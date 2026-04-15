@@ -7,6 +7,14 @@
   margin-bottom: 0.55rem;
 }
 
+.uploads-page .section-head h2 {
+  margin: 0;
+}
+
+.uploads-page .section-head {
+  margin-bottom: 0.35rem;
+}
+
 .uploads-page table {
   margin-top: 0.6rem;
 }

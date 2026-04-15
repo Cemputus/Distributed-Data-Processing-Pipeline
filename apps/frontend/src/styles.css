@@ -245,6 +245,35 @@ h1 {
   gap: 0.8rem;
 }
 
+.section-head-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+}
+
+.rows-per-page-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.86rem;
+  color: #64748b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rows-per-page-control select {
+  min-width: 5.5rem;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.table-meta {
+  margin: 0.45rem 0 0;
+  font-size: 0.82rem;
+}
+
 .section-head button {
   background: linear-gradient(135deg, #111827, #020617);
   color: #fff;

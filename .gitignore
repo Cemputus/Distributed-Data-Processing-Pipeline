@@ -2,6 +2,8 @@
 # Secrets and local env
 .env
 cloud-project-493415-1be4ba53f9c5.json
+secrets/*.json
+!secrets/.gitkeep
 
 # Airflow runtime (keep directory, ignore log contents)
 infra/airflow/logs/*

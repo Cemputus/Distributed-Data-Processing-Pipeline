@@ -1,0 +1,116 @@
+.bigquery-page .bq-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.65rem;
+}
+
+.bigquery-page .bq-actions input[type='number'] {
+  width: 4.5rem;
+}
+
+.bigquery-page .bq-status {
+  margin-top: 0.35rem;
+}
+
+.bigquery-page .bq-result {
+  margin-top: 1rem;
+}
+
+.bigquery-page .bq-result table {
+  margin-top: 0.5rem;
+}
+
+.bigquery-page .bq-catalog {
+  margin: 1rem 0;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #e8edf5;
+  border-radius: 10px;
+  background: #fafbfd;
+}
+
+.bigquery-page .bq-catalog-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.bigquery-page .bq-catalog-head h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.bigquery-page .bq-sql-heading {
+  margin: 1rem 0 0.35rem;
+  font-size: 1rem;
+}
+
+.bigquery-page .bq-dataset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bigquery-page .bq-dataset-item {
+  margin-bottom: 0.35rem;
+}
+
+.bigquery-page .bq-dataset-summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0.25rem;
+  font-weight: 600;
+}
+
+.bigquery-page .bq-dataset-id {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9rem;
+}
+
+.bigquery-page .bq-console-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.bigquery-page .bq-table-list {
+  list-style: none;
+  margin: 0.25rem 0 0.5rem 1rem;
+  padding: 0;
+}
+
+.bigquery-page .bq-table-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #eef2f7;
+  font-size: 0.88rem;
+}
+
+.bigquery-page .bq-table-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bigquery-page .bq-table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.bigquery-page .bq-table-actions .ghost-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
