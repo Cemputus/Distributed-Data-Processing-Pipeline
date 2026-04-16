@@ -13,6 +13,7 @@ import { normalizeRequestError, readJsonSafe } from './utils/httpErrors'
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
 const LS_AUTH_USER = 'auth_user'
+const LS_HIDDEN_DATASETS = 'hidden_datasets'
 
 const sectionsByRole = {
   admin: ['analytics', 'uploads', 'datasets', 'etl', 'query', 'bigquery', 'audit', 'users'],
@@ -62,8 +63,34 @@ function App() {
       return 'light'
     }
   })
+  const [hiddenDatasets, setHiddenDatasets] = useState(() => {
+    try {
+      const raw = localStorage.getItem(LS_HIDDEN_DATASETS)
+      const parsed = raw ? JSON.parse(raw) : []
+      return Array.isArray(parsed) ? parsed : []
+    } catch {
+      return []
+    }
+  })
 
   const allowedSections = useMemo(() => (user ? sectionsByRole[user.role] || [] : []), [user])
+  const hiddenDatasetSet = useMemo(() => new Set(hiddenDatasets), [hiddenDatasets])
+  const visibleDatasets = useMemo(
+    () => (state.datasets || []).filter((item) => !hiddenDatasetSet.has(item.dataset)),
+    [state.datasets, hiddenDatasetSet],
+  )
+  const visibleSuccessUploads = useMemo(
+    () => (state.successUploads || []).filter((item) => !hiddenDatasetSet.has(item.dataset)),
+    [state.successUploads, hiddenDatasetSet],
+  )
+  const visiblePendingLandings = useMemo(
+    () => (state.pendingLandings || []).filter((item) => !hiddenDatasetSet.has(item.dataset)),
+    [state.pendingLandings, hiddenDatasetSet],
+  )
+  const visibleFailedUploads = useMemo(
+    () => (state.failedUploads || []).filter((item) => !hiddenDatasetSet.has(item.dataset)),
+    [state.failedUploads, hiddenDatasetSet],
+  )
   const sidebarItems = useMemo(() => menuItems.filter((item) => allowedSections.includes(item.key)), [allowedSections])
   const activeLabel = sidebarItems.find((item) => item.key === activePage)?.label || 'Workspace'
   const roleLabel = user?.role ? user.role.replaceAll('_', ' ').replace(/\b\w/g, (m) => m.toUpperCase()) : ''
@@ -270,6 +297,22 @@ function App() {
   }, [theme])
 
   useEffect(() => {
+    try {
+      localStorage.setItem(LS_HIDDEN_DATASETS, JSON.stringify(hiddenDatasets))
+    } catch {
+      /* ignore */
+    }
+  }, [hiddenDatasets])
+
+  useEffect(() => {
+    if (!operationNotice) return undefined
+    const timer = setTimeout(() => {
+      setOperationNotice(null)
+    }, 30000)
+    return () => clearTimeout(timer)
+  }, [operationNotice])
+
+  useEffect(() => {
     if (user) {
       if (activePage === 'bigquery') {
         setActivePage('query')
@@ -405,8 +448,8 @@ function App() {
 
   async function deleteDataset(datasetName) {
     try {
-      await apiDelete(`/api/datasets/${encodeURIComponent(datasetName)}`)
-      // Remove immediately from visible tables; no full workspace refresh needed.
+      // Frontend-only remove: keep source files and backend catalog untouched.
+      setHiddenDatasets((prev) => (prev.includes(datasetName) ? prev : [...prev, datasetName]))
       setState((prev) => ({
         ...prev,
         datasets: (prev.datasets || []).filter((item) => item.dataset !== datasetName),
@@ -414,7 +457,6 @@ function App() {
         successUploads: (prev.successUploads || []).filter((item) => item.dataset !== datasetName),
         failedUploads: (prev.failedUploads || []).filter((item) => item.dataset !== datasetName),
       }))
-      await refreshPartialData(['uploads', 'datasets'])
     } catch (err) {
       if (err.message) setError(err.message)
     }
@@ -629,15 +671,15 @@ function App() {
           <UploadsPage
             catalog={state.uploadCatalog}
             uploadResult={state.uploadResult}
-            successfulUploads={state.successUploads}
-            pendingLandings={state.pendingLandings}
-            failedUploads={state.failedUploads}
+            successfulUploads={visibleSuccessUploads}
+            pendingLandings={visiblePendingLandings}
+            failedUploads={visibleFailedUploads}
             integrations={state.integrations}
             onUpload={handleUpload}
             onProcessDataset={processDataset}
           />
         )}
-        {activePage === 'datasets' && <DatasetsPage datasets={state.datasets} onDelete={deleteDataset} />}
+        {activePage === 'datasets' && <DatasetsPage datasets={visibleDatasets} onDelete={deleteDataset} />}
         {activePage === 'etl' && (
           <ETLJobsPage
             jobs={state.etlJobs}

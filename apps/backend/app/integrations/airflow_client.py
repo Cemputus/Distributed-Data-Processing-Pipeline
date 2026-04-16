@@ -205,6 +205,35 @@ def trigger_dag(dag_id: str, conf: Optional[Dict[str, Any]] = None) -> Dict[str,
     return result or {}
 
 
+def try_get_dag_run_state(dag_id: str, dag_run_id: str) -> Tuple[Optional[str], Optional[str]]:
+    """Fetch a DAG run state from Airflow API. Returns (state, error)."""
+    if not Settings.AIRFLOW_BASE_URL:
+        return None, "AIRFLOW_BASE_URL is not configured."
+    if not dag_id or not dag_run_id:
+        return None, "dag_id and dag_run_id are required."
+
+    base = Settings.AIRFLOW_BASE_URL.rstrip("/")
+    url = f"{base}/api/v1/dags/{dag_id}/dagRuns/{dag_run_id}"
+    session = _auth_session()
+    try:
+        response = session.get(url, timeout=60, allow_redirects=True)
+    except OSError as exc:
+        return None, f"Airflow request failed: {exc}"
+    if response.status_code >= 400:
+        detail = response.text[:300]
+        try:
+            detail = str(response.json())
+        except ValueError:
+            pass
+        return None, f"dag run GET {response.status_code}: {detail}"
+    try:
+        body = response.json()
+    except ValueError:
+        return None, "Airflow returned non-JSON DAG run body."
+    state = str(body.get("state") or "").strip().lower()
+    return (state or None), None
+
+
 def healthcheck() -> bool:
     if not Settings.AIRFLOW_BASE_URL:
         return False

@@ -184,6 +184,7 @@ export function ETLJobsPage({ jobs, onTrigger, integrations, token }) {
                       <tr>
                         <th>Name</th>
                         <th>App ID</th>
+                        <th>Status</th>
                         <th>Duration</th>
                       </tr>
                     </thead>
@@ -195,6 +196,7 @@ export function ETLJobsPage({ jobs, onTrigger, integrations, token }) {
                           <tr key={a.id || a.name}>
                             <td>{a.name ?? '—'}</td>
                             <td className="spark-id-cell">{shortId}</td>
+                            <td><span className="status-pill success">completed</span></td>
                             <td>{a.duration_ms != null ? `${Math.round(Number(a.duration_ms) / 1000)}s` : '—'}</td>
                           </tr>
                         )

@@ -1,5 +1,1033 @@
 [
   {
+    "job_id": "340e51c2-739c-4714-aad9-54e09d07ce66",
+    "job_name": "etl-pipeline.py",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:14:59.463662+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 15,
+      "finance_datasets": 14,
+      "external_datasets": 1,
+      "total_rows_processed": 136156
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__4da8ea58-3744-4231-bc1b-6223783b35b2",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "all",
+      "processed": [
+        {
+          "dataset": "dim_customers.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "dim_customers.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:07:49.113557+00:00",
+            "processed_at": "2026-04-16T07:14:59.443981+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 10000,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 10000 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: dim_customers.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "customer_id",
+                "full_name",
+                "nationality",
+                "region",
+                "customer_segment",
+                "risk_level",
+                "kyc_level",
+                "status",
+                "created_at"
+              ],
+              "row_count": 10000,
+              "null_counts": {
+                "customer_id": 0,
+                "full_name": 0,
+                "nationality": 0,
+                "region": 0,
+                "customer_segment": 0,
+                "risk_level": 0,
+                "kyc_level": 0,
+                "status": 0,
+                "created_at": 0
+              },
+              "numeric_summary": {}
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "bddc9d24-c536-401e-a9bc-ea0a19ba5c4f",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:14:05.502948+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 14,
+      "finance_datasets": 13,
+      "external_datasets": 1,
+      "total_rows_processed": 126156
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__c501767d-6140-4feb-b74f-53afbf440f5f",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_accounts.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "dim_accounts.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:13:58.769173+00:00",
+            "processed_at": "2026-04-16T07:14:05.456279+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 10000,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 10000 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: dim_accounts.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "account_id",
+                "customer_id",
+                "account_type",
+                "currency",
+                "opened_at",
+                "status",
+                "current_balance",
+                "available_balance"
+              ],
+              "row_count": 10000,
+              "null_counts": {
+                "account_id": 0,
+                "customer_id": 0,
+                "account_type": 0,
+                "currency": 0,
+                "opened_at": 0,
+                "status": 0,
+                "current_balance": 0,
+                "available_balance": 0
+              },
+              "numeric_summary": {
+                "current_balance": {
+                  "min": 281955.0,
+                  "max": 5798705.0,
+                  "avg": 1911822.7586
+                },
+                "available_balance": {
+                  "min": 77970.0,
+                  "max": 5798705.0,
+                  "avg": 1789307.9756
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "e2e2bca0-4e0f-4981-8256-fce29b78c135",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:13:24.917965+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 13,
+      "finance_datasets": 12,
+      "external_datasets": 1,
+      "total_rows_processed": 116156
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__65da36b0-9e79-47f0-8a85-13160b7b7a95",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "fact_fraud_alerts.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "fact_fraud_alerts.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:13:19.072783+00:00",
+            "processed_at": "2026-04-16T07:13:24.898987+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 29593,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 29593 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: fact_fraud_alerts.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "alert_id",
+                "transaction_id",
+                "account_id",
+                "alert_date",
+                "risk_score",
+                "alert_type",
+                "alert_status"
+              ],
+              "row_count": 29593,
+              "null_counts": {
+                "alert_id": 0,
+                "transaction_id": 0,
+                "account_id": 0,
+                "alert_date": 0,
+                "risk_score": 0,
+                "alert_type": 0,
+                "alert_status": 0
+              },
+              "numeric_summary": {
+                "risk_score": {
+                  "min": 20.0,
+                  "max": 100.0,
+                  "avg": 61.7665
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "c4d316dd-a160-44fc-a6c8-f9a2bda67fee",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:12:04.110006+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 12,
+      "finance_datasets": 11,
+      "external_datasets": 1,
+      "total_rows_processed": 86563
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__f5d2a7ca-892f-4d57-ade2-599bd371e127",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "fact_loan_repayments.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "fact_loan_repayments.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:09:51.777525+00:00",
+            "processed_at": "2026-04-16T07:12:04.089702+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 13511,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 13511 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: fact_loan_repayments.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "repayment_id",
+                "loan_id",
+                "customer_id",
+                "payment_date",
+                "amount",
+                "payment_channel",
+                "repayment_status"
+              ],
+              "row_count": 13511,
+              "null_counts": {
+                "repayment_id": 0,
+                "loan_id": 0,
+                "customer_id": 0,
+                "payment_date": 0,
+                "amount": 0,
+                "payment_channel": 0,
+                "repayment_status": 0
+              },
+              "numeric_summary": {
+                "amount": {
+                  "min": 13159.0,
+                  "max": 625000.0,
+                  "avg": 223209.5229
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "df217d66-253d-4e2b-8c4d-5c6bfeddfcb3",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:11:59.185586+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 11,
+      "finance_datasets": 10,
+      "external_datasets": 1,
+      "total_rows_processed": 73052
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__2d46b1b7-98a7-4f6c-9873-683b43ce09fc",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_merchants.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "dim_merchants.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:10:06.828236+00:00",
+            "processed_at": "2026-04-16T07:11:59.162824+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 73,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 73 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: dim_merchants.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "merchant_id",
+                "merchant_name",
+                "merchant_category",
+                "district",
+                "region_tier",
+                "onboarded_at",
+                "merchant_status"
+              ],
+              "row_count": 73,
+              "null_counts": {
+                "merchant_id": 0,
+                "merchant_name": 0,
+                "merchant_category": 0,
+                "district": 0,
+                "region_tier": 0,
+                "onboarded_at": 0,
+                "merchant_status": 0
+              },
+              "numeric_summary": {}
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "b5f5ec5a-d8d5-4e3e-a692-c0260d3ecf1b",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:11:53.061850+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 10,
+      "finance_datasets": 9,
+      "external_datasets": 1,
+      "total_rows_processed": 72979
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__1e8fc85b-b8b8-4e52-8e14-801712378388",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_branches.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "dim_branches.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:11:16.390912+00:00",
+            "processed_at": "2026-04-16T07:11:53.034590+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 18,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 18 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: dim_branches.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "branch_id",
+                "branch_name",
+                "region",
+                "service_type",
+                "opened_at",
+                "branch_status"
+              ],
+              "row_count": 18,
+              "null_counts": {
+                "branch_id": 0,
+                "branch_name": 0,
+                "region": 0,
+                "service_type": 0,
+                "opened_at": 0,
+                "branch_status": 0
+              },
+              "numeric_summary": {}
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "473f54f8-2a2e-450c-bd6f-1a0a092af23f",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:11:38.718486+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 9,
+      "finance_datasets": 8,
+      "external_datasets": 1,
+      "total_rows_processed": 72961
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__1446d898-c057-4701-912f-162ba6175c6e",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "fact_transactions.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "fact_transactions.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:10:22.006577+00:00",
+            "processed_at": "2026-04-16T07:11:38.685547+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 36233,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 36233 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: fact_transactions.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "transaction_id",
+                "account_id",
+                "customer_id",
+                "merchant_id",
+                "card_id",
+                "transaction_date",
+                "transaction_type",
+                "channel",
+                "amount",
+                "currency",
+                "status",
+                "country_code"
+              ],
+              "row_count": 36233,
+              "null_counts": {
+                "transaction_id": 0,
+                "account_id": 0,
+                "customer_id": 0,
+                "merchant_id": 0,
+                "card_id": 11296,
+                "transaction_date": 0,
+                "transaction_type": 0,
+                "channel": 0,
+                "amount": 0,
+                "currency": 0,
+                "status": 0,
+                "country_code": 0
+              },
+              "numeric_summary": {
+                "amount": {
+                  "min": 87083.0,
+                  "max": 553847.0,
+                  "avg": 317239.1039
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "a688c473-8218-485c-9aac-79ef176fa312",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:08:59.648596+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 8,
+      "finance_datasets": 7,
+      "external_datasets": 1,
+      "total_rows_processed": 36728
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__1225881a-33c8-41e0-91ed-27afecfebcda",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "fact_loans.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "fact_loans.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:08:53.258559+00:00",
+            "processed_at": "2026-04-16T07:08:59.608562+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 7983,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 7983 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: fact_loans.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "loan_id",
+                "customer_id",
+                "account_id",
+                "loan_product",
+                "principal_amount",
+                "interest_rate_annual_pct",
+                "tenure_months",
+                "issue_date",
+                "due_date",
+                "loan_status"
+              ],
+              "row_count": 7983,
+              "null_counts": {
+                "loan_id": 0,
+                "customer_id": 0,
+                "account_id": 0,
+                "loan_product": 0,
+                "principal_amount": 0,
+                "interest_rate_annual_pct": 0,
+                "tenure_months": 0,
+                "issue_date": 0,
+                "due_date": 0,
+                "loan_status": 0
+              },
+              "numeric_summary": {
+                "principal_amount": {
+                  "min": 212785.0,
+                  "max": 2500000.0,
+                  "avg": 1588802.9106
+                },
+                "interest_rate_annual_pct": {
+                  "min": 12.0,
+                  "max": 25.0,
+                  "avg": 18.4457
+                },
+                "tenure_months": {
+                  "min": 3.0,
+                  "max": 18.0,
+                  "avg": 10.5547
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "d721c6b9-0c36-4b58-a0d1-58aab53c42c5",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:07:59.885433+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 7,
+      "finance_datasets": 6,
+      "external_datasets": 1,
+      "total_rows_processed": 28745
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__1171ec7e-9742-4b7a-af99-a01f71877045",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_customers.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "dim_customers.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T07:07:49.675182+00:00",
+            "processed_at": "2026-04-16T07:07:59.835807+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 10000,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 10000 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: dim_customers.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "customer_id",
+                "full_name",
+                "nationality",
+                "region",
+                "customer_segment",
+                "risk_level",
+                "kyc_level",
+                "status",
+                "created_at"
+              ],
+              "row_count": 10000,
+              "null_counts": {
+                "customer_id": 0,
+                "full_name": 0,
+                "nationality": 0,
+                "region": 0,
+                "customer_segment": 0,
+                "risk_level": 0,
+                "kyc_level": 0,
+                "status": 0,
+                "created_at": 0
+              },
+              "numeric_summary": {}
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "6d5e6572-1833-492e-9c80-b8b09466a641",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:02:28.520904+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 6,
+      "finance_datasets": 5,
+      "external_datasets": 1,
+      "total_rows_processed": 18745
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__2857db4d-1a6f-4a62-894b-44717b8072f3",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_customers.csv",
+          "ok": false,
+          "error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+        }
+      ],
+      "errors": [
+        "dim_customers.csv: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+      ]
+    }
+  },
+  {
+    "job_id": "e5d6f257-abf9-43e9-9367-67b1d83b60d9",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T07:02:10.438829+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 6,
+      "finance_datasets": 5,
+      "external_datasets": 1,
+      "total_rows_processed": 18745
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__59517f3f-6cae-441f-be21-2532fe851fa2",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_customers.csv",
+          "ok": false,
+          "error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+        }
+      ],
+      "errors": [
+        "dim_customers.csv: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+      ]
+    }
+  },
+  {
+    "job_id": "5b0573d3-5146-4006-8a85-a5bc4e852a3b",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "queued",
+    "triggered_at": "2026-04-16T06:46:40.360500+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 9,
+      "finance_datasets": 8,
+      "external_datasets": 1,
+      "total_rows_processed": 38749
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__0915f88a-c8f2-41d5-9880-70f20176c163",
+    "airflow_state": "queued",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": null,
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_accounts.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "dim_accounts.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T06:46:31.585870+00:00",
+            "processed_at": "2026-04-16T06:46:40.340084+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 10000,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 10000 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: dim_accounts.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "account_id",
+                "customer_id",
+                "account_type",
+                "currency",
+                "opened_at",
+                "status",
+                "current_balance",
+                "available_balance"
+              ],
+              "row_count": 10000,
+              "null_counts": {
+                "account_id": 0,
+                "customer_id": 0,
+                "account_type": 0,
+                "currency": 0,
+                "opened_at": 0,
+                "status": 0,
+                "current_balance": 0,
+                "available_balance": 0
+              },
+              "numeric_summary": {
+                "current_balance": {
+                  "min": 281955.0,
+                  "max": 5798705.0,
+                  "avg": 1911822.7586
+                },
+                "available_balance": {
+                  "min": 77970.0,
+                  "max": 5798705.0,
+                  "avg": 1789307.9756
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
     "job_id": "496c2f0e-194f-4a0e-8b34-f1babc8827a6",
     "job_name": "post_preprocess_etl",
     "triggered_by": "operator",

@@ -188,3 +188,47 @@
   font-size: 0.78rem;
   padding: 0.45rem;
 }
+
+@media (max-width: 900px) {
+  .etl-actions,
+  .etl-run-controls {
+    justify-content: stretch;
+  }
+
+  .etl-actions input,
+  .etl-scope-label,
+  .etl-dataset-label,
+  .etl-scope-label select,
+  .etl-dataset-label input,
+  .etl-run-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .spark-tables {
+    grid-template-columns: 1fr;
+  }
+
+  .spark-scroll {
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .spark-cluster-panel {
+    padding: 0.55rem 0.55rem 0.65rem;
+  }
+
+  .spark-mini-table {
+    font-size: 0.74rem;
+  }
+
+  .spark-mini-table th,
+  .spark-mini-table td {
+    padding: 0.3rem 0.35rem;
+  }
+
+  .spark-id-cell {
+    max-width: 9rem;
+  }
+}

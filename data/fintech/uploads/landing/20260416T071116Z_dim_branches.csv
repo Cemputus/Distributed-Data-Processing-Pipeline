@@ -1,0 +1,19 @@
+branch_id,branch_name,region,service_type,opened_at,branch_status
+BR001,Divinity and Theology Branch,Mukono,corporate,2023-03-27,active
+BR006,Agricultural Science Branch,Mukono,retail,2023-03-26,active
+BR007,Computing Branch,Gulu,agent_hub,2024-06-17,active
+BR009,Engineering Branch,Arua,agent_hub,2023-05-06,active
+BR008,Visual Arts Branch,Kampala,corporate,2023-10-14,active
+BR004,"Public Health, Nursing & Midwifery Branch",Arua,agent_hub,2024-12-18,active
+BR017,Accounting Branch,Mbale,corporate,2023-11-02,active
+BR013,Business Branch,Mbarara,retail,2024-05-20,active
+BR014,Human Resource Branch,Jinja,retail,2023-06-01,active
+BR015,Procurement and Logistics Management Branch,Kampala,retail,2025-01-28,active
+BR016,Tourism & Hospitality Branch,Jinja,agent_hub,2024-08-30,active
+BR011,Dentistry Branch,Gulu,corporate,2024-07-06,active
+BR002,Education & Literature Branch,Gulu,corporate,2024-05-15,active
+BR003,Postgraduate Studies Branch,Mbarara,agent_hub,2025-03-12,active
+BR005,"Journalism, Media & Communication Branch",Gulu,retail,2024-01-18,active
+BR018,Law Branch,Mbarara,retail,2024-04-04,active
+BR012,Medicine Branch,Mukono,retail,2024-10-19,active
+BR010,Social Sciences Branch,Mbale,corporate,2023-01-29,active

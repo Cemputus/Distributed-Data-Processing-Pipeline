@@ -21,6 +21,7 @@ from airflow.operators.python import PythonOperator
 INPUT_DIR = Path("/opt/data/fintech")
 OUTPUT_DIR = Path("/opt/airflow/logs/curated")
 SPARK_JOB = "/opt/spark-jobs/fintech_transform.py"
+SPARK_SUBMIT = "/opt/spark/bin/spark-submit"
 POSTGRES_DSN = "postgresql://airflow:airflow@postgres:5432/analytics"
 
 REQUIRED_INPUTS = [
@@ -93,10 +94,14 @@ with DAG(
     run_spark_transform = BashOperator(
         task_id="run_spark_transform",
         bash_command=(
-            f'spark-submit --master "{SPARK_MASTER}" --deploy-mode client {SPARK_JOB} '
+            f'"{SPARK_SUBMIT}" --master "{SPARK_MASTER}" --deploy-mode client {SPARK_JOB} '
             f'--input-dir "{INPUT_DIR}" --output-dir "{OUTPUT_DIR}"'
         ),
-        env={"JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64"},
+        env={
+            "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64",
+            "SPARK_HOME": "/opt/spark",
+            "PATH": "/opt/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        },
         retries=2,
     )
 

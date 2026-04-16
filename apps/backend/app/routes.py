@@ -150,6 +150,48 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         _save_json(etl_jobs_file, etl_jobs[:500])
         return job
 
+    def _sync_etl_jobs_with_airflow() -> None:
+        """Refresh ETL job status from Airflow for jobs that have a DAG run id."""
+        changed = False
+        for job in etl_jobs:
+            if not job.get("airflow_trigger_ok"):
+                continue
+            dag_id = str(job.get("airflow_dag_id") or "").strip()
+            run_id = str(job.get("airflow_dag_run_id") or "").strip()
+            if not dag_id or not run_id:
+                continue
+            current = str(job.get("airflow_state") or "").strip().lower()
+            if current in {"success", "failed"} and str(job.get("status") or "").strip().lower() in {"completed", "failed"}:
+                continue
+
+            new_state, err = airflow_client.try_get_dag_run_state(dag_id, run_id)
+            if err:
+                continue
+            if not new_state:
+                continue
+            if new_state != current:
+                job["airflow_state"] = new_state
+                changed = True
+
+            if new_state == "success":
+                if job.get("status") != "completed":
+                    job["status"] = "completed"
+                    job["message"] = job.get("message") or "Airflow DAG run completed successfully."
+                    changed = True
+            elif new_state in {"failed", "upstream_failed"}:
+                if job.get("status") != "failed":
+                    job["status"] = "failed"
+                    if not job.get("message"):
+                        job["message"] = f"Airflow DAG run ended in state: {new_state}."
+                    changed = True
+            elif new_state in {"running", "queued", "scheduled"}:
+                if job.get("status") != "queued":
+                    job["status"] = "queued"
+                    changed = True
+
+        if changed:
+            _save_json(etl_jobs_file, etl_jobs[:500])
+
     role_permissions = {
         "admin": {"analytics", "uploads", "datasets", "etl", "audit", "query", "bigquery", "users"},
         "data_engineer": {"analytics", "uploads", "datasets", "etl", "audit", "query", "bigquery"},
@@ -448,6 +490,7 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
     @require_permission("etl")
     def get_etl_jobs():
         user = current_user()
+        _sync_etl_jobs_with_airflow()
         append_audit(action="etl.jobs.list", outcome="success", details="ETL jobs listed", username=user["username"])
         return jsonify({"items": etl_jobs})
 
