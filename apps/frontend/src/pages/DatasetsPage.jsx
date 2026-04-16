@@ -9,6 +9,7 @@ export function DatasetsPage({ datasets, onDelete }) {
   const [previewRowLimit, setPreviewRowLimit] = useState(20)
   const [preview, setPreview] = useState(null)
   const [previewError, setPreviewError] = useState('')
+  const [pendingDelete, setPendingDelete] = useState('')
   const filtered = useMemo(
     () =>
       datasets.filter((item) =>
@@ -26,8 +27,17 @@ export function DatasetsPage({ datasets, onDelete }) {
 
   function confirmDelete(datasetName) {
     if (!onDelete) return
-    if (!window.confirm(`Remove ${datasetName} from the catalog and delete associated files?`)) return
-    onDelete(datasetName)
+    setPendingDelete(datasetName)
+  }
+
+  function cancelDelete() {
+    setPendingDelete('')
+  }
+
+  function executeDelete() {
+    if (!pendingDelete || !onDelete) return
+    onDelete(pendingDelete)
+    setPendingDelete('')
   }
 
   async function loadPreview(datasetName) {
@@ -133,6 +143,32 @@ export function DatasetsPage({ datasets, onDelete }) {
           )}
         </section>
       )}
+      {pendingDelete ? (
+        <div className="confirm-modal-overlay" role="presentation" onClick={cancelDelete}>
+          <div
+            className="confirm-modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-dataset-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h3 id="delete-dataset-title">Remove dataset?</h3>
+            <p>
+              This will remove <code>{pendingDelete}</code> from the catalog and delete associated files from the
+              pipeline storage.
+            </p>
+            <p className="muted">This action cannot be undone.</p>
+            <div className="confirm-modal-actions">
+              <button type="button" className="ghost-btn" onClick={cancelDelete}>
+                Cancel
+              </button>
+              <button type="button" className="ghost-btn datasets-delete-btn" onClick={executeDelete}>
+                Delete Dataset
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }

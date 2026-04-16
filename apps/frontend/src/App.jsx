@@ -176,6 +176,41 @@ function App() {
     }
   }
 
+  async function refreshPartialData(sections = []) {
+    if (!user || !sections.length) return
+    const wanted = new Set(sections)
+    const patch = {}
+
+    if (wanted.has('uploads') && allowedSections.includes('uploads')) {
+      const [catalog, success, pending, failed] = await Promise.all([
+        apiGet('/api/upload-datasets'),
+        apiGet('/api/uploads/success'),
+        apiGet('/api/uploads/pending'),
+        apiGet('/api/uploads/failed'),
+      ])
+      patch.uploadCatalog = catalog
+      patch.successUploads = success.items || []
+      patch.pendingLandings = pending.items || []
+      patch.failedUploads = failed.items || []
+    }
+    if (wanted.has('datasets') && allowedSections.includes('datasets')) {
+      const datasets = await apiGet('/api/datasets')
+      patch.datasets = datasets.items || []
+    }
+    if (wanted.has('etl') && allowedSections.includes('etl')) {
+      const jobs = await apiGet('/api/etl/jobs')
+      patch.etlJobs = jobs.items || []
+    }
+    if (wanted.has('users') && allowedSections.includes('users')) {
+      const usersPayload = await apiGet('/api/users')
+      patch.users = usersPayload.items || []
+    }
+
+    if (Object.keys(patch).length) {
+      setState((prev) => ({ ...prev, ...patch }))
+    }
+  }
+
   useEffect(() => {
     let cancelled = false
     async function loadMe() {
@@ -276,7 +311,7 @@ function App() {
       form.append('file', file)
       const payload = await apiPost('/api/uploads', form, true)
       setState((prev) => ({ ...prev, uploadResult: payload }))
-      await refreshData()
+      await refreshPartialData(['uploads', 'datasets'])
     } catch (err) {
       if (err.message) setError(err.message)
     }
@@ -288,7 +323,7 @@ function App() {
       const body = { mode, run_etl: runEtl, job_name: 'post_preprocess_etl' }
       if (mode === 'single' && dataset) body.dataset = dataset
       const payload = await apiPost('/api/datasets/process', body)
-      await refreshData()
+      await refreshPartialData(runEtl ? ['uploads', 'datasets', 'etl'] : ['uploads', 'datasets'])
       if (runEtl && payload?.etl_job) {
         const j = payload.etl_job
         if (j.airflow_trigger_ok) {
@@ -315,7 +350,7 @@ function App() {
       const body = { job_name: 'etl-pipeline.py', scope: scope || 'delegate_only' }
       if (scope === 'preprocess_single' && datasetName) body.dataset = datasetName
       const payload = await apiPost('/api/etl/jobs', body)
-      await refreshData()
+      await refreshPartialData(['etl'])
       if (payload?.airflow_trigger_ok) {
         setOperationNotice({ kind: 'success', text: 'Airflow DAG run queued.' })
       } else if (payload?.airflow_error || payload?.message) {
@@ -334,7 +369,7 @@ function App() {
   async function createUser(payload) {
     try {
       await apiPost('/api/users', payload)
-      await refreshData()
+      await refreshPartialData(['users'])
     } catch (err) {
       if (err.message) setError(err.message)
     }
@@ -352,7 +387,7 @@ function App() {
         if (response.status === 403) return
         throw new Error(body.message || body.error || 'Update failed')
       }
-      await refreshData()
+      await refreshPartialData(['users'])
     } catch (err) {
       if (err.message) setError(err.message)
     }
@@ -371,7 +406,15 @@ function App() {
   async function deleteDataset(datasetName) {
     try {
       await apiDelete(`/api/datasets/${encodeURIComponent(datasetName)}`)
-      await refreshData()
+      // Remove immediately from visible tables; no full workspace refresh needed.
+      setState((prev) => ({
+        ...prev,
+        datasets: (prev.datasets || []).filter((item) => item.dataset !== datasetName),
+        pendingLandings: (prev.pendingLandings || []).filter((item) => item.dataset !== datasetName),
+        successUploads: (prev.successUploads || []).filter((item) => item.dataset !== datasetName),
+        failedUploads: (prev.failedUploads || []).filter((item) => item.dataset !== datasetName),
+      }))
+      await refreshPartialData(['uploads', 'datasets'])
     } catch (err) {
       if (err.message) setError(err.message)
     }

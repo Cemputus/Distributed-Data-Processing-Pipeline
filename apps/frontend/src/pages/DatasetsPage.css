@@ -21,3 +21,42 @@
 .preview-panel h3 {
   margin: 0.1rem 0;
 }
+
+.confirm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.6);
+  display: grid;
+  place-items: center;
+  z-index: 90;
+}
+
+.confirm-modal-card {
+  width: min(560px, calc(100vw - 2rem));
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: #ffffff;
+  box-shadow: 0 24px 48px rgba(2, 6, 23, 0.25);
+  padding: 1.1rem 1.2rem;
+}
+
+.confirm-modal-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.confirm-modal-card p {
+  margin: 0.35rem 0;
+}
+
+.confirm-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.dark-theme .confirm-modal-card {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.45);
+  box-shadow: 0 24px 48px rgba(2, 6, 23, 0.55);
+}
