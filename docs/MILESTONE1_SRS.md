@@ -2,8 +2,8 @@
 
 **Project:** Distributed Data Processing Pipeline  
 **Course:** DSC3219 — Cloud and Distributed Computing (BSDS 32)  
-**Milestone:** One — Requirements Specification & Planning  
-**Version:** 1.3  
+**Milestone:** One — Requirements Specification & Planning (updated for as-built alignment)  
+**Version:** 1.4  
 **Date:** April 2026  
 
 ---
@@ -31,7 +31,8 @@ This Software Requirements Specification (SRS) defines the functional and non-fu
 - **Orchestration:** Batch pipelines are scheduled and monitored with **Apache Airflow** (DAGs for ingest, Spark/Hadoop steps, and load to the analytical store).
 - **Input stage:** Batch datasets land in **distributed storage** using **open-source** options only — e.g., **HDFS** (Hadoop) and/or an **S3-compatible** object store such as **MinIO** (no AWS/GCP/Azure *paid* managed services required).
 - **Processing stage:** **Apache Spark** for primary analytics; **Hadoop ecosystem** components (**HDFS**, **YARN**, **MapReduce** jobs) used **where necessary** to satisfy the brief and to demonstrate distributed execution (design shall justify what runs on Spark vs. Hadoop).
-- **Result store:** Curated data loaded into a **free, open-source analytical database** suitable for SQL validation (e.g., **PostgreSQL**, **Apache Hive**, or **Trino** with Hive — exact choice fixed in Milestone 2), deployed in Docker; **not** commercial warehouses that require payment (e.g., Snowflake, paid tiers of proprietary SaaS).
+- **Result store:** Curated data loaded into a **free, open-source analytical database** suitable for SQL validation (e.g., **PostgreSQL**, **Apache Hive**, or **Trino** with Hive — exact choice fixed in Milestone 2), deployed in Docker; **not** commercial warehouses that require payment (e.g., Snowflake, paid tiers of proprietary SaaS).  
+  **As implemented:** PostgreSQL hosts the **`analytics`** database and **`analytics_curated`** schema (see `infra/postgres/init.sql`). An **optional** read-only integration with **Google BigQuery** exists for cloud warehouse queries and optional CSV load jobs; it **does not** replace the open-source result store and may be disabled (`BIGQUERY_ENABLED=false`).
 - Identity and access controls, Docker network segmentation where practical, and auditability sufficient for an academic deployment.
 - Documentation artefacts required by the brief: architecture, scalability, fault tolerance, and security configuration (detailed in later milestones; requirements for their *existence* and *content* are stated here).
 
@@ -39,7 +40,7 @@ This Software Requirements Specification (SRS) defines the functional and non-fu
 
 - Real-time streaming at scale (e.g., Kafka + Flink) as a primary path — *optional extension only*.
 - Full enterprise SDLC tooling (multi-region DR, full SOC2 programme) beyond what is reasonable for a two-week academic project.
-- Mobile or rich desktop front-end applications; a minimal **web-based or script-driven operational interface** (e.g., console UI, simple dashboard, or notebook) is sufficient if required for demonstration.
+- Mobile native applications; a **web-based operational console** is **in scope** for the implemented project (React + Flask API). Rich desktop clients remain out of scope.
 
 ### 1.3 Definitions, Acronyms, and Abbreviations
 
@@ -78,7 +79,7 @@ This Software Requirements Specification (SRS) defines the functional and non-fu
 
 ### 1.5 Overview of Document
 
-Section 2 summarises the product context and constraints, including **Docker**, **Apache Airflow**, **Spark/Hadoop**, **no paid software** for the core stack, and the **reference batch dataset** (`data/fintech`). Section 3 lists functional requirements. Section 4 lists non-functional requirements. Section 5 defines validation criteria and acceptance tests at requirements level.
+Section 2 summarises the product context and constraints, including **Docker**, **Apache Airflow**, **Spark/Hadoop**, **OSS-first** stack with **optional BigQuery**, and the **reference batch dataset** (`data/fintech`). **§2.8** summarises the **as-built** mapping to repository paths. Section 3 lists functional requirements, including **§3.8** (web app, CEN Query, optional BigQuery, session persistence). Section 4 lists non-functional requirements. Section 5 defines validation criteria and acceptance tests at requirements level.
 
 ---
 
@@ -105,13 +106,22 @@ The solution may expose **Airflow’s UI**, **Spark UIs**, and/or a minimal **no
 - Authentication/authorisation for operators (**Airflow** users/RBAC, MinIO/HDFS service accounts, database roles) and **least-privilege** between containers.
 - Observability: Airflow task logs, Spark UI, container logs — sufficient for demonstration and failure analysis.
 
+**As implemented (repository baseline, April 2026)**
+
+- **Web console:** React (Vite) single-page application on port **5173**; **Flask** REST API on port **5000**; Bearer-token authentication with **role-based** access (admin, data engineer, analyst, operator).
+- **Ingestion:** CSV uploads land under `data/fintech/uploads/` with metadata in `dataset_registry.json`; **MinIO** mirrors landing objects; **Spark Standalone** (master + worker) and **Airflow DAGs** (`tiny_pyspark_standalone`, `distributed_pipeline_scaffold`) coordinate processing.
+- **Ad hoc analytics:** **CEN Query** — read-only SQL over in-memory **SQLite** built from `analytics_ready` CSVs in `DATA_DIR`. **Optional BigQuery** tab — read-only SQL via GCP when credentials are mounted (`secrets/`, environment variables).
+- **Dashboard:** KPIs and charts computed from finance CSVs on disk (same `DATA_DIR`); expandable “KPI source files” in the UI maps to resolved paths.
+- **Session persistence:** API auth tokens may be persisted under `uploads/metadata/auth_tokens.json` so sessions survive API process restarts; clients keep `token` / `auth_user` in `localStorage` with a “Restoring session…” gate on hard refresh.
+
 ### 2.3 User Classes and Characteristics
 
 | User class | Description | Typical interactions |
 |------------|-------------|----------------------|
 | **Pipeline operator** | Developer / data engineer running the project pipeline | Uploads data, triggers jobs, inspects logs, runs validation queries |
+| **Console user (analyst / engineer / admin)** | Authenticated user of the web UI | Views dashboard, manages uploads/datasets, runs CEN or BigQuery SQL, triggers ETL, reviews audit logs (permissions vary by role) |
 | **Assessor / examiner** | Evaluates milestones | Reviews SRS, design, demo, security evidence |
-| **System services** | Service accounts / technical users (MinIO, HDFS, DB), Airflow connections | Read/write storage, run Spark/Hadoop, load warehouse |
+| **System services** | Service accounts / technical users (MinIO, HDFS, DB), Airflow connections, GCP service account (optional BigQuery) | Read/write storage, run Spark/Hadoop, load warehouse |
 
 ### 2.4 Operating Environment
 
@@ -126,7 +136,7 @@ The solution may expose **Airflow’s UI**, **Spark UIs**, and/or a minimal **no
 - **Apache Spark** shall be used for core distributed analytics; **Apache Hadoop** (e.g., **HDFS** for storage, **YARN** for resource management, or **MapReduce** jobs) shall be incorporated **where necessary** to align with the course’s distributed-computing outcomes [7].
 - **Containerisation:** All major components (Airflow, Spark workers, HDFS/MinIO, analytical DB, etc.) shall run under **Docker** with version-pinned images or Dockerfiles committed to the repository [8].
 - **Orchestration:** **Apache Airflow** is mandatory for workflow scheduling and dependency management between pipeline stages [6].
-- **No paid software (core stack):** The project shall **not** require **paid licences**, **paid SaaS**, or **paid cloud managed services** (e.g., EMR, Glue, Redshift, BigQuery, Snowflake, Databricks paid tier). **Free and open-source** alternatives shall be used; optional use of **free tiers** of public clouds is out of scope unless they add zero cost and are justified — default is **fully local Docker**.
+- **No paid software (core stack):** The project shall **not** require **paid licences**, **paid SaaS**, or **mandatory** paid cloud managed services for the **graded** pipeline. **Free and open-source** alternatives shall be used for ingest, orchestration, processing, and primary SQL validation. **Optional** use of **Google Cloud BigQuery** (or similar) is permitted only as a **supplementary** analytics path when the operator supplies credentials; the core demonstration remains reproducible with **Docker + PostgreSQL + MinIO + Spark + Airflow** alone (`BIGQUERY_ENABLED` may be set to `false`).
 - Cost and complexity shall remain appropriate to a **two-week** academic project (document trade-offs in design).
 - Final report formatting must follow course instructions (Trebuchet MS, 12 pt, 1.5 spacing, justified, IEEE references) [1].
 
@@ -164,6 +174,23 @@ The pipeline shall use the fintech synthetic datasets supplied in the project re
 **Minimum viable analytics (illustrative — final metrics fixed in Milestone 2/3)**
 
 The processing stage shall support **at least one** multi-table workflow over this dataset, for example: transaction + fraud + merchant joins with daily KPI aggregation and customer risk summaries — sufficient to demonstrate **joins + aggregations** in Spark (FR-05) and **SQL validation** in the warehouse (FR-10).
+
+### 2.8 Current implementation snapshot (reference architecture)
+
+The following table maps **logical components** to **repository / runtime** artefacts. It supplements §2.1 and does not relax FR/NFR IDs.
+
+| Component | Implementation |
+|-----------|----------------|
+| Web UI | `apps/frontend/` — React, Vite, role-gated navigation |
+| API | `apps/backend/` — Flask, Gunicorn, `/api/*` routes |
+| Compose | `docker-compose.yml` — backend, frontend, postgres, minio, airflow (init, webserver, scheduler), spark-master, spark-worker |
+| Data root | Host `data/fintech` → container `DATA_DIR` (`/data` in Docker) |
+| Orchestration | `infra/airflow/dags/*.py` |
+| Spark jobs | `infra/spark/jobs/` → `/opt/spark-jobs` in containers |
+| Warehouse (OSS) | PostgreSQL `analytics` + `analytics_curated.*` |
+| Optional cloud DW | BigQuery — `apps/backend/app/integrations/bigquery_client.py`, env vars in `.env.example` |
+| SQL examples | `docs/sample_sql.sql`, `docs/cen_query_examples.sql`, `docs/validation_queries.sql` |
+| Ops / validation | `README.md`, `scripts/validate_sql_examples.py` |
 
 ---
 
@@ -229,6 +256,16 @@ Each requirement is **unique**, **testable**, and **prioritised** (Must / Should
 | **FR-19** | Must | The final submission shall include **fault tolerance mechanisms** describing steps when a node or service fails [1]. |
 | **FR-20** | Must | The final submission shall include **security configuration** evidence (e.g., MinIO/HDFS policy summaries, **Docker** network and port bindings, Airflow access controls, DB grants, least-privilege narrative) [1]. |
 
+### 3.8 Web application, ad hoc query, and optional BigQuery (as implemented)
+
+| ID | Priority | Statement |
+|----|----------|-----------|
+| **FR-24** | Must | The system shall provide a **web-based console** (browser) that supports **authentication**, **role-based access** to features (e.g., dashboard, uploads, datasets, ETL, query, audit, user management as applicable), and **health-visible** integration links (Airflow, MinIO, Spark Master UI) where configured. |
+| **FR-25** | Must | The system shall expose a **read-only SQL** capability over curated **CSV** inputs marked for analytics (**CEN Query**), using server-side execution with blocked DML/DDL, consistent with traceability to `data/fintech`. |
+| **FR-26** | Should | The system may expose **optional Google BigQuery** access (read-only queries; optional load job on upload when enabled) using operator-supplied **service account** credentials; **no** mandatory dependency on BigQuery for core pipeline correctness. |
+| **FR-27** | Should | **API authentication tokens** shall remain valid across **API process restarts** when persisted to operator-approved storage (e.g. metadata directory), and the client shall **restore session state** after browser refresh without forcing re-login when the token remains valid. |
+| **FR-28** | Should | The **dashboard** shall derive KPIs and charts from **documented on-disk** finance CSV paths under `DATA_DIR`, with **ingestion/registry** metadata for time-series and pipeline-status charts where applicable. |
+
 ---
 
 ## 4. Non-Functional Requirements
@@ -287,13 +324,14 @@ Validation ties measurable evidence to requirements.
 | **V-01** | Completeness — all sections 1–5 present; FR and NFR tables complete (including **FR-21–FR-23**, **NFR-11**) |
 | **V-02** | Clarity — requirements are unambiguous and testable (no “fast”, “good” without measure) |
 | **V-03** | Alignment — input → processing → analytical store traced to **FR-01**, **FR-05**, **FR-09**; **`data/fintech`** in §2.7; **Docker** + **Airflow** + **Spark/Hadoop** stated |
-| **V-04** | Constraints — **Docker**, **Apache Airflow**, **no paid core software** (**FR-23**, **NFR-11**), automation, and security expectations stated |
+| **V-04** | Constraints — **Docker**, **Apache Airflow**, **OSS-first core** (**FR-23**, **NFR-11**), optional BigQuery stated, automation, and security expectations stated |
+| **V-04b** | Web / API — **FR-24–FR-28** traceable to running Compose stack (`README.md`, `GET /api/docs`) |
 
 ### 5.2 System-Level Acceptance (End of Project)
 
 | Criterion | Evidence |
 |-----------|----------|
-| **V-05** Demo | Live or recorded walkthrough showing data in distributed store, job execution, warehouse queries [1] |
+| **V-05** Demo | Live or recorded walkthrough showing data in distributed store, job execution, warehouse queries [1]; optional walkthrough of **web console** (dashboard, upload/process, query workspace) |
 | **V-06** Security | Access-control artefacts and narrative for FR-12–FR-14 (Airflow, MinIO/HDFS, DB) |
 | **V-07** Scalability | NFR-01 addressed with test or reasoned analysis |
 | **V-08** Fault tolerance | NFR-03 with concrete scenario (e.g., kill worker, retry, or service outage drill) |
@@ -305,6 +343,7 @@ Validation ties measurable evidence to requirements.
 - **Reference dataset [5]** → §2.7, A1, FR-05, FR-10, NFR-02  
 - **Platform [6][7][8]** → FR-21, FR-22, FR-23, NFR-11  
 - **Milestone 3 secure implementation** → FR-12–FR-14, NFR-05–NFR-07  
+- **Web console & query** → FR-24–FR-28, V-04b  
 - **Presentation milestone** → FR-15–FR-16, V-05  
 
 ---
@@ -316,7 +355,8 @@ Validation ties measurable evidence to requirements.
 | 1.0 | April 2026 | Project team | Initial SRS for Milestone 1 |
 | 1.2 | April 2026 | Project team | **Docker**, **Apache Airflow**, **Spark + Hadoop where necessary**, **no paid core software**; FR-21–FR-23, NFR-11; refs [6]–[8]; §2.1–2.6 and FR/NFR updates |
 | 1.3 | April 2026 | Project team | Synced SRS to fintech domain, `data/fintech` paths, updated dataset model and validation alignment |
+| 1.4 | April 2026 | Project team | **As-built alignment:** §2.8 implementation snapshot; optional **BigQuery** and OSS-first clarification; **FR-24–FR-28** (web console, CEN Query, optional BQ, session persistence, dashboard data binding); user class **Console user**; **V-04b**; README / repository cross-references |
 
 ---
 
-*End of SRS (Milestone One).*
+*End of SRS (Milestone One — revision 1.4).*
