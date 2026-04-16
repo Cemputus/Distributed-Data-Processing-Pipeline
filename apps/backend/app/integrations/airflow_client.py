@@ -1,16 +1,17 @@
-"""Trigger Apache Airflow DAG runs via REST API.
+"""Trigger Apache Airflow DAG runs via REST API (Airflow 2.x).
 
-Airflow 2.x: enable basic auth for the API or programmatic POSTs hit FAB/CSRF instead of JSON API:
+Uses a :class:`requests.Session` with HTTP Basic Auth so redirects keep credentials.
+Unpauses the DAG if needed, then POSTs a dag run with an explicit ``dag_run_id``.
+
+Compose should set::
 
   AIRFLOW__API__AUTH_BACKENDS=airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session
-
-If trigger still fails, :func:`try_trigger_dag` falls back to a FAB login + session cookie, then delegates
-callers to treat failure as non-fatal and continue local ETL delegate work.
 """
 from __future__ import annotations
 
 import re
 from typing import Any, Dict, Optional, Tuple
+from uuid import uuid4
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -25,11 +26,11 @@ def _basic_headers() -> Dict[str, str]:
     }
 
 
-def _post_dag_run_basic(base: str, dag_id: str, conf: Optional[Dict[str, Any]]) -> requests.Response:
-    url = f"{base}/api/v1/dags/{dag_id}/dagRuns"
-    payload: Dict[str, Any] = {"conf": conf or {}}
-    auth = HTTPBasicAuth(Settings.AIRFLOW_USERNAME, Settings.AIRFLOW_PASSWORD)
-    return requests.post(url, json=payload, auth=auth, headers=_basic_headers(), timeout=120)
+def _auth_session() -> requests.Session:
+    s = requests.Session()
+    s.auth = HTTPBasicAuth(Settings.AIRFLOW_USERNAME, Settings.AIRFLOW_PASSWORD)
+    s.headers.update(_basic_headers())
+    return s
 
 
 def _csrf_from_login_html(html: str) -> Optional[str]:
@@ -43,43 +44,78 @@ def _csrf_from_login_html(html: str) -> Optional[str]:
 def _fab_login_session(base: str) -> Optional[requests.Session]:
     """Flask-AppBuilder web login so subsequent API calls use session cookies (fallback)."""
     session = requests.Session()
-    login_url = f"{base}/login/"
+    for login_path in ("/login/", "/auth/login/", "/home/login/"):
+        login_url = f"{base.rstrip('/')}{login_path}"
+        try:
+            page = session.get(login_url, timeout=30)
+        except OSError:
+            continue
+        if page.status_code != 200:
+            continue
+        token = _csrf_from_login_html(page.text)
+        if not token:
+            continue
+        try:
+            post = session.post(
+                login_url,
+                data={
+                    "username": Settings.AIRFLOW_USERNAME,
+                    "password": Settings.AIRFLOW_PASSWORD,
+                    "csrf_token": token,
+                },
+                headers={"Referer": login_url, "Content-Type": "application/x-www-form-urlencoded"},
+                timeout=30,
+                allow_redirects=True,
+            )
+        except OSError:
+            continue
+        if post.status_code < 400:
+            return session
+    return None
+
+
+def _ensure_dag_unpaused(session: requests.Session, base: str, dag_id: str) -> str:
+    """Return error message if unpausing failed; empty string if OK or unknown."""
+    url = f"{base}/api/v1/dags/{dag_id}"
     try:
-        page = session.get(login_url, timeout=30)
-    except OSError:
-        return None
-    if page.status_code != 200:
-        return None
-    token = _csrf_from_login_html(page.text)
-    if not token:
-        return None
+        r = session.get(url, timeout=30)
+    except OSError as exc:
+        return f"DAG GET failed: {exc}"
+    if r.status_code == 404:
+        return ""
+    if r.status_code != 200:
+        return f"DAG GET {r.status_code}: {r.text[:200]}"
     try:
-        post = session.post(
-            login_url,
-            data={
-                "username": Settings.AIRFLOW_USERNAME,
-                "password": Settings.AIRFLOW_PASSWORD,
-                "csrf_token": token,
-            },
-            headers={"Referer": login_url},
+        data = r.json()
+    except ValueError:
+        return ""
+    if not data.get("is_paused"):
+        return ""
+    try:
+        patch = session.patch(
+            url,
+            json={"is_paused": False},
             timeout=30,
-            allow_redirects=True,
         )
-    except OSError:
-        return None
-    if post.status_code >= 400:
-        return None
-    return session
+    except OSError as exc:
+        return f"DAG unpause failed: {exc}"
+    if patch.status_code >= 400:
+        try:
+            detail = str(patch.json())
+        except ValueError:
+            detail = patch.text[:300]
+        return f"DAG unpause {patch.status_code}: {detail}"
+    return ""
 
 
-def _post_dag_run_session(session: requests.Session, base: str, dag_id: str, conf: Optional[Dict[str, Any]]) -> requests.Response:
+def _post_dag_run(session: requests.Session, base: str, dag_id: str, conf: Optional[Dict[str, Any]]) -> requests.Response:
     url = f"{base}/api/v1/dags/{dag_id}/dagRuns"
-    return session.post(
-        url,
-        json={"conf": conf or {}},
-        headers=_basic_headers(),
-        timeout=120,
-    )
+    body: Dict[str, Any] = {
+        "dag_run_id": f"manual__{uuid4()}",
+        "conf": conf or {},
+    }
+    # Avoid redirect chains that drop Authorization on some proxies.
+    return session.post(url, json=body, timeout=120, allow_redirects=False)
 
 
 def try_trigger_dag(dag_id: str, conf: Optional[Dict[str, Any]] = None) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:
@@ -93,10 +129,29 @@ def try_trigger_dag(dag_id: str, conf: Optional[Dict[str, Any]] = None) -> Tuple
     base = Settings.AIRFLOW_BASE_URL.rstrip("/")
     err_parts: list[str] = []
 
+    session = _auth_session()
+    unpause_err = _ensure_dag_unpaused(session, base, dag_id)
+    if unpause_err:
+        err_parts.append(f"unpause: {unpause_err}")
+
     try:
-        response = _post_dag_run_basic(base, dag_id, conf)
+        response = _post_dag_run(session, base, dag_id, conf)
     except OSError as exc:
         return None, f"Airflow request failed: {exc}"
+
+    if response.status_code in (301, 302, 303, 307, 308):
+        loc = response.headers.get("Location", "")
+        err_parts.append(f"redirect {response.status_code} to {loc} (check AIRFLOW_BASE_URL / API path)")
+        # Retry without disabling redirects once; follow redirects with same session (auth preserved for same host)
+        try:
+            response = session.post(
+                f"{base}/api/v1/dags/{dag_id}/dagRuns",
+                json={"dag_run_id": f"manual__{uuid4()}", "conf": conf or {}},
+                timeout=120,
+                allow_redirects=True,
+            )
+        except OSError as exc:
+            return None, "; ".join(err_parts) + f" | retry: {exc}"
 
     if response.status_code < 400:
         try:
@@ -118,7 +173,12 @@ def try_trigger_dag(dag_id: str, conf: Optional[Dict[str, Any]] = None) -> Tuple
         sess = _fab_login_session(base)
         if sess:
             try:
-                r2 = _post_dag_run_session(sess, base, dag_id, conf)
+                r2 = sess.post(
+                    f"{base}/api/v1/dags/{dag_id}/dagRuns",
+                    json={"dag_run_id": f"manual__{uuid4()}", "conf": conf or {}},
+                    headers=_basic_headers(),
+                    timeout=120,
+                )
             except OSError as exc:
                 return None, "; ".join(err_parts) + f" | session fallback: {exc}"
             if r2.status_code < 400:
@@ -150,12 +210,11 @@ def healthcheck() -> bool:
         return False
     try:
         base = Settings.AIRFLOW_BASE_URL.rstrip("/")
-        auth = HTTPBasicAuth(Settings.AIRFLOW_USERNAME, Settings.AIRFLOW_PASSWORD)
+        session = _auth_session()
         for path in ("/api/v1/health", "/health"):
-            r = requests.get(f"{base}{path}", auth=auth, timeout=5)
+            r = session.get(f"{base}{path}", timeout=5)
             if r.status_code == 200:
                 return True
-            # Unauthenticated health may work on some images
             r2 = requests.get(f"{base}{path}", timeout=5)
             if r2.status_code == 200:
                 return True

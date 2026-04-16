@@ -1,11 +1,17 @@
 import os
 from pathlib import Path
 
-# Wire Docker / .env templates that set BIGQUERY_CREDENTIALS_PATH but not GOOGLE_APPLICATION_CREDENTIALS.
-if not (os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") or "").strip():
-    _alt = (os.environ.get("BIGQUERY_CREDENTIALS_PATH") or "").strip()
-    if _alt:
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = _alt
+
+def _cred_file_exists(path: str) -> bool:
+    return bool(path and Path(path).is_file())
+
+
+# BigQuery / ADC: use GOOGLE_APPLICATION_CREDENTIALS when that file exists. If it is set to a host path
+# (e.g. Windows) that does not exist inside Docker, fall back to BIGQUERY_CREDENTIALS_PATH (e.g. /secrets/...).
+_goog = (os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") or "").strip()
+_alt = (os.environ.get("BIGQUERY_CREDENTIALS_PATH") or "").strip()
+if not _cred_file_exists(_goog) and _cred_file_exists(_alt):
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = _alt
 
 
 class Settings:

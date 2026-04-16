@@ -12,6 +12,8 @@ import { normalizeRequestError, readJsonSafe } from './utils/httpErrors'
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'
 
+const LS_AUTH_USER = 'auth_user'
+
 const sectionsByRole = {
   admin: ['analytics', 'uploads', 'datasets', 'etl', 'query', 'bigquery', 'audit', 'users'],
   data_engineer: ['analytics', 'uploads', 'datasets', 'etl', 'query', 'bigquery', 'audit'],
@@ -50,6 +52,16 @@ function App() {
     charts: null,
   })
   const [error, setError] = useState('')
+  const [operationNotice, setOperationNotice] = useState(null)
+  const [refreshing, setRefreshing] = useState(false)
+  const [sessionRestored, setSessionRestored] = useState(false)
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem('uiTheme') === 'dark' ? 'dark' : 'light'
+    } catch {
+      return 'light'
+    }
+  })
 
   const allowedSections = useMemo(() => (user ? sectionsByRole[user.role] || [] : []), [user])
   const sidebarItems = useMemo(() => menuItems.filter((item) => allowedSections.includes(item.key)), [allowedSections])
@@ -165,21 +177,62 @@ function App() {
   }
 
   useEffect(() => {
+    let cancelled = false
     async function loadMe() {
-      if (!token) return
-      try {
-        const meResponse = await fetch(`${API_BASE}/api/auth/me`, { headers: authHeaders() })
-        const body = await readJsonSafe(meResponse)
-        if (!meResponse.ok) throw new Error()
-        setUser(body)
-      } catch {
+      if (!token) {
         setUser(null)
-        setToken('')
-        localStorage.removeItem('token')
+        try {
+          localStorage.removeItem(LS_AUTH_USER)
+        } catch {
+          /* ignore */
+        }
+        setSessionRestored(true)
+        return
+      }
+      try {
+        const meResponse = await fetch(`${API_BASE}/api/auth/me`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        const body = await readJsonSafe(meResponse)
+        if (!meResponse.ok) throw new Error('unauthorized')
+        if (!cancelled) {
+          setUser(body)
+          try {
+            localStorage.setItem(LS_AUTH_USER, JSON.stringify(body))
+          } catch {
+            /* ignore */
+          }
+        }
+      } catch {
+        if (!cancelled) {
+          setUser(null)
+          setToken('')
+          localStorage.removeItem('token')
+          try {
+            localStorage.removeItem(LS_AUTH_USER)
+          } catch {
+            /* ignore */
+          }
+        }
+      } finally {
+        if (!cancelled) setSessionRestored(true)
       }
     }
     loadMe()
+    return () => {
+      cancelled = true
+    }
   }, [token])
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('uiTheme', theme)
+    } catch {
+      /* ignore */
+    }
+    document.documentElement.dataset.theme = theme
+    document.body.classList.toggle('app-dark', theme === 'dark')
+  }, [theme])
 
   useEffect(() => {
     if (user) {
@@ -205,6 +258,11 @@ function App() {
       const body = await readJsonSafe(response)
       if (!response.ok) throw new Error(body.error || 'Login failed')
       localStorage.setItem('token', body.token)
+      try {
+        localStorage.setItem(LS_AUTH_USER, JSON.stringify({ username: body.username, role: body.role }))
+      } catch {
+        /* ignore */
+      }
       setToken(body.token)
       setUser({ username: body.username, role: body.role })
     } catch (err) {
@@ -225,24 +283,51 @@ function App() {
   }
 
   async function processDataset(mode, dataset, runEtl) {
+    setOperationNotice(null)
     try {
       const body = { mode, run_etl: runEtl, job_name: 'post_preprocess_etl' }
       if (mode === 'single' && dataset) body.dataset = dataset
-      await apiPost('/api/datasets/process', body)
+      const payload = await apiPost('/api/datasets/process', body)
       await refreshData()
+      if (runEtl && payload?.etl_job) {
+        const j = payload.etl_job
+        if (j.airflow_trigger_ok) {
+          setOperationNotice({ kind: 'success', text: 'Preprocess finished. Airflow queued a DAG run.' })
+        } else {
+          setOperationNotice({
+            kind: 'warning',
+            text: j.message || j.airflow_error || 'Preprocess saved; Airflow did not queue a run. Check ETL Jobs.',
+          })
+        }
+      } else {
+        setOperationNotice({ kind: 'success', text: 'Processing finished.' })
+      }
+      return payload
     } catch (err) {
       if (err.message) setError(err.message)
+      return null
     }
   }
 
   async function triggerEtl(scope, datasetName) {
+    setOperationNotice(null)
     try {
       const body = { job_name: 'etl-pipeline.py', scope: scope || 'delegate_only' }
       if (scope === 'preprocess_single' && datasetName) body.dataset = datasetName
-      await apiPost('/api/etl/jobs', body)
+      const payload = await apiPost('/api/etl/jobs', body)
       await refreshData()
+      if (payload?.airflow_trigger_ok) {
+        setOperationNotice({ kind: 'success', text: 'Airflow DAG run queued.' })
+      } else if (payload?.airflow_error || payload?.message) {
+        setOperationNotice({
+          kind: 'warning',
+          text: payload.message || payload.airflow_error || 'Airflow did not queue a run.',
+        })
+      }
+      return payload
     } catch (err) {
       if (err.message) setError(err.message)
+      return null
     }
   }
 
@@ -293,7 +378,18 @@ function App() {
   }
 
   async function refreshWorkspace() {
-    await refreshData()
+    setRefreshing(true)
+    setError('')
+    setOperationNotice(null)
+    try {
+      await refreshData()
+    } finally {
+      setRefreshing(false)
+    }
+  }
+
+  function toggleTheme() {
+    setTheme((t) => (t === 'light' ? 'dark' : 'light'))
   }
 
   function exportRows(filename, rows) {
@@ -311,32 +407,110 @@ function App() {
   }
 
   function handleGlobalExport() {
+    setError('')
+
+    if (activePage === 'query') {
+      const rows = state.queryResult?.rows
+      if (rows?.length) {
+        exportRows('cen_query_result.csv', rows)
+        return
+      }
+      setError('Nothing to export yet. Run a query in the Query workspace first.')
+      return
+    }
+
+    if (activePage === 'analytics') {
+      if (state.merchants?.length) {
+        exportRows('top_merchants.csv', state.merchants)
+        return
+      }
+      if (state.overview) {
+        exportRows('dashboard_kpis.csv', [
+          {
+            customers: state.overview.customers,
+            accounts: state.overview.accounts,
+            transactions: state.overview.transactions,
+            loans: state.overview.loans,
+            fraud_alerts: state.overview.fraud_alerts,
+            transaction_volume_ugx: state.overview.transaction_volume_ugx,
+            loan_principal_ugx: state.overview.loan_principal_ugx,
+          },
+        ])
+        return
+      }
+      setError('Nothing to export yet. Click Refresh after the dashboard loads.')
+      return
+    }
+
+    if (activePage === 'uploads') {
+      if (state.successUploads?.length) {
+        exportRows('successful_uploads.csv', state.successUploads)
+        return
+      }
+      if (state.pendingLandings?.length) {
+        exportRows('pending_landings.csv', state.pendingLandings)
+        return
+      }
+      if (state.failedUploads?.length) {
+        exportRows('failed_uploads.csv', state.failedUploads)
+        return
+      }
+      setError('No upload records to export.')
+      return
+    }
+
     const exportMap = {
-      analytics: ['top_merchants.csv', state.merchants],
-      uploads: ['successful_uploads.csv', state.successUploads],
       datasets: ['datasets_catalog.csv', state.datasets],
       etl: ['etl_jobs.csv', state.etlJobs],
       audit: ['audit_logs.csv', state.auditLogs],
       users: ['users.csv', state.users],
     }
     const selected = exportMap[activePage]
-    if (!selected) return
-    exportRows(selected[0], selected[1])
+    if (!selected) {
+      setError('Export is not available for this page.')
+      return
+    }
+    const [filename, rows] = selected
+    if (!rows?.length) {
+      setError(`No data to export on ${activeLabel}. Try Refresh, or use another section.`)
+      return
+    }
+    exportRows(filename, rows)
   }
 
-  function logout() {
+  async function logout() {
+    try {
+      await fetch(`${API_BASE}/api/auth/logout`, { method: 'POST', headers: authHeaders() })
+    } catch {
+      /* still clear client */
+    }
     setToken('')
     setUser(null)
     setState((prev) => ({ ...prev, queryResult: null, uploadResult: null }))
     localStorage.removeItem('token')
+    try {
+      localStorage.removeItem(LS_AUTH_USER)
+    } catch {
+      /* ignore */
+    }
+  }
+
+  if (!sessionRestored) {
+    return (
+      <div className="auth-restoring">
+        <p className="muted">Restoring session…</p>
+      </div>
+    )
   }
 
   if (!token || !user) {
     return <LoginPage error={error} onLogin={handleLogin} />
   }
 
+  const layoutClass = theme === 'dark' ? 'layout dark-theme' : 'layout light-theme'
+
   return (
-    <main className="layout light-theme">
+    <main className={layoutClass}>
       <aside className="sidebar">
         <div className="brand">
           <div className="brand-badge">CA</div>
@@ -370,9 +544,26 @@ function App() {
             <span className="crumb active">{activeLabel}</span>
           </div>
           <div className="top-strip-right">
-            <button className="ghost-btn" onClick={refreshWorkspace}>Refresh</button>
-            <button className="ghost-btn" onClick={handleGlobalExport}>Export</button>
-            <button className="theme-pill">Light</button>
+            <button
+              type="button"
+              className="ghost-btn"
+              onClick={refreshWorkspace}
+              disabled={refreshing}
+              aria-busy={refreshing}
+            >
+              {refreshing ? 'Refreshing…' : 'Refresh'}
+            </button>
+            <button type="button" className="ghost-btn" onClick={handleGlobalExport}>
+              Export
+            </button>
+            <button
+              type="button"
+              className="theme-pill"
+              onClick={toggleTheme}
+              title={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
+            >
+              {theme === 'light' ? 'Dark' : 'Light'}
+            </button>
             <div className="avatar-chip">{(user.username || 'U').slice(0, 2).toUpperCase()}</div>
           </div>
         </div>
@@ -382,6 +573,11 @@ function App() {
           <p className="subtitle">Data operations</p>
         </div>
         {error && <p className="error">{error}</p>}
+        {operationNotice && (
+          <p className={operationNotice.kind === 'success' ? 'operation-notice operation-notice--ok' : 'operation-notice operation-notice--warn'}>
+            {operationNotice.text}
+          </p>
+        )}
 
         {activePage === 'analytics' && (
           <AnalyticsPage overview={state.overview} merchants={state.merchants} charts={state.charts} />

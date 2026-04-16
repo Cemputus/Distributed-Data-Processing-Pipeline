@@ -1,3502 +1,3502 @@
 [
   {
-    "timestamp": "2026-04-15T21:15:59.905230+00:00",
+    "timestamp": "2026-04-16T00:56:19.310806+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:19.216929+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:19.133357+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:19.051005+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:18.962897+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:18.896886+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:18.814946+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:18.759573+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:18.674348+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:13.334398+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:56:10.705941+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.706436+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.632563+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.555755+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.475788+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.353604+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.268787+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.190385+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:59.091844+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:58.980347+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:49.964303+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:47.258947+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:39.194730+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:39.130659+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:39.066912+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:39.010654+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.956926+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.890596+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.828788+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.756654+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.699057+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.639938+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.569964+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.497477+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.436437+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.247163+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.157362+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:38.053179+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.966883+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.812527+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.717166+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.625941+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.552101+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.482061+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.419017+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.239152+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:37.156460+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:27.860793+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:27.649032+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:27.369940+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:27.255299+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:27.190842+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:09.654111+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:09.571252+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:09.485212+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:09.372710+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:07.020155+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:04.498924+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:53:04.421280+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:52:53.301171+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:52:52.539970+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:52:52.494504+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:52:44.007932+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:52:40.074528+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:52:38.602568+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:52:35.393751+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.781631+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.651397+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.575228+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.476737+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.403130+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.273251+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.153521+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.077951+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:54.013211+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:53.960533+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:53.895264+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:53.818354+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:53.752596+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:53.682820+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:53.588384+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:53.501674+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:45.074502+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:45.004080+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:44.935891+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:43.482037+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:39.236375+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:39.140108+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:39.053779+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.933683+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.815605+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.744312+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.657476+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.547858+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.379012+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.230894+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:38.167119+00:00",
+    "username": "admin",
+    "action": "datasets.process",
+    "outcome": "success",
+    "details": "mode=single run_etl=False"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:35.155099+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:26.121950+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:26.067146+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:15.919356+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:15.858813+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:15.809841+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:15.754564+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:15.692020+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:14.849755+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:11.636379+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:10.610997+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:10.530202+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:51:01.660417+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:58.757591+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:55.243869+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:55.180053+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:55.116740+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:55.061698+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:55.009204+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.955304+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.895902+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.819507+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.717862+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.645074+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.576254+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.503968+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.436924+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.376488+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.317201+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.243703+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.155748+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:54.069658+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.974816+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.907418+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.837224+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.745631+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.678787+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.609753+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.519469+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.434893+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.325980+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.229907+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:53.136670+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:44.564674+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:44.500890+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:44.430664+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:44.372321+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:38.589873+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:38.530994+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:38.463037+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:37.686937+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:35.754212+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:35.632102+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:35.451642+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:35.295602+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:35.098891+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:35.017423+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:34.970407+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:34.074100+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:32.287776+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:32.203479+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:32.141225+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:32.068474+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.997806+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.936538+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.869825+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.771351+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.704128+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.640438+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.551977+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.483498+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:31.404613+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:24.170780+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:24.029500+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:23.841678+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:23.670547+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:23.549541+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:23.431387+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:16.292855+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:16.231600+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:16.171611+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:16.110159+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:16.035916+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:09.089025+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:09.032911+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:08.952285+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:08.879756+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:08.799705+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:50:01.283996+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:59.425618+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:57.048909+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:56.100321+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:56.035824+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:45.915850+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:45.163363+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:45.114029+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:35.973645+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:35.316528+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:32.829224+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:31.749545+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:28.907737+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:27.890994+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:26.840559+00:00",
+    "username": "admin",
+    "action": "auth.login",
+    "outcome": "success",
+    "details": "User logged in"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:26.773571+00:00",
+    "username": "admin",
+    "action": "auth.login",
+    "outcome": "success",
+    "details": "User logged in"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:26.698905+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:26.613227+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:18.725952+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:16.282478+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:16.202798+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:16.142636+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:16.084316+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:08.499928+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:49:08.425911+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:57.420065+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:54.585753+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:54.534150+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:54.479593+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:54.395947+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:52.973221+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:50.287791+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:50.220327+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:49.165303+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:46.357024+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:46.300591+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:46.251467+00:00",
+    "username": "admin",
+    "action": "uploads.submit",
+    "outcome": "success",
+    "details": "dim_customers.csv: uploaded"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.986114+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.933370+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.877245+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.812983+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.744454+00:00",
+    "username": "admin",
+    "action": "uploads.submit",
+    "outcome": "success",
+    "details": "dim_customers.csv: uploaded"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.471494+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.346957+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.138485+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:45.061287+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:44.918672+00:00",
+    "username": "admin",
+    "action": "uploads.submit",
+    "outcome": "success",
+    "details": "dim_customers.csv: uploaded"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:43.859289+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:36.787203+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:36.722330+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:26.130311+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:22.038111+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:21.977724+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:21.892871+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:21.701238+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:21.601919+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:19.957181+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:18.032944+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:17.973610+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:09.647922+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:48:07.056835+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:47:41.951784+00:00",
+    "username": "admin",
+    "action": "query.execute",
+    "outcome": "success",
+    "details": "CEN Query executed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.959241+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.905630+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.859743+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.807360+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.750724+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.707125+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.659174+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.614163+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.569714+00:00",
+    "username": "admin",
+    "action": "bigquery.query",
+    "outcome": "failed",
+    "details": "Google Cloud credentials not found. Set GOOGLE_APPLICATION_CREDENTIALS or BIGQUERY_CREDENTIALS_PATH."
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.504568+00:00",
+    "username": "admin",
+    "action": "bigquery.status",
+    "outcome": "success",
+    "details": "status"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:54.471131+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:50.689846+00:00",
+    "username": "admin",
+    "action": "bigquery.status",
+    "outcome": "success",
+    "details": "status"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:50.146003+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:48.831640+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.467900+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.431738+00:00",
+    "username": "admin",
+    "action": "users.list",
+    "outcome": "success",
+    "details": "User list viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.387729+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.343677+00:00",
+    "username": "admin",
+    "action": "audit.read",
+    "outcome": "success",
+    "details": "Audit logs viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.291621+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.254554+00:00",
+    "username": "admin",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.198440+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.149944+00:00",
+    "username": "admin",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.105536+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.070001+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.034463+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:44.001503+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:43.958765+00:00",
+    "username": "admin",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:43.919099+00:00",
+    "username": "admin",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:43.875063+00:00",
+    "username": "admin",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:43.833176+00:00",
+    "username": "admin",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:43.782364+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:40.219160+00:00",
+    "username": "admin",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:36.105549+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:33.855280+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:33.295761+00:00",
+    "username": "admin",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:31.458701+00:00",
+    "username": "admin",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:46:31.269342+00:00",
+    "username": "admin",
+    "action": "auth.login",
+    "outcome": "success",
+    "details": "User logged in"
+  },
+  {
+    "timestamp": "2026-04-16T00:44:40.248656+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:15:59.793834+00:00",
+    "timestamp": "2026-04-16T00:44:40.184405+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:15:59.679494+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:15:59.558354+00:00",
+    "timestamp": "2026-04-16T00:44:40.120844+00:00",
     "username": "operator",
     "action": "uploads.pending",
     "outcome": "success",
     "details": "Pending landings queried"
   },
   {
-    "timestamp": "2026-04-15T21:15:59.473965+00:00",
+    "timestamp": "2026-04-16T00:44:40.078452+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:44:40.032180+00:00",
     "username": "operator",
     "action": "uploads.success",
     "outcome": "success",
     "details": "Analytics-ready uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:15:59.406497+00:00",
+    "timestamp": "2026-04-16T00:44:39.981448+00:00",
     "username": "operator",
     "action": "uploads.catalog",
     "outcome": "success",
     "details": "Upload dataset catalog read"
   },
   {
-    "timestamp": "2026-04-15T21:15:59.248117+00:00",
+    "timestamp": "2026-04-16T00:44:39.903349+00:00",
     "username": "operator",
     "action": "analytics.charts",
     "outcome": "success",
     "details": "dashboard charts"
   },
   {
-    "timestamp": "2026-04-15T21:15:58.687866+00:00",
+    "timestamp": "2026-04-16T00:44:34.009433+00:00",
     "username": "operator",
     "action": "analytics.top_merchants",
     "outcome": "success",
     "details": "Top merchants limit=5"
   },
   {
-    "timestamp": "2026-04-15T21:15:57.970916+00:00",
+    "timestamp": "2026-04-16T00:44:31.576078+00:00",
     "username": "operator",
     "action": "analytics.overview",
     "outcome": "success",
     "details": "Overview queried"
   },
   {
-    "timestamp": "2026-04-15T21:13:10.648173+00:00",
+    "timestamp": "2026-04-16T00:44:00.367850+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:13:10.566937+00:00",
+    "timestamp": "2026-04-16T00:44:00.257736+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:13:10.490394+00:00",
+    "timestamp": "2026-04-16T00:44:00.151896+00:00",
     "username": "operator",
     "action": "uploads.failed",
     "outcome": "success",
     "details": "Failed uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:13:10.435196+00:00",
+    "timestamp": "2026-04-16T00:44:00.004480+00:00",
     "username": "operator",
     "action": "uploads.pending",
     "outcome": "success",
     "details": "Pending landings queried"
   },
   {
-    "timestamp": "2026-04-15T21:13:10.363654+00:00",
+    "timestamp": "2026-04-16T00:43:59.926790+00:00",
     "username": "operator",
     "action": "uploads.success",
     "outcome": "success",
     "details": "Analytics-ready uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:13:10.298393+00:00",
+    "timestamp": "2026-04-16T00:43:59.864943+00:00",
     "username": "operator",
     "action": "uploads.catalog",
     "outcome": "success",
     "details": "Upload dataset catalog read"
   },
   {
-    "timestamp": "2026-04-15T21:13:10.234685+00:00",
+    "timestamp": "2026-04-16T00:43:59.717471+00:00",
     "username": "operator",
     "action": "analytics.charts",
     "outcome": "success",
     "details": "dashboard charts"
   },
   {
-    "timestamp": "2026-04-15T21:13:09.927471+00:00",
+    "timestamp": "2026-04-16T00:43:42.848027+00:00",
     "username": "operator",
     "action": "analytics.top_merchants",
     "outcome": "success",
     "details": "Top merchants limit=5"
   },
   {
-    "timestamp": "2026-04-15T21:13:09.739837+00:00",
+    "timestamp": "2026-04-16T00:43:38.831638+00:00",
     "username": "operator",
     "action": "analytics.overview",
     "outcome": "success",
     "details": "Overview queried"
   },
   {
-    "timestamp": "2026-04-15T21:13:09.661506+00:00",
+    "timestamp": "2026-04-16T00:37:13.993731+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:13.926744+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:13.857523+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:13.808225+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:13.759454+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:13.707691+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:13.631550+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:08.227655+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:37:04.621977+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:11.000980+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:10.917899+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:10.832893+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:10.774990+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:10.688138+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:10.599792+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:10.508907+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:03.571567+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:31:00.837585+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:59.605599+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:59.534504+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:59.427639+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:59.358851+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:59.276702+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:59.225424+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:59.108179+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:51.775856+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.659537+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.513980+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.433626+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.356362+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.297817+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.242995+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.182993+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:49.078104+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:40.752196+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:38.286421+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.997632+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.900427+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.804952+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.713292+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.597694+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.499900+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.370339+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:11.217173+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:04.535881+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:03.512674+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:00.137562+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:30:00.061283+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:59.978038+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:59.875426+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:59.769469+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:59.642618+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:59.569778+00:00",
     "username": "operator",
     "action": "datasets.process",
     "outcome": "success",
     "details": "mode=single run_etl=False"
   },
   {
-    "timestamp": "2026-04-15T21:13:08.075294+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:08.009643+00:00",
+    "timestamp": "2026-04-16T00:29:55.988257+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:13:07.935363+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:07.866571+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:07.789559+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:07.741069+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:07.668108+00:00",
+    "timestamp": "2026-04-16T00:29:55.843705+00:00",
     "username": "operator",
     "action": "analytics.charts",
     "outcome": "success",
     "details": "dashboard charts"
   },
   {
-    "timestamp": "2026-04-15T21:13:07.293090+00:00",
+    "timestamp": "2026-04-16T00:29:45.882863+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:45.693153+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:45.458514+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:45.337106+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:44.072577+00:00",
     "username": "operator",
     "action": "analytics.top_merchants",
     "outcome": "success",
     "details": "Top merchants limit=5"
   },
   {
-    "timestamp": "2026-04-15T21:13:07.067965+00:00",
+    "timestamp": "2026-04-16T00:29:42.314035+00:00",
     "username": "operator",
     "action": "analytics.overview",
     "outcome": "success",
     "details": "Overview queried"
   },
   {
-    "timestamp": "2026-04-15T21:13:06.994519+00:00",
+    "timestamp": "2026-04-16T00:29:42.194888+00:00",
     "username": "operator",
-    "action": "datasets.process",
+    "action": "analytics.charts",
     "outcome": "success",
-    "details": "mode=single run_etl=True"
+    "details": "dashboard charts"
   },
   {
-    "timestamp": "2026-04-15T21:13:01.427153+00:00",
+    "timestamp": "2026-04-16T00:29:34.418898+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:29:31.490531+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:58.812643+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:13:01.353597+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:01.256250+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:01.184517+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:01.105138+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:01.040112+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T21:13:00.914820+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:59.171194+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:58.840155+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:58.737914+00:00",
-    "username": "operator",
-    "action": "datasets.process",
-    "outcome": "success",
-    "details": "mode=single run_etl=True"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:50.581939+00:00",
+    "timestamp": "2026-04-16T00:28:58.705010+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:12:50.402391+00:00",
+    "timestamp": "2026-04-16T00:28:58.622112+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:12:50.248943+00:00",
+    "timestamp": "2026-04-16T00:28:58.538660+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:12:50.044980+00:00",
+    "timestamp": "2026-04-16T00:28:58.438807+00:00",
     "username": "operator",
-    "action": "uploads.failed",
+    "action": "datasets.list",
     "outcome": "success",
-    "details": "Failed uploads queried"
+    "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:12:49.789112+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:49.311225+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:49.183809+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:49.033630+00:00",
+    "timestamp": "2026-04-16T00:28:58.378702+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:12:48.915121+00:00",
+    "timestamp": "2026-04-16T00:28:58.317891+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:58.241761+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:12:48.755974+00:00",
+    "timestamp": "2026-04-16T00:28:58.151032+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:12:48.644832+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:47.903855+00:00",
+    "timestamp": "2026-04-16T00:28:58.055051+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:12:47.500370+00:00",
+    "timestamp": "2026-04-16T00:28:57.964224+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:12:46.544226+00:00",
+    "timestamp": "2026-04-16T00:28:57.876953+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:57.777210+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:12:46.315567+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:46.168830+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:45.414016+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:45.276376+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:45.142178+00:00",
+    "timestamp": "2026-04-16T00:28:57.629628+00:00",
     "username": "operator",
     "action": "uploads.success",
     "outcome": "success",
     "details": "Analytics-ready uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:45.037215+00:00",
+    "timestamp": "2026-04-16T00:28:57.511241+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:57.393532+00:00",
     "username": "operator",
     "action": "uploads.catalog",
     "outcome": "success",
     "details": "Upload dataset catalog read"
   },
   {
-    "timestamp": "2026-04-15T21:12:44.909084+00:00",
+    "timestamp": "2026-04-16T00:28:57.293353+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:57.146460+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:57.019800+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:56.943420+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T21:12:44.631115+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:44.143072+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:43.820354+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:43.206773+00:00",
+    "timestamp": "2026-04-16T00:28:56.876756+00:00",
     "username": "operator",
     "action": "uploads.catalog",
     "outcome": "success",
     "details": "Upload dataset catalog read"
   },
   {
-    "timestamp": "2026-04-15T21:12:41.787792+00:00",
+    "timestamp": "2026-04-16T00:28:56.771465+00:00",
     "username": "operator",
     "action": "uploads.failed",
     "outcome": "success",
     "details": "Failed uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:41.223233+00:00",
+    "timestamp": "2026-04-16T00:28:56.647996+00:00",
     "username": "operator",
     "action": "uploads.pending",
     "outcome": "success",
     "details": "Pending landings queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:40.761716+00:00",
+    "timestamp": "2026-04-16T00:28:56.434962+00:00",
     "username": "operator",
-    "action": "uploads.success",
+    "action": "etl.jobs.list",
     "outcome": "success",
-    "details": "Analytics-ready uploads queried"
+    "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T21:12:40.466492+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:40.356785+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T21:12:39.583509+00:00",
+    "timestamp": "2026-04-16T00:28:56.037008+00:00",
     "username": "operator",
     "action": "uploads.failed",
     "outcome": "success",
     "details": "Failed uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:39.479125+00:00",
+    "timestamp": "2026-04-16T00:28:55.875330+00:00",
     "username": "operator",
     "action": "uploads.pending",
     "outcome": "success",
     "details": "Pending landings queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:39.224081+00:00",
+    "timestamp": "2026-04-16T00:28:55.764346+00:00",
     "username": "operator",
     "action": "uploads.success",
     "outcome": "success",
     "details": "Analytics-ready uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:39.108778+00:00",
+    "timestamp": "2026-04-16T00:28:55.623274+00:00",
     "username": "operator",
     "action": "uploads.catalog",
     "outcome": "success",
     "details": "Upload dataset catalog read"
   },
   {
-    "timestamp": "2026-04-15T21:12:38.936830+00:00",
+    "timestamp": "2026-04-16T00:28:55.352723+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:55.124217+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:55.008291+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:54.909283+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:54.820974+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:54.699069+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:54.563877+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:54.226838+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:54.080399+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:53.963073+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:53.865825+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:53.762512+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:53.637881+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:53.358677+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:53.214668+00:00",
     "username": "operator",
     "action": "analytics.charts",
     "outcome": "success",
     "details": "dashboard charts"
   },
   {
-    "timestamp": "2026-04-15T21:12:37.434815+00:00",
+    "timestamp": "2026-04-16T00:28:43.336102+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:43.269414+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:43.167865+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:42.649599+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:42.326692+00:00",
     "username": "operator",
     "action": "analytics.charts",
     "outcome": "success",
     "details": "dashboard charts"
   },
   {
-    "timestamp": "2026-04-15T21:12:36.717533+00:00",
+    "timestamp": "2026-04-16T00:28:26.715861+00:00",
     "username": "operator",
-    "action": "analytics.top_merchants",
+    "action": "uploads.success",
     "outcome": "success",
-    "details": "Top merchants limit=5"
+    "details": "Analytics-ready uploads queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:35.970656+00:00",
+    "timestamp": "2026-04-16T00:28:26.547962+00:00",
     "username": "operator",
-    "action": "analytics.overview",
+    "action": "uploads.catalog",
     "outcome": "success",
-    "details": "Overview queried"
+    "details": "Upload dataset catalog read"
   },
   {
-    "timestamp": "2026-04-15T21:12:35.852069+00:00",
+    "timestamp": "2026-04-16T00:28:26.325052+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:25.985811+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:25.403516+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:25.219764+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-16T00:28:25.156202+00:00",
     "username": "operator",
     "action": "analytics.charts",
     "outcome": "success",
     "details": "dashboard charts"
   },
   {
-    "timestamp": "2026-04-15T21:12:34.043965+00:00",
+    "timestamp": "2026-04-16T00:28:13.732526+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:59.641281+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:52.333372+00:00",
     "username": "operator",
     "action": "analytics.top_merchants",
     "outcome": "success",
     "details": "Top merchants limit=5"
   },
   {
-    "timestamp": "2026-04-15T21:12:33.216457+00:00",
+    "timestamp": "2026-04-16T00:27:52.284081+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:47.216595+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:35.591716+00:00",
     "username": "operator",
     "action": "analytics.overview",
     "outcome": "success",
     "details": "Overview queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:33.014101+00:00",
+    "timestamp": "2026-04-16T00:27:31.238358+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:31.160079+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:31.093095+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:31.015425+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:30.908754+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:26.168023+00:00",
     "username": "operator",
     "action": "analytics.top_merchants",
     "outcome": "success",
     "details": "Top merchants limit=5"
   },
   {
-    "timestamp": "2026-04-15T21:12:32.422524+00:00",
+    "timestamp": "2026-04-16T00:27:26.023042+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:00.577435+00:00",
     "username": "operator",
     "action": "analytics.overview",
     "outcome": "success",
     "details": "Overview queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:32.001288+00:00",
+    "timestamp": "2026-04-16T00:27:00.519127+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:00.451753+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:00.379304+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:27:00.317599+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:59.036414+00:00",
     "username": "operator",
     "action": "analytics.top_merchants",
     "outcome": "success",
     "details": "Top merchants limit=5"
   },
   {
-    "timestamp": "2026-04-15T21:12:30.032999+00:00",
+    "timestamp": "2026-04-16T00:26:57.983775+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:55.919475+00:00",
     "username": "operator",
     "action": "analytics.overview",
     "outcome": "success",
     "details": "Overview queried"
   },
   {
-    "timestamp": "2026-04-15T21:12:28.897872+00:00",
+    "timestamp": "2026-04-16T00:26:54.374717+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:52.475550+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:51.732816+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:49.100091+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:49.036355+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:40.845165+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:38.709919+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:38.646648+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:30.705561+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:28.527064+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:27.516152+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:24.625654+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:23.820280+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:21.708915+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:21.612875+00:00",
     "username": "operator",
     "action": "auth.login",
     "outcome": "success",
     "details": "User logged in"
   },
   {
-    "timestamp": "2026-04-15T21:12:28.445196+00:00",
+    "timestamp": "2026-04-16T00:26:21.540626+00:00",
     "username": "operator",
     "action": "auth.login",
     "outcome": "success",
     "details": "User logged in"
   },
   {
-    "timestamp": "2026-04-15T20:16:13.123185+00:00",
+    "timestamp": "2026-04-16T00:26:21.468123+00:00",
     "username": "operator",
-    "action": "etl.jobs.list",
+    "action": "auth.login",
     "outcome": "success",
-    "details": "ETL jobs listed"
+    "details": "User logged in"
   },
   {
-    "timestamp": "2026-04-15T20:16:13.035076+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:16:12.836140+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:16:12.711919+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:16:12.581957+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:16:12.454963+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:16:12.310358+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:16:11.963577+00:00",
+    "timestamp": "2026-04-16T00:26:19.882572+00:00",
     "username": "operator",
     "action": "analytics.top_merchants",
     "outcome": "success",
     "details": "Top merchants limit=5"
   },
   {
-    "timestamp": "2026-04-15T20:16:11.723504+00:00",
+    "timestamp": "2026-04-16T00:26:17.968404+00:00",
     "username": "operator",
     "action": "analytics.overview",
     "outcome": "success",
     "details": "Overview queried"
   },
   {
-    "timestamp": "2026-04-15T20:15:56.079063+00:00",
+    "timestamp": "2026-04-16T00:26:17.920041+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:09.490828+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-16T00:26:01.106883+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:25:58.396039+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:25:57.309284+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-16T00:25:52.388260+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-16T00:25:52.158679+00:00",
+    "username": "operator",
+    "action": "auth.login",
+    "outcome": "success",
+    "details": "User logged in"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:49.786288+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:49.153987+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:48.946298+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:48.825471+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:48.738530+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:48.635672+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:48.555660+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:48.467000+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:48.404041+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:42.560125+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:42.488586+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:42.423206+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:42.362088+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:38.003591+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:37.072566+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:36.977752+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:27.149494+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-15T21:50:23.158067+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:10.189821+00:00",
+    "username": "operator",
+    "action": "etl.jobs.list",
+    "outcome": "success",
+    "details": "ETL jobs listed"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:10.102081+00:00",
+    "username": "operator",
+    "action": "datasets.list",
+    "outcome": "success",
+    "details": "Dataset catalog viewed"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:09.977672+00:00",
+    "username": "operator",
+    "action": "uploads.pending",
+    "outcome": "success",
+    "details": "Pending landings queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:09.902496+00:00",
+    "username": "operator",
+    "action": "uploads.failed",
+    "outcome": "success",
+    "details": "Failed uploads queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:09.830401+00:00",
+    "username": "operator",
+    "action": "uploads.success",
+    "outcome": "success",
+    "details": "Analytics-ready uploads queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:09.751195+00:00",
+    "username": "operator",
+    "action": "uploads.catalog",
+    "outcome": "success",
+    "details": "Upload dataset catalog read"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:09.638890+00:00",
+    "username": "operator",
+    "action": "analytics.charts",
+    "outcome": "success",
+    "details": "dashboard charts"
+  },
+  {
+    "timestamp": "2026-04-15T21:48:04.233154+00:00",
+    "username": "operator",
+    "action": "analytics.top_merchants",
+    "outcome": "success",
+    "details": "Top merchants limit=5"
+  },
+  {
+    "timestamp": "2026-04-15T21:47:59.973819+00:00",
+    "username": "operator",
+    "action": "analytics.overview",
+    "outcome": "success",
+    "details": "Overview queried"
+  },
+  {
+    "timestamp": "2026-04-15T21:47:08.295480+00:00",
     "username": "operator",
     "action": "datasets.preview",
     "outcome": "success",
-    "details": "Previewed fact_loan_repayments.csv"
+    "details": "Previewed fact_transactions.csv"
   },
   {
-    "timestamp": "2026-04-15T20:15:52.480545+00:00",
+    "timestamp": "2026-04-15T21:47:00.882628+00:00",
     "username": "operator",
     "action": "etl.jobs.list",
     "outcome": "success",
     "details": "ETL jobs listed"
   },
   {
-    "timestamp": "2026-04-15T20:15:52.373723+00:00",
+    "timestamp": "2026-04-15T21:47:00.777368+00:00",
     "username": "operator",
     "action": "datasets.list",
     "outcome": "success",
     "details": "Dataset catalog viewed"
   },
   {
-    "timestamp": "2026-04-15T20:15:52.284705+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:52.203249+00:00",
+    "timestamp": "2026-04-15T21:47:00.684131+00:00",
     "username": "operator",
     "action": "uploads.pending",
     "outcome": "success",
     "details": "Pending landings queried"
   },
   {
-    "timestamp": "2026-04-15T20:15:52.081806+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:52.017394+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:51.952014+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:51.591059+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:51.348613+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:48.790455+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:48.705786+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:48.634194+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:48.575883+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:48.524693+00:00",
+    "timestamp": "2026-04-15T21:47:00.616688+00:00",
     "username": "operator",
     "action": "uploads.failed",
     "outcome": "success",
     "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:48.448812+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:48.266019+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:47.825003+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:47.695928+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:47.615322+00:00",
-    "username": "operator",
-    "action": "etl.jobs.trigger",
-    "outcome": "success",
-    "details": "scope=preprocess_all dag=distributed_pipeline_scaffold"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:40.408052+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:40.300812+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:40.210870+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:40.136905+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:40.064291+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:40.012003+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:39.928657+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:39.652835+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:39.436258+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:29.645162+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:29.538171+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:29.419142+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:29.270935+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:29.171459+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:29.099422+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:28.997387+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:28.637489+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:28.539148+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:21.317092+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:21.158221+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:21.007746+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:20.940480+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:20.881268+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:20.840438+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:20.761307+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:20.513545+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:19.998555+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:19.871040+00:00",
-    "username": "operator",
-    "action": "etl.jobs.trigger",
-    "outcome": "success",
-    "details": "scope=preprocess_all dag=distributed_pipeline_scaffold"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.978150+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.906858+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.818451+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.672789+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.578456+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.528130+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.469468+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:08.033040+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:15:07.838786+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:28.618629+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:28.528031+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:28.342557+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:28.267103+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:28.198460+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:28.134887+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:28.036865+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:27.758114+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:27.485148+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:27.376106+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "fact_transactions.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:17.978208+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:17.889209+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:17.804185+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:17.744023+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:17.679183+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:17.603466+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:17.492042+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:16.986787+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:16.830675+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:16.694292+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "dim_date.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:03.586582+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:03.464588+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:03.396080+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:03.296162+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:03.163488+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:03.047478+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:02.898087+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:02.297491+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:01.962502+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:14:01.814383+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "dim_accounts.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:49.280799+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:49.183171+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:49.079301+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:49.008048+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:48.965788+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:48.924540+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:48.849339+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:48.484373+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:48.211166+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:48.107794+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "fact_loan_repayments.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:32.048502+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:31.923812+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:31.832963+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:31.774319+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:31.705067+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:31.647235+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:31.549294+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:30.995863+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:30.624705+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:13:30.535121+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "dim_customers.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:34.151359+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.961261+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.879654+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.825698+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.767194+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.691360+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.585350+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.352888+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:33.210060+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:12:32.981216+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "fact_loans.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:08.364699+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:08.235031+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:08.134749+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:08.047265+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:07.955818+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:07.899351+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:07.814073+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:07.516412+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:06.896940+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.925776+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.836668+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.757012+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.683342+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.607289+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.540760+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.473147+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:01.121612+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:08:00.943275+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.886727+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.819990+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.723827+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.641421+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.561852+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.498068+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.441155+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.317829+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.206902+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.140978+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.084268+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:58.019258+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:57.957432+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:56.896146+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:56.161342+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:56.002090+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:55.908341+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:55.726633+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:55.616947+00:00",
-    "username": "operator",
-    "action": "auth.login",
-    "outcome": "success",
-    "details": "User logged in"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:45.961607+00:00",
-    "username": "analyst",
-    "action": "datasets.preview",
-    "outcome": "success",
-    "details": "Previewed dim_cards.csv"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:42.311907+00:00",
-    "username": "analyst",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:42.250798+00:00",
-    "username": "analyst",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:42.184177+00:00",
-    "username": "analyst",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:41.999847+00:00",
-    "username": "analyst",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:41.662715+00:00",
-    "username": "analyst",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:41.470726+00:00",
-    "username": "analyst",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:41.392090+00:00",
-    "username": "analyst",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:41.259851+00:00",
-    "username": "analyst",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:41.161228+00:00",
-    "username": "analyst",
-    "action": "auth.login",
-    "outcome": "success",
-    "details": "User logged in"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:23.660512+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:23.564729+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:23.480359+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:23.407537+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:23.333916+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:23.275201+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:23.196431+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:22.881572+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:22.698419+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:12.542360+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:12.471956+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:12.376070+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:12.304043+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:12.235959+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:12.177030+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:12.097133+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:11.856782+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:11.720953+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:07:11.615727+00:00",
-    "username": "operator",
-    "action": "etl.jobs.trigger",
-    "outcome": "success",
-    "details": "scope=preprocess_single dag=distributed_pipeline_scaffold"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.893791+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.807695+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.721189+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.662324+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.589391+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.531711+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.453608+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:17.011001+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:16.663257+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.914481+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.848022+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.739252+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.630400+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.535603+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.473332+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.403770+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.338104+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.260467+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.184019+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.115573+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:04.054716+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:03.986851+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:03.780354+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:03.487593+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:03.351734+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:03.283184+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:03.158292+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:06:02.993702+00:00",
-    "username": "operator",
-    "action": "auth.login",
-    "outcome": "success",
-    "details": "User logged in"
-  },
-  {
-    "timestamp": "2026-04-15T20:05:46.678069+00:00",
-    "username": "analyst",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T20:05:46.522328+00:00",
-    "username": "analyst",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T20:05:46.083666+00:00",
-    "username": "analyst",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T20:05:45.862507+00:00",
-    "username": "analyst",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T20:05:41.745543+00:00",
-    "username": "analyst",
-    "action": "query.execute",
-    "outcome": "failed",
-    "details": "no such table: dim_customers"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:58.108286+00:00",
-    "username": "analyst",
-    "action": "bigquery.status",
-    "outcome": "success",
-    "details": "status"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:58.048043+00:00",
-    "username": "analyst",
-    "action": "bigquery.status",
-    "outcome": "success",
-    "details": "status"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:55.257418+00:00",
-    "username": "analyst",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:55.199034+00:00",
-    "username": "analyst",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:54.957470+00:00",
-    "username": "analyst",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:54.778402+00:00",
-    "username": "analyst",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:53.389419+00:00",
-    "username": "analyst",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:53.308625+00:00",
-    "username": "analyst",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:53.253587+00:00",
-    "username": "analyst",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:53.039223+00:00",
-    "username": "analyst",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:52.762738+00:00",
-    "username": "analyst",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:52.695343+00:00",
-    "username": "analyst",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:52.553115+00:00",
-    "username": "analyst",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:52.401017+00:00",
-    "username": "analyst",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:58:52.137141+00:00",
-    "username": "analyst",
-    "action": "auth.login",
-    "outcome": "success",
-    "details": "User logged in"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.527932+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.484101+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.435161+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.399176+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.348929+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.315756+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.268564+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.142134+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:57:55.057974+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.404089+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.355486+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.313134+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.279731+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.238878+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.209501+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.164988+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:18.022147+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:17.932858+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:17.887227+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "dim_cards.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:00.237009+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:00.187560+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:00.141809+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:00.108582+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:00.074562+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:56:00.043206+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:55:59.995840+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:55:59.856692+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:55:59.750080+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:49.332042+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:49.271991+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:49.198673+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:49.161039+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:49.113543+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:49.069661+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:49.013293+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:48.817578+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:48.667422+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:44.492760+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:44.346066+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:44.282633+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:44.229769+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:42.692937+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:42.647048+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:42.585899+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:42.381617+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:42.257991+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:29.856713+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:29.787672+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:29.621016+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:29.412929+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:29.244051+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:29.063661+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:28.995605+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:28.654189+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:28.532071+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:23.520832+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:23.464900+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:23.370517+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:23.296027+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:23.223998+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:23.162343+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:23.097282+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:22.825869+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:22.679954+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:22.612627+00:00",
-    "username": "operator",
-    "action": "datasets.delete",
-    "outcome": "success",
-    "details": "removed 2 entries for dim_customers.csv"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.391099+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.344058+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.286422+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.234232+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.177659+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.133734+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.092652+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.060086+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:13.019123+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.972733+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.928765+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.887216+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.807069+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.523234+00:00",
-    "username": "operator",
-    "action": "analytics.charts",
-    "outcome": "success",
-    "details": "dashboard charts"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.255252+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.137020+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:12.046119+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:10.888518+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T19:54:10.618026+00:00",
-    "username": "operator",
-    "action": "auth.login",
-    "outcome": "success",
-    "details": "User logged in"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:57.036109+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:56.989842+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:56.943353+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:56.906839+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:56.862039+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:56.813828+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:56.624119+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:56.502009+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:55.244165+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:55.205273+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:55.169804+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:55.139772+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:55.098219+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:55.078880+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:54.999012+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:54.809299+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.421748+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.379551+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.331457+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.306783+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.278704+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.259717+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.203988+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:48.044841+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:27.529413+00:00",
-    "username": "operator",
-    "action": "datasets.preview",
-    "outcome": "success",
-    "details": "Previewed dim_customers.csv"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:19.197997+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:19.113408+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:19.030974+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:18.997001+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:18.947846+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:18.914034+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:18.846836+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:56:18.421709+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.680970+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.642006+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.596733+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.571134+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.542952+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.525342+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.482764+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:40.349923+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.675438+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.652435+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.617459+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.586592+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.542365+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.505611+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.472196+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.451898+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.423412+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.397760+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.364484+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.338998+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.302402+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.197290+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.167294+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:34.060356+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.955920+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.919030+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.884477+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.859615+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.833431+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.815339+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.771752+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:24.689909+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:16.109801+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:16.079031+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:16.038430+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:16.016457+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.949191+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.930410+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.913837+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.885936+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.792725+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.763884+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.735687+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "dim_customers.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.553163+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.529555+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.501396+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.474859+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.439679+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.349793+00:00",
-    "username": "operator",
-    "action": "analytics.overview",
-    "outcome": "success",
-    "details": "Overview queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:14.313967+00:00",
-    "username": "operator",
-    "action": "uploads.submit",
-    "outcome": "success",
-    "details": "dim_customers.csv: uploaded"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:01.840100+00:00",
-    "username": "operator",
-    "action": "etl.jobs.list",
-    "outcome": "success",
-    "details": "ETL jobs listed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:01.812280+00:00",
-    "username": "operator",
-    "action": "datasets.list",
-    "outcome": "success",
-    "details": "Dataset catalog viewed"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:01.778772+00:00",
-    "username": "operator",
-    "action": "uploads.failed",
-    "outcome": "success",
-    "details": "Failed uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:01.758813+00:00",
-    "username": "operator",
-    "action": "uploads.pending",
-    "outcome": "success",
-    "details": "Pending landings queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:01.737932+00:00",
-    "username": "operator",
-    "action": "uploads.success",
-    "outcome": "success",
-    "details": "Analytics-ready uploads queried"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:01.720558+00:00",
-    "username": "operator",
-    "action": "uploads.catalog",
-    "outcome": "success",
-    "details": "Upload dataset catalog read"
-  },
-  {
-    "timestamp": "2026-04-15T18:48:01.681322+00:00",
-    "username": "operator",
-    "action": "analytics.top_merchants",
-    "outcome": "success",
-    "details": "Top merchants limit=5"
   }
 ]

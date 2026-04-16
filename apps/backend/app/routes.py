@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from datetime import datetime, timezone
 from functools import wraps
@@ -31,7 +32,35 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         external_dir=Settings.EXTERNAL_DIR,
         activated_dir=Settings.ACTIVATED_DIR,
     )
-    token_store = {}
+    token_store: dict = {}
+    auth_tokens_file = Settings.METADATA_DIR / "auth_tokens.json"
+
+    def _persist_auth_tokens() -> None:
+        auth_tokens_file.parent.mkdir(parents=True, exist_ok=True)
+        trimmed = dict(list(token_store.items())[:800])
+        auth_tokens_file.write_text(json.dumps(trimmed, indent=2), encoding="utf-8")
+
+    def _load_auth_tokens_from_disk() -> None:
+        if not auth_tokens_file.exists():
+            return
+        try:
+            raw = json.loads(auth_tokens_file.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError, TypeError):
+            return
+        if not isinstance(raw, dict):
+            return
+        for key, val in raw.items():
+            if isinstance(val, dict) and val.get("username") and val.get("role"):
+                token_store[key] = {"username": val["username"], "role": val["role"]}
+
+    def _reload_tokens_if_missing(token: str) -> None:
+        """Re-read disk so sessions survive API restarts and work across Gunicorn workers."""
+        if token in token_store:
+            return
+        _load_auth_tokens_from_disk()
+
+    _load_auth_tokens_from_disk()
+
     users_file = Settings.METADATA_DIR / "users.json"
     etl_jobs_file = Settings.METADATA_DIR / "etl_jobs.json"
     audit_logs_file = Settings.METADATA_DIR / "audit_logs.json"
@@ -105,10 +134,13 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
                 None
                 if airflow_ok
                 else (
-                    "Airflow API did not queue a run (CSRF/auth or network). "
-                    "Delegate ETL summary still recorded; fix API auth or restart webserver with basic_auth backend."
-                    if delegate_ok
-                    else "Airflow trigger failed and delegate ETL reported a non-completed status."
+                    "Airflow did not queue a run: "
+                    + (airflow_error or "unknown error")
+                    + (
+                        " Local delegate ETL still recorded."
+                        if delegate_ok
+                        else " Check Airflow logs, DAG id, and AIRFLOW__API__AUTH_BACKENDS (basic_auth)."
+                    )
                 )
             ),
         }
@@ -143,6 +175,7 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
         if not auth_header.startswith("Bearer "):
             return None
         token = auth_header.split(" ", 1)[1].strip()
+        _reload_tokens_if_missing(token)
         return token_store.get(token)
 
     def require_permission(permission: str):
@@ -184,8 +217,24 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
 
         token = str(uuid4())
         token_store[token] = {"username": username, "role": user_entry["role"]}
+        _persist_auth_tokens()
         append_audit(action="auth.login", outcome="success", details="User logged in", username=username)
         return jsonify({"token": token, "username": username, "role": user_entry["role"]})
+
+    @api.post("/api/auth/logout")
+    def logout():
+        auth_header = request.headers.get("Authorization", "")
+        uname = "anonymous"
+        if auth_header.startswith("Bearer "):
+            tok = auth_header.split(" ", 1)[1].strip()
+            _reload_tokens_if_missing(tok)
+            prev = token_store.get(tok)
+            if prev:
+                uname = prev.get("username", "anonymous")
+            token_store.pop(tok, None)
+            _persist_auth_tokens()
+        append_audit(action="auth.logout", outcome="success", details="Session ended", username=uname)
+        return jsonify({"ok": True})
 
     @api.get("/api/auth/me")
     def me():
@@ -210,6 +259,7 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
                     {"method": "GET", "path": "/api/uploads/failed", "description": "Failed dataset uploads"},
                     {"method": "GET", "path": "/api/datasets", "description": "Uploaded dataset catalog and insights"},
                     {"method": "POST", "path": "/api/auth/login", "description": "Authenticate and receive bearer token"},
+                    {"method": "POST", "path": "/api/auth/logout", "description": "Invalidate current bearer token (Authorization header)"},
                     {"method": "GET", "path": "/api/etl/jobs", "description": "List ETL jobs"},
                     {"method": "POST", "path": "/api/etl/jobs", "description": "Trigger ETL (scope: delegate_only | preprocess_single | preprocess_all)"},
                     {"method": "GET", "path": "/api/audit-logs", "description": "Read audit logs"},

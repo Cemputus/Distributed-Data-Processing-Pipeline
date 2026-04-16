@@ -1,5 +1,94 @@
 [
   {
+    "dataset": "dim_customers.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-16T00:48:46.060464+00:00",
+    "landing_file": "20260416T004846Z_dim_customers.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 10000 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_customers.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "customer_id",
+        "full_name",
+        "nationality",
+        "region",
+        "customer_segment",
+        "risk_level",
+        "kyc_level",
+        "status",
+        "created_at"
+      ],
+      "row_count": 10000,
+      "null_counts": {
+        "customer_id": 0,
+        "full_name": 0,
+        "nationality": 0,
+        "region": 0,
+        "customer_segment": 0,
+        "risk_level": 0,
+        "kyc_level": 0,
+        "status": 0,
+        "created_at": 0
+      },
+      "numeric_summary": {}
+    },
+    "processed_at": "2026-04-16T00:51:38.100473+00:00",
+    "row_count": 10000,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "dim_customers.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-16T00:48:45.556535+00:00",
+    "landing_file": "20260416T004845Z_dim_customers.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T004845Z_dim_customers.csv \u00b7 MinIO s3://fintech-landing/20260416T004845Z_dim_customers.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "dim_customers.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-16T00:48:43.964924+00:00",
+    "landing_file": "20260416T004843Z_dim_customers.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T004843Z_dim_customers.csv \u00b7 MinIO s3://fintech-landing/20260416T004843Z_dim_customers.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
     "dataset": "fact_transactions.csv",
     "classification": "finance",
     "uploaded_at": "2026-04-15T20:14:27.180015+00:00",
@@ -20,16 +109,89 @@
     "classification": "finance",
     "uploaded_at": "2026-04-15T20:14:16.258811+00:00",
     "landing_file": "20260415T201416Z_dim_date.csv",
-    "pipeline_status": "landed",
-    "status": "landed",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
     "stages": [
       {
-        "stage": "input_stage",
+        "stage": "processing_stage",
         "status": "passed",
-        "message": "Stored file in landing zone: 20260415T201416Z_dim_date.csv \u00b7 MinIO s3://fintech-landing/20260415T201416Z_dim_date.csv"
+        "message": "Validated and normalized 1826 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_date.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
       }
     ],
-    "insights": {}
+    "insights": {
+      "columns": [
+        "date_key",
+        "full_date",
+        "day",
+        "day_name",
+        "day_of_week_num",
+        "is_weekend",
+        "month_num",
+        "month_name",
+        "quarter",
+        "year",
+        "is_month_end",
+        "is_payday_window"
+      ],
+      "row_count": 1826,
+      "null_counts": {
+        "date_key": 0,
+        "full_date": 0,
+        "day": 0,
+        "day_name": 0,
+        "day_of_week_num": 0,
+        "is_weekend": 0,
+        "month_num": 0,
+        "month_name": 0,
+        "quarter": 0,
+        "year": 0,
+        "is_month_end": 0,
+        "is_payday_window": 0
+      },
+      "numeric_summary": {
+        "date_key": {
+          "min": 20220101.0,
+          "max": 20261231.0,
+          "avg": 20240668.0827
+        },
+        "day": {
+          "min": 1.0,
+          "max": 31.0,
+          "avg": 15.7278
+        },
+        "day_of_week_num": {
+          "min": 1.0,
+          "max": 7.0,
+          "avg": 3.9995
+        },
+        "month_num": {
+          "min": 1.0,
+          "max": 12.0,
+          "avg": 6.5235
+        },
+        "year": {
+          "min": 2022.0,
+          "max": 2026.0,
+          "avg": 2024.0
+        }
+      }
+    },
+    "processed_at": "2026-04-16T00:29:59.455316+00:00",
+    "row_count": 1826,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
   },
   {
     "dataset": "dim_accounts.csv",

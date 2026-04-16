@@ -27,20 +27,54 @@ def _bigquery_feature_on() -> None:
         raise RuntimeError("BigQuery integration is disabled (BIGQUERY_ENABLED=false).")
 
 
+def _resolve_credentials_path() -> Optional[Path]:
+    """
+    Find a readable service account JSON. Order:
+    1) GOOGLE_APPLICATION_CREDENTIALS if file exists
+    2) BIGQUERY_CREDENTIALS_PATH (env or Settings)
+    3) Single *.json under /secrets (Docker mount ./secrets -> /secrets)
+    """
+    candidates: List[Optional[str]] = [
+        os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"),
+        os.environ.get("BIGQUERY_CREDENTIALS_PATH"),
+        Settings.BIGQUERY_CREDENTIALS_PATH,
+    ]
+    for raw in candidates:
+        if not raw or not str(raw).strip():
+            continue
+        p = Path(raw.strip())
+        if p.is_file():
+            return p
+    secrets_dir = Path("/secrets")
+    if secrets_dir.is_dir():
+        jsons = sorted(secrets_dir.glob("*.json"))
+        if len(jsons) == 1:
+            return jsons[0]
+    return None
+
+
+def _ensure_google_application_credentials() -> None:
+    p = _resolve_credentials_path()
+    if p is not None:
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(p)
+
+
 def credentials_available() -> bool:
-    path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") or ""
-    return bool(path and Path(path).is_file())
+    _ensure_google_application_credentials()
+    p = _resolve_credentials_path()
+    return p is not None and p.is_file()
 
 
 def resolve_project_id() -> Optional[str]:
     """Prefer BIGQUERY_PROJECT_ID; else read project_id from the service account JSON."""
     if Settings.BIGQUERY_PROJECT_ID:
         return Settings.BIGQUERY_PROJECT_ID.strip()
-    path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") or ""
-    if not path or not Path(path).is_file():
+    _ensure_google_application_credentials()
+    p = _resolve_credentials_path()
+    if not p or not p.is_file():
         return None
     try:
-        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        data = json.loads(p.read_text(encoding="utf-8"))
         return str(data.get("project_id") or "").strip() or None
     except (OSError, json.JSONDecodeError):
         return None
@@ -49,6 +83,7 @@ def resolve_project_id() -> Optional[str]:
 def _client():
     from google.cloud import bigquery
 
+    _ensure_google_application_credentials()
     project = resolve_project_id()
     if not project:
         raise RuntimeError("Set BIGQUERY_PROJECT_ID or use a service account JSON with project_id.")

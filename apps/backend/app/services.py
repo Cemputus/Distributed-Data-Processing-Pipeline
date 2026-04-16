@@ -122,7 +122,7 @@ class MetricsService:
         )
 
     def dashboard_charts(self, registry_rows: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """Eight chart payloads derived from analytics-ready CSVs and the dataset registry."""
+        """Bar-chart payloads from finance CSVs + dataset registry (merchants, histograms, dimensions)."""
         tx_path = self._path("fact_transactions.csv")
         mer_path = self._path("dim_merchants.csv")
         loans_path = self._path("fact_loans.csv")
@@ -183,6 +183,7 @@ class MetricsService:
                 "key": "entity_counts",
                 "title": "Entity row counts",
                 "type": "bar",
+                "layout": "vertical",
                 "labels": ["Customers", "Accounts", "Txns", "Loans", "Fraud"],
                 "values": [
                     float(ov["customers"]),
@@ -212,6 +213,58 @@ class MetricsService:
                 "type": "bar",
                 "labels": pl or ["—"],
                 "values": pmix or [0.0],
+            }
+        )
+
+        cust_path = self._path("dim_customers.csv")
+        reg_l, reg_v = count_column_values(cust_path, "region", 10)
+        charts.append(
+            {
+                "key": "customers_region",
+                "title": "Customers by region (top)",
+                "type": "bar",
+                "labels": reg_l or ["—"],
+                "values": reg_v or [0.0],
+            }
+        )
+        seg_l, seg_v = count_column_values(cust_path, "customer_segment", 8)
+        charts.append(
+            {
+                "key": "customers_segment",
+                "title": "Customers by segment",
+                "type": "bar",
+                "labels": seg_l or ["—"],
+                "values": seg_v or [0.0],
+            }
+        )
+        ch_l, ch_v = count_column_values(tx_path, "channel", 8)
+        charts.append(
+            {
+                "key": "txn_channel",
+                "title": "Transactions by channel",
+                "type": "bar",
+                "labels": ch_l or ["—"],
+                "values": ch_v or [0.0],
+            }
+        )
+        tt_l, tt_v = count_column_values(tx_path, "transaction_type", 8)
+        charts.append(
+            {
+                "key": "txn_type",
+                "title": "Transactions by type",
+                "type": "bar",
+                "labels": tt_l or ["—"],
+                "values": tt_v or [0.0],
+            }
+        )
+        ls_l, ls_v = count_column_values(loans_path, "loan_status", 8)
+        charts.append(
+            {
+                "key": "loan_status",
+                "title": "Loans by status",
+                "type": "bar",
+                "labels": ls_l or ["—"],
+                "values": ls_v or [0.0],
             }
         )
 
