@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { MiniBarChart } from '../components/MiniBarChart'
+import { BarChart } from '../components/BarChart'
 import { RowsPerPageSelect } from '../components/RowsPerPageSelect'
 import { sliceByRowLimit, visibleRowCount } from '../utils/tableRows'
 import './AnalyticsPage.css'
@@ -22,6 +22,9 @@ export function AnalyticsPage({ overview, merchants, charts }) {
   }
 
   const chartList = charts?.charts || []
+  const topMerchantLabels = displayedMerchants.map((m) => String(m.merchant_name || '').slice(0, 22))
+  const topMerchantTxnValues = displayedMerchants.map((m) => Number(m.transaction_count) || 0)
+  const topMerchantAmtValues = displayedMerchants.map((m) => Number(m.total_amount_ugx) || 0)
 
   return (
     <div className="analytics-page">
@@ -40,12 +43,21 @@ export function AnalyticsPage({ overview, merchants, charts }) {
           <h2 className="dashboard-charts-heading">Charts</h2>
           <div className="dashboard-charts-grid">
             {chartList.map((c) => (
-              <article key={c.key} className={`dashboard-chart-card card ${c.layout === 'vertical' ? 'dashboard-chart-card--wide' : ''}`}>
-                <MiniBarChart
+              <article key={c.key} className="dashboard-chart-card card">
+                <BarChart
                   title={c.title}
-                  labels={c.labels || []}
-                  values={c.values || []}
+                  labels={
+                    c.key === 'merchants_txn' || c.key === 'merchants_amt' ? topMerchantLabels : c.labels || []
+                  }
+                  values={
+                    c.key === 'merchants_txn'
+                      ? topMerchantTxnValues
+                      : c.key === 'merchants_amt'
+                        ? topMerchantAmtValues
+                        : c.values || []
+                  }
                   layout={c.layout === 'vertical' ? 'vertical' : 'horizontal'}
+                  palette="blueGreen"
                 />
               </article>
             ))}

@@ -14,6 +14,24 @@
   gap: 0.5rem;
 }
 
+.etl-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.78rem;
+  color: #334155;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.etl-toggle input[type='checkbox'] {
+  transform: translateY(0.5px);
+}
+
 .etl-airflow-hint {
   margin: 0.5rem 0 0;
   font-size: 0.78rem;

@@ -6,7 +6,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends openjdk-17-jre-headless curl \
     && rm -rf /var/lib/apt/lists/*
 
-ENV SPARK_VERSION=3.5.4
+ENV SPARK_VERSION=3.5.1
 ENV HADOOP_VERSION=3
 ENV SPARK_HOME=/opt/spark
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64

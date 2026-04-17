@@ -1,9 +1,378 @@
 [
   {
+    "job_id": "fcc5dddb-2505-49bf-bbd7-47851ea4d03f",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "failed",
+    "triggered_at": "2026-04-16T14:24:41.441129+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 18,
+      "finance_datasets": 16,
+      "external_datasets": 2,
+      "total_rows_processed": 201676
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__f01d6e80-b219-4986-a5ba-edd3ae1522fa",
+    "airflow_state": "failed",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": "Airflow DAG run ended in state: failed.",
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_customers.csv",
+          "ok": false,
+          "error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+        }
+      ],
+      "errors": [
+        "dim_customers.csv: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+      ]
+    }
+  },
+  {
+    "job_id": "e5074c83-a0d2-4ccb-9896-154c87b690f3",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "failed",
+    "triggered_at": "2026-04-16T13:20:34.728530+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 17,
+      "finance_datasets": 15,
+      "external_datasets": 2,
+      "total_rows_processed": 201658
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__85492564-8625-465f-8988-d5e0676a1248",
+    "airflow_state": "failed",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": "Airflow DAG run ended in state: failed.",
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "disoccupazione.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "disoccupazione.csv",
+            "classification": "external",
+            "uploaded_at": "2026-04-16T13:20:06.607392+00:00",
+            "processed_at": "2026-04-16T13:20:34.702268+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 57519,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 57519 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to external zone: disoccupazione.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "iso_code",
+                "country",
+                "sex",
+                "age",
+                "year",
+                "obs_value"
+              ],
+              "row_count": 57519,
+              "null_counts": {
+                "iso_code": 0,
+                "country": 0,
+                "sex": 0,
+                "age": 0,
+                "year": 0,
+                "obs_value": 0
+              },
+              "numeric_summary": {
+                "year": {
+                  "min": 1991.0,
+                  "max": 2025.0,
+                  "avg": 2007.965
+                },
+                "obs_value": {
+                  "min": 0.027,
+                  "max": 84.183,
+                  "avg": 10.5237
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "de860988-5390-4588-bacf-b51c26cd560b",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "admin",
+    "status": "failed",
+    "triggered_at": "2026-04-16T13:20:12.433292+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 16,
+      "finance_datasets": 15,
+      "external_datasets": 1,
+      "total_rows_processed": 144139
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__e3dc9fa2-1879-4f46-979e-ce5333412f71",
+    "airflow_state": "failed",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": "Airflow DAG run ended in state: failed.",
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "dim_customers.csv",
+          "ok": false,
+          "error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+        }
+      ],
+      "errors": [
+        "dim_customers.csv: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+      ]
+    }
+  },
+  {
+    "job_id": "760c0082-4f24-4c4c-8687-bd122e6d0684",
+    "job_name": "post_preprocess_etl",
+    "triggered_by": "operator",
+    "status": "failed",
+    "triggered_at": "2026-04-16T12:47:42.357166+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 16,
+      "finance_datasets": 15,
+      "external_datasets": 1,
+      "total_rows_processed": 144139
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__8deae0fa-49c3-4b47-8fef-e797e697d153",
+    "airflow_state": "failed",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": "Airflow DAG run ended in state: failed.",
+    "preprocess": {
+      "mode": "single",
+      "processed": [
+        {
+          "dataset": "fact_loans.csv",
+          "ok": true,
+          "payload": {
+            "dataset": "fact_loans.csv",
+            "classification": "finance",
+            "uploaded_at": "2026-04-16T12:47:16.603456+00:00",
+            "processed_at": "2026-04-16T12:47:42.340350+00:00",
+            "pipeline_status": "analytics_ready",
+            "status": "success",
+            "row_count": 7983,
+            "stages": [
+              {
+                "stage": "processing_stage",
+                "status": "passed",
+                "message": "Validated and normalized 7983 records."
+              },
+              {
+                "stage": "result_stage",
+                "status": "passed",
+                "message": "Published dataset to finance zone: fact_loans.csv"
+              },
+              {
+                "stage": "analytics_ready_stage",
+                "status": "passed",
+                "message": "Marked for dashboard & CEN Query (analytics_ready)."
+              }
+            ],
+            "insights": {
+              "columns": [
+                "loan_id",
+                "customer_id",
+                "account_id",
+                "loan_product",
+                "principal_amount",
+                "interest_rate_annual_pct",
+                "tenure_months",
+                "issue_date",
+                "due_date",
+                "loan_status"
+              ],
+              "row_count": 7983,
+              "null_counts": {
+                "loan_id": 0,
+                "customer_id": 0,
+                "account_id": 0,
+                "loan_product": 0,
+                "principal_amount": 0,
+                "interest_rate_annual_pct": 0,
+                "tenure_months": 0,
+                "issue_date": 0,
+                "due_date": 0,
+                "loan_status": 0
+              },
+              "numeric_summary": {
+                "principal_amount": {
+                  "min": 212785.0,
+                  "max": 2500000.0,
+                  "avg": 1588802.9106
+                },
+                "interest_rate_annual_pct": {
+                  "min": 12.0,
+                  "max": 25.0,
+                  "avg": 18.4457
+                },
+                "tenure_months": {
+                  "min": 3.0,
+                  "max": 18.0,
+                  "avg": 10.5547
+                }
+              }
+            },
+            "bigquery": {
+              "skipped": true,
+              "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+            }
+          }
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "job_id": "28eb41db-eb25-401c-98ed-b9f977884052",
+    "job_name": "etl-pipeline.py",
+    "triggered_by": "admin",
+    "status": "failed",
+    "triggered_at": "2026-04-16T11:39:04.361142+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 15,
+      "finance_datasets": 14,
+      "external_datasets": 1,
+      "total_rows_processed": 136156
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__03c92231-9619-4647-8df0-4bd9bf6db6c7",
+    "airflow_state": "failed",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": "Airflow DAG run ended in state: failed."
+  },
+  {
+    "job_id": "4cd98452-96be-4fad-b8ad-659dd7ee8933",
+    "job_name": "etl-pipeline.py",
+    "triggered_by": "admin",
+    "status": "failed",
+    "triggered_at": "2026-04-16T10:27:01.599384+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 15,
+      "finance_datasets": 14,
+      "external_datasets": 1,
+      "total_rows_processed": 136156
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__15b6564d-424c-4235-a3d7-1a6761e5cbcb",
+    "airflow_state": "failed",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": "Airflow DAG run ended in state: failed."
+  },
+  {
+    "job_id": "363033e4-a505-4841-b112-ac3ce187da39",
+    "job_name": "etl-pipeline.py",
+    "triggered_by": "admin",
+    "status": "failed",
+    "triggered_at": "2026-04-16T07:53:46.195684+00:00",
+    "stages": [
+      "airflow_trigger",
+      "delegate_summary"
+    ],
+    "summary": {
+      "successful_datasets": 15,
+      "finance_datasets": 14,
+      "external_datasets": 1,
+      "total_rows_processed": 136156
+    },
+    "airflow_dag_id": "distributed_pipeline_scaffold",
+    "airflow_dag_run_id": "manual__fdc71192-cdb5-4d5d-ac6d-64aa0cdf150b",
+    "airflow_state": "failed",
+    "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
+    "airflow_error": null,
+    "airflow_trigger_ok": true,
+    "delegate_etl_ok": true,
+    "message": "Airflow DAG run ended in state: failed.",
+    "preprocess": {
+      "mode": "all",
+      "processed": [
+        {
+          "dataset": "dim_customers.csv",
+          "ok": false,
+          "error": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+        }
+      ],
+      "errors": [
+        "dim_customers.csv: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte"
+      ]
+    }
+  },
+  {
     "job_id": "340e51c2-739c-4714-aad9-54e09d07ce66",
     "job_name": "etl-pipeline.py",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:14:59.463662+00:00",
     "stages": [
       "airflow_trigger",
@@ -17,12 +386,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__4da8ea58-3744-4231-bc1b-6223783b35b2",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "all",
       "processed": [
@@ -94,7 +463,7 @@
     "job_id": "bddc9d24-c536-401e-a9bc-ea0a19ba5c4f",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:14:05.502948+00:00",
     "stages": [
       "airflow_trigger",
@@ -108,12 +477,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__c501767d-6140-4feb-b74f-53afbf440f5f",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -194,7 +563,7 @@
     "job_id": "e2e2bca0-4e0f-4981-8256-fce29b78c135",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:13:24.917965+00:00",
     "stages": [
       "airflow_trigger",
@@ -208,12 +577,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__65da36b0-9e79-47f0-8a85-13160b7b7a95",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -287,7 +656,7 @@
     "job_id": "c4d316dd-a160-44fc-a6c8-f9a2bda67fee",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:12:04.110006+00:00",
     "stages": [
       "airflow_trigger",
@@ -301,12 +670,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__f5d2a7ca-892f-4d57-ade2-599bd371e127",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -380,7 +749,7 @@
     "job_id": "df217d66-253d-4e2b-8c4d-5c6bfeddfcb3",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:11:59.185586+00:00",
     "stages": [
       "airflow_trigger",
@@ -394,12 +763,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__2d46b1b7-98a7-4f6c-9873-683b43ce09fc",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -467,7 +836,7 @@
     "job_id": "b5f5ec5a-d8d5-4e3e-a692-c0260d3ecf1b",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:11:53.061850+00:00",
     "stages": [
       "airflow_trigger",
@@ -481,12 +850,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__1e8fc85b-b8b8-4e52-8e14-801712378388",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -552,7 +921,7 @@
     "job_id": "473f54f8-2a2e-450c-bd6f-1a0a092af23f",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:11:38.718486+00:00",
     "stages": [
       "airflow_trigger",
@@ -566,12 +935,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__1446d898-c057-4701-912f-162ba6175c6e",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -655,7 +1024,7 @@
     "job_id": "a688c473-8218-485c-9aac-79ef176fa312",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:08:59.648596+00:00",
     "stages": [
       "airflow_trigger",
@@ -669,12 +1038,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__1225881a-33c8-41e0-91ed-27afecfebcda",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -764,7 +1133,7 @@
     "job_id": "d721c6b9-0c36-4b58-a0d1-58aab53c42c5",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:07:59.885433+00:00",
     "stages": [
       "airflow_trigger",
@@ -778,12 +1147,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__1171ec7e-9742-4b7a-af99-a01f71877045",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -855,7 +1224,7 @@
     "job_id": "6d5e6572-1833-492e-9c80-b8b09466a641",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:02:28.520904+00:00",
     "stages": [
       "airflow_trigger",
@@ -869,12 +1238,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__2857db4d-1a6f-4a62-894b-44717b8072f3",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -893,7 +1262,7 @@
     "job_id": "e5d6f257-abf9-43e9-9367-67b1d83b60d9",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T07:02:10.438829+00:00",
     "stages": [
       "airflow_trigger",
@@ -907,12 +1276,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__59517f3f-6cae-441f-be21-2532fe851fa2",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -931,7 +1300,7 @@
     "job_id": "5b0573d3-5146-4006-8a85-a5bc4e852a3b",
     "job_name": "post_preprocess_etl",
     "triggered_by": "admin",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-16T06:46:40.360500+00:00",
     "stages": [
       "airflow_trigger",
@@ -945,12 +1314,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__0915f88a-c8f2-41d5-9880-70f20176c163",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [
@@ -1107,7 +1476,7 @@
     "job_id": "4800dc27-a64c-4e77-adbb-df02c2d3854c",
     "job_name": "etl-pipeline.py",
     "triggered_by": "operator",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-15T20:15:44.360277+00:00",
     "stages": [
       "airflow_trigger",
@@ -1121,12 +1490,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__2026-04-15T20:15:46.956990+00:00",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "all",
       "processed": [
@@ -1157,7 +1526,7 @@
     "job_id": "e4711124-ab1c-4a97-8df2-dcea0ee3cf48",
     "job_name": "etl-pipeline.py",
     "triggered_by": "operator",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-15T20:15:14.890298+00:00",
     "stages": [
       "airflow_trigger",
@@ -1171,12 +1540,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__2026-04-15T20:15:18.878225+00:00",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "all",
       "processed": [
@@ -1363,7 +1732,7 @@
     "job_id": "6d6ed170-ced0-4b94-b5fe-b60c5a404f0e",
     "job_name": "etl-pipeline.py",
     "triggered_by": "operator",
-    "status": "queued",
+    "status": "failed",
     "triggered_at": "2026-04-15T20:07:04.782417+00:00",
     "stages": [
       "airflow_trigger",
@@ -1377,12 +1746,12 @@
     },
     "airflow_dag_id": "distributed_pipeline_scaffold",
     "airflow_dag_run_id": "manual__2026-04-15T20:07:09.939546+00:00",
-    "airflow_state": "queued",
+    "airflow_state": "failed",
     "airflow_ui_url": "http://localhost:8080/dags/distributed_pipeline_scaffold/grid",
     "airflow_error": null,
     "airflow_trigger_ok": true,
     "delegate_etl_ok": true,
-    "message": null,
+    "message": "Airflow DAG run ended in state: failed.",
     "preprocess": {
       "mode": "single",
       "processed": [

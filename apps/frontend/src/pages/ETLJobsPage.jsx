@@ -17,12 +17,19 @@ export function ETLJobsPage({ jobs, onTrigger, integrations, token }) {
   const [scope, setScope] = useState('delegate_only')
   const [datasetName, setDatasetName] = useState('')
   const [busy, setBusy] = useState(false)
+  const [hideFailed, setHideFailed] = useState(true)
   const [spark, setSpark] = useState(null)
   const [sparkLoading, setSparkLoading] = useState(false)
 
   const filteredJobs = useMemo(
-    () => jobs.filter((job) => `${job.job_name} ${job.status} ${job.triggered_by}`.toLowerCase().includes(query.toLowerCase())),
-    [jobs, query],
+    () =>
+      jobs.filter((job) => {
+        const status = String(job.status || '').toLowerCase()
+        if (hideFailed && status === 'failed') return false
+        const hay = `${job.job_name} ${job.status} ${job.triggered_by}`.toLowerCase()
+        return hay.includes(query.toLowerCase())
+      }),
+    [jobs, query, hideFailed],
   )
   const displayedJobs = useMemo(() => sliceByRowLimit(filteredJobs, rowLimit), [filteredJobs, rowLimit])
 
@@ -83,6 +90,10 @@ export function ETLJobsPage({ jobs, onTrigger, integrations, token }) {
         <h2>ETL</h2>
         <div className="etl-actions">
           <input placeholder="Filter ETL jobs..." value={query} onChange={(event) => setQuery(event.target.value)} />
+          <label className="etl-toggle">
+            <input type="checkbox" checked={hideFailed} onChange={(e) => setHideFailed(e.target.checked)} />
+            <span>Hide failed</span>
+          </label>
           <RowsPerPageSelect value={rowLimit} onChange={setRowLimit} id="etl-jobs-rows" />
         </div>
       </div>

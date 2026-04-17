@@ -13,6 +13,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY:-replace_with_secure_fernet_key}
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    AIRFLOW__WEBSERVER__WORKERS: "2"
     # REST API must accept Basic Auth; otherwise POST /api/v1/... returns HTML CSRF errors.
     AIRFLOW__API__AUTH_BACKENDS: airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session
     _PIP_ADDITIONAL_REQUIREMENTS: ""
@@ -237,13 +238,8 @@ services:
       - -c
       - |
         airflow db migrate
-        airflow users create \
-          --username airflow \
-          --password airflow \
-          --firstname Airflow \
-          --lastname Admin \
-          --role Admin \
-          --email airflow@local.test || true
+        airflow users create --username airflow --password airflow --firstname Airflow --lastname Admin --role Admin --email airflow@local.test || true
+        exit 0
 
   airflow-webserver:
     <<: *airflow-common

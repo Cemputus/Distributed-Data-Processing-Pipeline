@@ -134,6 +134,7 @@ class MetricsService:
                 "key": "merchants_txn",
                 "title": "Top merchants — transaction count",
                 "type": "bar",
+                "layout": "vertical",
                 "labels": [str(m.get("merchant_name", ""))[:22] for m in tm],
                 "values": [float(m.get("transaction_count", 0)) for m in tm],
             },
@@ -141,6 +142,7 @@ class MetricsService:
                 "key": "merchants_amt",
                 "title": "Top merchants — amount (UGX)",
                 "type": "bar",
+                "layout": "vertical",
                 "labels": [str(m.get("merchant_name", ""))[:22] for m in tm],
                 "values": [float(m.get("total_amount_ugx", 0)) for m in tm],
             },
@@ -152,6 +154,7 @@ class MetricsService:
                 "key": "txn_amount_bins",
                 "title": "Transaction amounts (bins)",
                 "type": "bar",
+                "layout": "vertical",
                 "labels": la or ["—"],
                 "values": va or [0.0],
             }

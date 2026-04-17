@@ -216,7 +216,7 @@ def try_get_dag_run_state(dag_id: str, dag_run_id: str) -> Tuple[Optional[str], 
     url = f"{base}/api/v1/dags/{dag_id}/dagRuns/{dag_run_id}"
     session = _auth_session()
     try:
-        response = session.get(url, timeout=60, allow_redirects=True)
+        response = session.get(url, timeout=8, allow_redirects=True)
     except OSError as exc:
         return None, f"Airflow request failed: {exc}"
     if response.status_code >= 400:

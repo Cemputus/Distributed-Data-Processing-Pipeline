@@ -26,8 +26,9 @@ export function MiniBarChart({ title, labels, values, layout = 'horizontal' }) {
           {lbls.map((label, i) => {
             const h = Math.round((nums[i] / max) * 100)
             const hue = barHue(i, 2)
+            const tip = `${label}: ${nums[i].toLocaleString()}`
             return (
-              <div className="mini-bar-chart-column" key={`${label}-${i}`}>
+              <div className="mini-bar-chart-column" key={`${label}-${i}`} data-tooltip={tip}>
                 <span className="mini-bar-chart-vnum">{nums[i].toLocaleString()}</span>
                 <div className="mini-bar-chart-vtrack">
                   <div
@@ -57,8 +58,10 @@ export function MiniBarChart({ title, labels, values, layout = 'horizontal' }) {
         {lbls.map((label, i) => {
           const h = Math.round((nums[i] / max) * 100)
           const hue = barHue(i, 0)
+          const tip = `${label}: ${nums[i].toLocaleString()}`
           return (
-            <div className="mini-bar-chart-row" key={`${label}-${i}`}>
+            <div className="mini-bar-chart-row" key={`${label}-${i}`} data-tooltip={tip}>
+              <span className="mini-bar-chart-rank">{i + 1}</span>
               <span className="mini-bar-chart-label" title={label}>
                 {String(label).slice(0, 14)}
                 {String(label).length > 14 ? '…' : ''}

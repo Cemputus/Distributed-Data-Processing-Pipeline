@@ -1,5 +1,641 @@
 [
   {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:37:43.760004+00:00",
+    "landing_file": "20260416T143743Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143743Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143743Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:37:04.040213+00:00",
+    "landing_file": "20260416T143704Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143704Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143704Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:52.514184+00:00",
+    "landing_file": "20260416T143552Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143552Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143552Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:52.071453+00:00",
+    "landing_file": "20260416T143552Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143552Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143552Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:51.756881+00:00",
+    "landing_file": "20260416T143551Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143551Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143551Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:51.407363+00:00",
+    "landing_file": "20260416T143551Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143551Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143551Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:51.059380+00:00",
+    "landing_file": "20260416T143551Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143551Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143551Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:50.750247+00:00",
+    "landing_file": "20260416T143550Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143550Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143550Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:39.703196+00:00",
+    "landing_file": "20260416T143539Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143539Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143539Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:39.375385+00:00",
+    "landing_file": "20260416T143539Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143539Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143539Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:38.933648+00:00",
+    "landing_file": "20260416T143538Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143538Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143538Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:38.554477+00:00",
+    "landing_file": "20260416T143538Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143538Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143538Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:38.162947+00:00",
+    "landing_file": "20260416T143538Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143538Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143538Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:37.651166+00:00",
+    "landing_file": "20260416T143537Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143537Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143537Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:37.305153+00:00",
+    "landing_file": "20260416T143537Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143537Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143537Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:36.925405+00:00",
+    "landing_file": "20260416T143536Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143536Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143536Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "occupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:35:36.387610+00:00",
+    "landing_file": "20260416T143536Z_occupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T143536Z_occupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T143536Z_occupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:26:16.901421+00:00",
+    "landing_file": "20260416T142616Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142616Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142616Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:26:16.462020+00:00",
+    "landing_file": "20260416T142616Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142616Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142616Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:26:11.962391+00:00",
+    "landing_file": "20260416T142611Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142611Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142611Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:25:19.371654+00:00",
+    "landing_file": "20260416T142519Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142519Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142519Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:25:18.930820+00:00",
+    "landing_file": "20260416T142518Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142518Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142518Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:25:18.454657+00:00",
+    "landing_file": "20260416T142518Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142518Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142518Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:25:17.746368+00:00",
+    "landing_file": "20260416T142517Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142517Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142517Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:25:17.257140+00:00",
+    "landing_file": "20260416T142517Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142517Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142517Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:25:16.517431+00:00",
+    "landing_file": "20260416T142516Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142516Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142516Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:25:10.644574+00:00",
+    "landing_file": "20260416T142510Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142510Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142510Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T14:24:26.424257+00:00",
+    "landing_file": "20260416T142426Z_disoccupazione.csv",
+    "pipeline_status": "landed",
+    "status": "landed",
+    "stages": [
+      {
+        "stage": "input_stage",
+        "status": "passed",
+        "message": "Stored file in landing zone: 20260416T142426Z_disoccupazione.csv \u00b7 MinIO s3://fintech-landing/20260416T142426Z_disoccupazione.csv"
+      }
+    ],
+    "insights": {}
+  },
+  {
+    "dataset": "dim_branches.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-16T14:23:06.777523+00:00",
+    "landing_file": "20260416T142306Z_dim_branches.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 18 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: dim_branches.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "branch_id",
+        "branch_name",
+        "region",
+        "service_type",
+        "opened_at",
+        "branch_status"
+      ],
+      "row_count": 18,
+      "null_counts": {
+        "branch_id": 0,
+        "branch_name": 0,
+        "region": 0,
+        "service_type": 0,
+        "opened_at": 0,
+        "branch_status": 0
+      },
+      "numeric_summary": {}
+    },
+    "processed_at": "2026-04-16T14:23:49.194744+00:00",
+    "row_count": 18,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "disoccupazione.csv",
+    "classification": "external",
+    "uploaded_at": "2026-04-16T13:20:06.607392+00:00",
+    "landing_file": "20260416T132006Z_disoccupazione.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 57519 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to external zone: disoccupazione.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "iso_code",
+        "country",
+        "sex",
+        "age",
+        "year",
+        "obs_value"
+      ],
+      "row_count": 57519,
+      "null_counts": {
+        "iso_code": 0,
+        "country": 0,
+        "sex": 0,
+        "age": 0,
+        "year": 0,
+        "obs_value": 0
+      },
+      "numeric_summary": {
+        "year": {
+          "min": 1991.0,
+          "max": 2025.0,
+          "avg": 2007.965
+        },
+        "obs_value": {
+          "min": 0.027,
+          "max": 84.183,
+          "avg": 10.5237
+        }
+      }
+    },
+    "processed_at": "2026-04-16T13:20:34.702268+00:00",
+    "row_count": 57519,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
+    "dataset": "fact_loans.csv",
+    "classification": "finance",
+    "uploaded_at": "2026-04-16T12:47:16.603456+00:00",
+    "landing_file": "20260416T124716Z_fact_loans.csv",
+    "pipeline_status": "analytics_ready",
+    "status": "success",
+    "stages": [
+      {
+        "stage": "processing_stage",
+        "status": "passed",
+        "message": "Validated and normalized 7983 records."
+      },
+      {
+        "stage": "result_stage",
+        "status": "passed",
+        "message": "Published dataset to finance zone: fact_loans.csv"
+      },
+      {
+        "stage": "analytics_ready_stage",
+        "status": "passed",
+        "message": "Marked for dashboard & CEN Query (analytics_ready)."
+      }
+    ],
+    "insights": {
+      "columns": [
+        "loan_id",
+        "customer_id",
+        "account_id",
+        "loan_product",
+        "principal_amount",
+        "interest_rate_annual_pct",
+        "tenure_months",
+        "issue_date",
+        "due_date",
+        "loan_status"
+      ],
+      "row_count": 7983,
+      "null_counts": {
+        "loan_id": 0,
+        "customer_id": 0,
+        "account_id": 0,
+        "loan_product": 0,
+        "principal_amount": 0,
+        "interest_rate_annual_pct": 0,
+        "tenure_months": 0,
+        "issue_date": 0,
+        "due_date": 0,
+        "loan_status": 0
+      },
+      "numeric_summary": {
+        "principal_amount": {
+          "min": 212785.0,
+          "max": 2500000.0,
+          "avg": 1588802.9106
+        },
+        "interest_rate_annual_pct": {
+          "min": 12.0,
+          "max": 25.0,
+          "avg": 18.4457
+        },
+        "tenure_months": {
+          "min": 3.0,
+          "max": 18.0,
+          "avg": 10.5547
+        }
+      }
+    },
+    "processed_at": "2026-04-16T12:47:42.340350+00:00",
+    "row_count": 7983,
+    "bigquery": {
+      "skipped": true,
+      "reason": "BIGQUERY_AUTO_LOAD_ON_UPLOAD is false"
+    }
+  },
+  {
     "dataset": "dim_accounts.csv",
     "classification": "finance",
     "uploaded_at": "2026-04-16T07:13:58.769173+00:00",

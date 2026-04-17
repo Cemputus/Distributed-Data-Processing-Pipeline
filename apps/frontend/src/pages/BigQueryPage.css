@@ -123,3 +123,158 @@
   padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
 }
+
+.bigquery-page .bq-result-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.bigquery-page .bq-viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bigquery-page .bq-viz-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.bigquery-page .bq-viz-controls select {
+  font-size: 0.8rem;
+  min-width: 7rem;
+}
+
+.bigquery-page .bq-chart {
+  margin-top: 0.6rem;
+  border: 1px solid #e5eaf2;
+  border-radius: 10px;
+  padding: 0.7rem 0.75rem;
+  background: #fcfdff;
+}
+
+.bigquery-page .bq-bar-row {
+  display: grid;
+  grid-template-columns: minmax(0, 8rem) 1fr auto;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 0.78rem;
+  margin-bottom: 0.38rem;
+}
+
+.bigquery-page .bq-bar-row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #475569;
+}
+
+.bigquery-page .bq-bar-row strong {
+  font-variant-numeric: tabular-nums;
+  color: #1e293b;
+}
+
+.bigquery-page .bq-bar-track {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bigquery-page .bq-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+
+.bigquery-page .bq-chart--line svg {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(180deg, #f8fbff, #f1f5f9);
+  border-radius: 8px;
+}
+
+.bigquery-page .bq-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+.bigquery-page .bq-chart-legend span {
+  font-size: 0.72rem;
+  background: #eef2ff;
+  color: #334155;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  max-width: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bigquery-page .bq-chart--pie {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.bigquery-page .bq-chart--pie svg {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.bigquery-page .bq-pie-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.bigquery-page .bq-pie-legend li {
+  display: grid;
+  grid-template-columns: 0.75rem minmax(0, 1fr) auto;
+  gap: 0.35rem;
+  align-items: center;
+  font-size: 0.76rem;
+}
+
+.bigquery-page .bq-pie-legend li span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+}
+
+.bigquery-page .bq-pie-legend li strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #475569;
+}
+
+.bigquery-page .bq-pie-legend li em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  color: #1e293b;
+}
+
+@media (max-width: 900px) {
+  .bigquery-page .bq-chart--pie {
+    grid-template-columns: 1fr;
+  }
+
+  .bigquery-page .bq-bar-row {
+    grid-template-columns: minmax(0, 5.5rem) 1fr auto;
+  }
+}

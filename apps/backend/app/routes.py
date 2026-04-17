@@ -153,7 +153,9 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
     def _sync_etl_jobs_with_airflow() -> None:
         """Refresh ETL job status from Airflow for jobs that have a DAG run id."""
         changed = False
-        for job in etl_jobs:
+        checked = 0
+        max_checks = 12
+        for job in etl_jobs[:80]:
             if not job.get("airflow_trigger_ok"):
                 continue
             dag_id = str(job.get("airflow_dag_id") or "").strip()
@@ -163,8 +165,11 @@ def create_api_blueprint(data_dir: Path) -> Blueprint:
             current = str(job.get("airflow_state") or "").strip().lower()
             if current in {"success", "failed"} and str(job.get("status") or "").strip().lower() in {"completed", "failed"}:
                 continue
+            if checked >= max_checks:
+                break
 
             new_state, err = airflow_client.try_get_dag_run_state(dag_id, run_id)
+            checked += 1
             if err:
                 continue
             if not new_state:
